@@ -1,3 +1,44 @@
+/* بکگراند مشکی */
 body {
-  background-color: white; /* یا می‌تونی کامل حذفش کنی تا دیفالت مرورگر باشه */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+}
+
+/* ریسپانسیو برای موبایل، تبلت، لپتاپ، دسکتاپ، تلویزیون */
+@media (max-width: 480px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1920px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 1921px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
 }
