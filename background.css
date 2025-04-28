@@ -1,0 +1,7 @@
+/* تنظیمات برای body و html */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: black; /* پس‌زمینه سیاه */
+    color: white; /* رنگ متن سفید برای خوانایی */
+}
