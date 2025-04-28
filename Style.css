@@ -1,20 +1,18 @@
-/* تنظیمات کلی */
-body, html {
+/* تنظیمات برای body و html برای اینکه از کل صفحه استفاده کنیم */
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-}
-
-/* کانتینر لوگو */
-.logo-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100px; /* ارتفاع دلخواه از بالا */
-    margin-top: 10px; /* فاصله از بالای صفحه */
+    justify-content: center; /* وسط کردن افقی */
+    align-items: flex-start; /* وسط کردن عمودی */
+    flex-direction: column; /* تمام محتوا به صورت عمودی باشد */
+    background-color: black; /* پس‌زمینه سیاه */
+    color: white; /* رنگ متن سفید برای خوانایی */
 }
 
-/* خود لوگو */
+/* استایل لوگو */
 .logo {
-    max-width: 200px;
-    height: auto;
+    max-width: 200px; /* حداکثر عرض */
+    height: auto; /* ارتفاع به صورت خودکار */
+    margin-top: 10px; /* فاصله از بالای صفحه */
 }
