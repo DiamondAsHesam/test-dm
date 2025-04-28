@@ -1,18 +1,16 @@
-/* تنظیمات برای body و html برای اینکه از کل صفحه استفاده کنیم */
+/* تنظیمات کلی برای body و html */
 html, body {
     height: 100%;
     margin: 0;
-    display: flex;
-    justify-content: center; /* وسط کردن افقی */
-    align-items: flex-start; /* لوگو از بالای صفحه شروع بشه */
-    flex-direction: column; /* تمام محتوا به صورت عمودی باشد */
-    background-color: black; /* پس‌زمینه سیاه */
-    color: white; /* رنگ متن سفید برای خوانایی */
+    position: relative; /* نیاز داریم که parent برای absolute position تعریف بشه */
 }
 
 /* استایل لوگو */
 .logo {
+    position: absolute; /* قرار می‌دهیم لوگو به صورت absolute */
+    top: 0; /* از بالا شروع بشه */
+    left: 50%; /* وسط صفحه در محور افقی */
+    transform: translateX(-50%); /* جابجایی لوگو به سمت چپ برای وسط دقیق */
     max-width: 200px; /* حداکثر عرض */
     height: auto; /* ارتفاع به صورت خودکار */
-    margin-top: 10px; /* فاصله از بالای صفحه */
 }
