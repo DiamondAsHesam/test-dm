@@ -10,6 +10,10 @@ body {
     font-family: 'Vazirmatn', sans-serif;
     background-color: #000;
     color: #fff;
+    height: 100vh; /* کل صفحه به اندازه نمایشگر */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* Header */
@@ -45,6 +49,7 @@ nav ul li a:hover {
 .hero {
     text-align: center;
     padding: 100px 20px;
+    flex-grow: 1; /* اجازه میده که این بخش تمام فضای عمودی رو بگیره */
 }
 
 .hero h2 {
@@ -56,24 +61,53 @@ nav ul li a:hover {
     font-size: 20px;
 }
 
+/* Description Section */
+.description {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #222;
+    border-radius: 10px;
+    margin: 30px 0;
+}
+
+.description h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.description p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
 /* Cards Section */
 .cards {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 30px;
     padding: 50px 20px;
+    flex-wrap: wrap;
 }
 
 .card {
     background: #111;
     border: 2px solid #333;
     padding: 40px;
-    width: 250px;
+    width: 30%;
     text-align: center;
     border-radius: 20px;
     transition: 0.5s;
     position: relative;
     overflow: hidden;
+}
+
+.card h3 {
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .card::before {
