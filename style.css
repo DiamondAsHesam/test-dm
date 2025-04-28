@@ -1,1 +1,18 @@
+/* استایل عمومی صفحه */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: black; /* پس‌زمینه سیاه */
+    color: white; /* متن سفید */
+    position: relative; /* برای تنظیم موقعیت لوگو */
+}
 
+/* استایل مخصوص لوگو */
+.logo {
+    position: absolute; /* موقعیت مطلق نسبت به body */
+    top: 20px; /* کمی فاصله از بالای صفحه */
+    left: 50%; /* وسط صفحه در محور افقی */
+    transform: translateX(-50%); /* جابجایی برای وسط دقیق */
+    max-width: 200px; /* اندازه حداکثر لوگو */
+    height: auto; /* ارتفاع متناسب */
+}
