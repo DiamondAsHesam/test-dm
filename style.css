@@ -1,16 +1,1 @@
-/* تنظیمات کلی برای body و html */
-html, body {
-    height: 100%;
-    margin: 0;
-    position: relative; /* نیاز داریم که parent برای absolute position تعریف بشه */
-}
 
-/* استایل لوگو */
-.logo {
-    position: absolute; /* قرار می‌دهیم لوگو به صورت absolute */
-    top: 0; /* از بالا شروع بشه */
-    left: 50%; /* وسط صفحه در محور افقی */
-    transform: translateX(-50%); /* جابجایی لوگو به سمت چپ برای وسط دقیق */
-    max-width: 200px; /* حداکثر عرض */
-    height: auto; /* ارتفاع به صورت خودکار */
-}
