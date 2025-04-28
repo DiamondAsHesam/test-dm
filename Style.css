@@ -1,1 +1,10 @@
-
+/* استایل برای لوگو */
+.logo {
+    display: block;
+    position: absolute;
+    top: 10px; /* فاصله از بالای صفحه */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 200px; /* حداکثر عرض */
+    height: auto; /* ارتفاع خودکار */
+}
