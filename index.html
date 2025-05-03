@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>پورتفولیو من</title>
+  <title>پورتفولیو من</title
   <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="Diamond Community.jpg">
 </head>
 <body>
 
   <div class="video-banner">
-    <video autoplay muted loop>
-      <source src="video.mp4" type="video/mp4" />
+    <video autoplay muted loop playsinline>
+      <source src="video-4k.mp4" type="video/mp4" media="(min-width: 1920px)">
+      <source src="video-1080p.mp4" type="video/mp4" media="(min-width: 1024px)">
+      <source src="video-720p.mp4" type="video/mp4" media="(min-width: 768px)">
+      <source src="video-540p.mp4" type="video/mp4" media="(min-width: 480px)">
+      <source src="video-360p.mp4" type="video/mp4">
       مرورگر شما از ویدیو پشتیبانی نمی‌کند.
     </video>
     <div class="overlay"></div>
