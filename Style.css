@@ -14,7 +14,7 @@ body {
 .logo {
   display: block;
   margin-top: 10vh; /* فاصله 10 درصد از ارتفاع صفحه */
-  max-width: 100px; 
+  max-width: 300px; 
   width: 121%;
   height: 40%;
 }
