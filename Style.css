@@ -1,48 +1,19 @@
+/* تنظیمات کلی برای بدنه صفحه */
 body {
   margin: 0;
-  background-color: #000;
-  color: #fff;
-  font-family: sans-serif;
-  text-align: center;
-}
-
-.logo {
-  width: 100px;
-  height: 100px;
-  margin: 40px auto 20px;
-  display: block;
-}
-
-.center-sidebar {
+  padding: 0;
+  background-color: #000;  /* پس‌زمینه مشکی */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
+  justify-content: center; /* وسط‌چین افقی */
+  align-items: flex-start; /* بالا‌چین عمودی */
+  height: 100vh;           /* تمام ارتفاع صفحه */
+  font-family: sans-serif; /* فونت ساده و خوانا */
 }
 
-.sidebar-item {
-  margin: 10px 0;
-  color: #ccc;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s;
-}
-
-.sidebar-item:hover {
-  color: #fff;
-}
-
-section {
-  padding: 40px 20px;
-  border-top: 1px solid #333;
-}
-
-h2 {
-  color: #fff;
-}
-
-p {
-  color: #ccc;
-  max-width: 600px;
-  margin: 0 auto;
+/* استایل برای لوگو (تصویر وسط بالا) */
+.logo {
+  display: block;
+  margin-top: 40px;        /* فاصله از بالای صفحه */
+  max-width: 100%;         /* اجازه نده تصویر از عرض صفحه بزرگ‌تر بشه */
+  height: auto;            /* ارتفاع خودکار بر اساس نسبت تصویر */
 }
