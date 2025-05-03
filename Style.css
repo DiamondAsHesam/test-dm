@@ -8,29 +8,31 @@ body {
   align-items: flex-start; /* بالاچین عمودی */
   height: 100vh;           /* تمام ارتفاع صفحه */
   font-family: sans-serif; /* فونت ساده و خوانا */
-  position: relative;
+  position: relative;      /* برای اینکه موقعیت لوگو روی ویدیو قرار بگیره */
 }
 
 /* استایل ویدیو پس‌زمینه */
 .video-background {
-  position: absolute;
+  position: absolute;     /* ویدیو در پس‌زمینه */
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%; /* ویدیو فقط نیمی از صفحه را پوشش دهد */
+  height: 100%;            /* ویدیو تمام صفحه رو پوشش می‌ده */
   overflow: hidden;
 }
 
 .video-background video {
-  object-fit: cover; /* ویدیو به صورت کامل در ابعاد صفحه کشیده بشه */
+  object-fit: cover;      /* ویدیو تمام عرض و ارتفاع رو می‌گیره */
   width: 100%;
   height: 100%;
 }
 
-/* استایل برای لوگو (آیکون) وسط بالا */
+/* استایل برای لوگو (آیکون) که روی ویدیو قرار می‌گیره */
 .logo {
-  display: block;
-  margin-top: 40px;        /* فاصله از بالای صفحه */
-  width: 121%;             /* عرض 100% */
-  height: 40%;            /* ارتفاع خودکار */
+  position: absolute;      /* لوگو روی ویدیو قرار می‌گیره */
+  top: 40px;               /* فاصله از بالای صفحه */
+  max-width: 300px;        /* حداکثر عرض تصویر 300 پیکسل */
+  width: auto;             /* عرض خودکار */
+  height: auto;            /* ارتفاع خودکار */
+  z-index: 1;              /* به لوگو اولویت نمایش داده بشه */
 }
