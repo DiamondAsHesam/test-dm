@@ -5,15 +5,34 @@ body {
   background-color: #000;  /* پس‌زمینه مشکی */
   display: flex;
   justify-content: center; /* وسط‌چین افقی */
-  align-items: flex-start; /* بالا‌چین عمودی */
+  align-items: flex-start; /* بالاچین عمودی */
   height: 100vh;           /* تمام ارتفاع صفحه */
   font-family: sans-serif; /* فونت ساده و خوانا */
+  position: relative;
 }
 
-/* استایل برای لوگو (تصویر وسط بالا) */
+/* استایل ویدیو پس‌زمینه */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* ویدیو فقط نیمی از صفحه را پوشش دهد */
+  overflow: hidden;
+}
+
+.video-background video {
+  object-fit: cover; /* ویدیو به صورت کامل در ابعاد صفحه کشیده بشه */
+  width: 100%;
+  height: 100%;
+}
+
+/* استایل برای لوگو (آیکون) وسط بالا */
 .logo {
   display: block;
   margin-top: 40px;        /* فاصله از بالای صفحه */
-  max-width: 121%;         /* اجازه نده تصویر از عرض صفحه بزرگ‌تر بشه */
-  height: 40%;            /* ارتفاع خودکار بر اساس نسبت تصویر */
+  max-width: 300px;        /* حداکثر عرض تصویر */
+  width: 100%;             /* عرض 100% */
+  height: auto;            /* ارتفاع خودکار */
+  z-index: 1;              /* به لوگو اولویت نمایش داده بشه */
 }
