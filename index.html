@@ -1,23 +1,79 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>پورتفولیو</title>
-
-  <!-- فایل CSS جداگانه برای استایل -->
-  <link rel="stylesheet" href="Style.css" />
-
-  <!-- ایکون اصلی وبسایت -->
-  <link rel="shortcut icon" type="image/x-icon" href="Diamond Community.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پورتفولیو من</title>
+    <style>
+        /* Reset و تنظیمات اولیه */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000; /* بک‌گراند سیاه */
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* بنر ویدیویی تمام‌صفحه */
+        .video-banner {
+            width: 100%;
+            height: 100vh; /* تمام ارتفاع صفحه */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-banner video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* تضمین می‌کنه ویدیو کل فضای بنر رو پر کنه */
+        }
+        
+        /* لوگو وسط بالا */
+        .logo {
+            position: absolute;
+            top: 20px; /* فاصله از بالا */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10; /* مطمئن می‌شیم لوگو روی ویدیو قرار می‌گیره */
+            width: 100px; /* اندازه لوگو */
+        }
+        
+        .logo img {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
+    <!-- بنر ویدیویی -->
+    <div class="video-banner">
+        <video autoplay muted loop>
+            <!-- جایگزین کن با لینک ویدیوی خودت -->
+            <source src="your-video.mp4" type="video/mp4">
+            مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+        </video>
+        
+        <!-- لوگو -->
+        <div class="logo">
+            <img src="logo.png" alt="لوگو من"> <!-- جایگزین کن با لوگوی خودت -->
+        </div>
+    </div>
+    
+    <!-- بقیه محتوا اینجا قرار می‌گیره -->
+    <div class="content">
+        <!-- مثلاً بخش "درباره من"، نمونه کارها و... -->
+    </div>
 
-  <!-- لوگو (آیکون) وسط بالا -->
-  <!-- تصویر logo.png باید در کنار فایل index.html قرار داشته باشد -->
-  <img src="logo.png" alt="لوگو" class="logo" />
-
-  <!-- در آینده می‌توان اینجا سایر بخش‌ها مانند سایدبار یا محتوای سایت را اضافه کرد -->
-
+    <script>
+        // اسکریپت برای مطمئن شدن از لود ویدیو
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-banner video');
+            video.play();
+        });
+    </script>
 </body>
 </html>
