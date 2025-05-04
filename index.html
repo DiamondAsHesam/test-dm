@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پورتفولیو من</title>
+    <title>Portfolio</title>
     <style>
-        /* Reset و تنظیمات اولیه */
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #000; /* بک‌گراند سیاه */
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
+            background: #f8f9fa;
+            color: #333;
         }
         
-        /* بنر ویدیویی تمام‌صفحه */
+        /* Video Banner */
         .video-banner {
             width: 100%;
-            height: 100vh; /* تمام ارتفاع صفحه */
+            height: 100vh;
             position: relative;
             overflow: hidden;
         }
@@ -30,50 +29,126 @@
         .video-banner video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* تضمین می‌کنه ویدیو کل فضای بنر رو پر کنه */
+            object-fit: cover;
         }
         
-        /* لوگو وسط بالا */
-        .logo {
-            position: absolute;
-            top: 20px; /* فاصله از بالا */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10; /* مطمئن می‌شیم لوگو روی ویدیو قرار می‌گیره */
-            width: 100px; /* اندازه لوگو */
+        /* Quote Section */
+        .quote {
+            padding: 60px 20px;
+            text-align: center;
+            background: #fff;
         }
         
-        .logo img {
-            width: 100%;
+        .quote p {
+            font-size: 1.8rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* About Me Section */
+        .about {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #222;
+        }
+        
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
-    <!-- بنر ویدیویی -->
+    <!-- Video Banner -->
     <div class="video-banner">
         <video autoplay muted loop>
-            <!-- جایگزین کن با لینک ویدیوی خودت -->
-            <source src="video.mp4" type="video/mp4">
-            مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+            <source src="your-video.mp4" type="video/mp4">
         </video>
-        
-        <!-- لوگو -->
-        <div class="logo">
-            <img src="logo.png" alt="لوگو من"> <!-- جایگزین کن با لوگوی خودت -->
-        </div>
     </div>
     
-    <!-- بقیه محتوا اینجا قرار می‌گیره -->
-    <div class="content">
-        <!-- مثلاً بخش "درباره من"، نمونه کارها و... -->
-    </div>
-
-    <script>
-        // اسکریپت برای مطمئن شدن از لود ویدیو
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.querySelector('.video-banner video');
-            video.play();
-        });
-    </script>
+    <!-- Quote Section -->
+    <section class="quote">
+        <p>"خلاقیت پنجره ای است که روح من از آن به جهان نگاه می کند"</p>
+    </section>
+    
+    <!-- About Me Section -->
+    <section class="about">
+        <h2>About Me</h2>
+        
+        <div class="cards-container">
+            <!-- Experience Card -->
+            <div class="card">
+                <div class="number">5+</div>
+                <h3>سال تجربه</h3>
+                <p>در طراحی و توسعه وب سایت های حرفه ای</p>
+            </div>
+            
+            <!-- Project Leader Card -->
+            <div class="card">
+                <div class="number">12+</div>
+                <h3>Project Leader</h3>
+                <p>مدیریت موفق پروژه های بین المللی</p>
+            </div>
+            
+            <!-- Additional Card 1 -->
+            <div class="card">
+                <div class="number">50+</div>
+                <h3>پروژه موفق</h3>
+                <p>با رضایت کامل کارفرمایان</p>
+            </div>
+            
+            <!-- Additional Card 2 -->
+            <div class="card">
+                <div class="number">100%</div>
+                <h3>تضمین کیفیت</h3>
+                <p>پشتیبانی 24 ساعته</p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
