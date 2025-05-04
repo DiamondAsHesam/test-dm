@@ -32,6 +32,30 @@
             object-fit: cover;
         }
         
+        /* لوگو */
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
         /* Quote Section */
         .quote {
             padding: 60px 20px;
@@ -51,6 +75,7 @@
         .about {
             padding: 40px 20px;
             text-align: center;
+            background: #f8f9fa;
         }
         
         .about h2 {
@@ -62,26 +87,55 @@
         /* Cards Container */
         .cards-container {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 30px;
+            justify-content: space-between;
             max-width: 1200px;
             margin: 0 auto;
+            gap: 30px;
         }
         
-        /* Card Styles */
-        .card {
+        /* Left Side - Horizontal Cards */
+        .left-cards {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Right Side - Vertical Cards */
+        .right-cards {
+            flex: 0 0 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Horizontal Card Style */
+        .horizontal-card {
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             padding: 30px;
-            width: 250px;
-            text-align: center;
+            display: flex;
+            align-items: center;
             transition: transform 0.3s;
+            height: 150px;
+        }
+        
+        /* Vertical Card Style */
+        .vertical-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            transition: transform 0.3s;
+            text-align: center;
         }
         
         .card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
         .card h3 {
@@ -101,14 +155,44 @@
             color: #3498db;
             margin-bottom: 15px;
         }
+        
+        /* Horizontal Card Content */
+        .horizontal-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+            }
+            
+            .left-cards, .right-cards {
+                flex: 1;
+                width: 100%;
+            }
+            
+            .horizontal-card {
+                height: auto;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Video Banner -->
     <div class="video-banner">
         <video autoplay muted loop>
-            <source src="video.mp4" type="video/mp4">
+            <source src="your-video.mp4" type="video/mp4">
         </video>
+        
+        <!-- لوگو -->
+        <div class="logo">
+            <img src="logo.png" alt="لوگو من">
+        </div>
     </div>
     
     <!-- Quote Section -->
@@ -121,32 +205,46 @@
         <h2>About Me</h2>
         
         <div class="cards-container">
-            <!-- Experience Card -->
-            <div class="card">
-                <div class="number">5+</div>
-                <h3>سال تجربه</h3>
-                <p>در طراحی و توسعه وب سایت های حرفه ای</p>
+            <!-- Left Side - Horizontal Cards -->
+            <div class="left-cards">
+                <!-- Experience Card -->
+                <div class="horizontal-card">
+                    <div class="horizontal-content">
+                        <div class="number">5+</div>
+                        <div>
+                            <h3>سال تجربه</h3>
+                            <p>در طراحی و توسعه وب سایت های حرفه ای</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Leader Card -->
+                <div class="horizontal-card">
+                    <div class="horizontal-content">
+                        <div class="number">12+</div>
+                        <div>
+                            <h3>Project Leader</h3>
+                            <p>مدیریت موفق پروژه های بین المللی</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Project Leader Card -->
-            <div class="card">
-                <div class="number">12+</div>
-                <h3>Project Leader</h3>
-                <p>مدیریت موفق پروژه های بین المللی</p>
-            </div>
-            
-            <!-- Additional Card 1 -->
-            <div class="card">
-                <div class="number">50+</div>
-                <h3>پروژه موفق</h3>
-                <p>با رضایت کامل کارفرمایان</p>
-            </div>
-            
-            <!-- Additional Card 2 -->
-            <div class="card">
-                <div class="number">100%</div>
-                <h3>تضمین کیفیت</h3>
-                <p>پشتیبانی 24 ساعته</p>
+            <!-- Right Side - Vertical Cards -->
+            <div class="right-cards">
+                <!-- Additional Card 1 -->
+                <div class="vertical-card">
+                    <div class="number">50+</div>
+                    <h3>پروژه موفق</h3>
+                    <p>با رضایت کامل کارفرمایان</p>
+                </div>
+                
+                <!-- Additional Card 2 -->
+                <div class="vertical-card">
+                    <div class="number">100%</div>
+                    <h3>تضمین کیفیت</h3>
+                    <p>پشتیبانی 24 ساعته</p>
+                </div>
             </div>
         </div>
     </section>
