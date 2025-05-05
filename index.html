@@ -191,8 +191,20 @@
                 width: 100%;
             }
 
+            /* تبدیل تمام کارت‌ها به حالت عمودی در موبایل */
+            .horizontal-card,
+            .vertical-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
             .horizontal-content {
                 flex-direction: column;
+            }
+
+            .horizontal-card h3,
+            .horizontal-card p {
                 text-align: center;
             }
         }
