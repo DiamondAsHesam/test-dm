@@ -191,21 +191,19 @@
                 width: 100%;
             }
 
-            /* تبدیل تمام کارت‌ها به حالت عمودی در موبایل */
-            .horizontal-card,
-            .vertical-card {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            /* تنها کارت‌هایی با کلاس mobile-horizontal در موبایل افقی باشند */
+            .mobile-horizontal {
+                flex-direction: row !important;
+                align-items: center !important;
             }
 
-            .horizontal-content {
-                flex-direction: column;
+            .mobile-horizontal .horizontal-content {
+                flex-direction: row !important;
             }
 
-            .horizontal-card h3,
-            .horizontal-card p {
-                text-align: center;
+            .mobile-horizontal h3,
+            .mobile-horizontal p {
+                text-align: left !important;
             }
         }
     </style>
@@ -237,42 +235,42 @@
             <!-- سمت چپ - کارت‌های افقی -->
             <div class="left-cards">
                 <!-- کارت پروژه موفق -->
-                <div class="card horizontal-card">
-                    <div class="horizontal-content">
-                        <div class="number">50+</div>
-                        <div>
-                            <h3>پروژه موفق</h3>
-                            <p>با رضایت کامل کارفرمایان</p>
-                        </div>
-                    </div>
+                <div class="card vertical-card">
+                    <div class="number">50+</div>
+                    <h3>پروژه موفق</h3>
+                    <p>با رضایت کامل کارفرمایان</p>
                 </div>
                 
                 <!-- کارت تضمین کیفیت -->
-                <div class="card horizontal-card">
-                    <div class="horizontal-content">
-                        <div class="number">100%</div>
-                        <div>
-                            <h3>تضمین کیفیت</h3>
-                            <p>پشتیبانی 24 ساعته</p>
-                        </div>
-                    </div>
+                <div class="card vertical-card">
+                    <div class="number">100%</div>
+                    <h3>تضمین کیفیت</h3>
+                    <p>پشتیبانی 24 ساعته</p>
                 </div>
             </div>
 
             <!-- سمت راست - کارت‌های عمودی -->
             <div class="right-cards">
                 <!-- کارت سال تجربه -->
-                <div class="card vertical-card">
-                    <div class="number">5+</div>
-                    <h3>سال تجربه</h3>
-                    <p>در طراحی و توسعه وب سایت های حرفه ای</p>
+                <div class="card horizontal-card mobile-horizontal">
+                    <div class="horizontal-content">
+                        <div class="number">5+</div>
+                        <div>
+                            <h3>سال تجربه</h3>
+                            <p>در طراحی و توسعه وب سایت های حرفه ای</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- کارت Project Leader -->
-                <div class="card vertical-card">
-                    <div class="number">12+</div>
-                    <h3>Project Leader</h3>
-                    <p>مدیریت موفق پروژه های بین المللی</p>
+                <div class="card horizontal-card mobile-horizontal">
+                    <div class="horizontal-content">
+                        <div class="number">12+</div>
+                        <div>
+                            <h3>Project Leader</h3>
+                            <p>مدیریت موفق پروژه های بین المللی</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
