@@ -61,16 +61,11 @@
             filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
 
-        /* Quote Section */
+        /* Quote Section - بدون خطوط بالا و پایین */
         .quote {
             padding: 80px 20px;
             text-align: center;
-            background: rgba(0,0,0,0.25);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             margin: 0 auto;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            border-top: 1px solid rgba(255,255,255,0.1);
         }
         
         .quote p {
@@ -99,19 +94,6 @@
             margin-bottom: 60px;
             color: #fff;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .about h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #4facfe, transparent);
         }
         
         /* Cards Container */
@@ -126,97 +108,60 @@
         
         /* کارت‌های سمت چپ */
         .left-cards {
-            flex: 1;
+            width: 48%;
             display: flex;
             flex-direction: column;
             gap: 30px;
-            align-items: flex-start;
         }
         
         /* کارت‌های سمت راست */
         .right-cards {
-            flex: 1;
+            width: 48%;
             display: flex;
             flex-direction: column;
             gap: 30px;
-            align-items: flex-end;
         }
         
-        /* استایل کارت شیشه‌ای حرفه‌ای */
+        /* استایل کارت شیشه‌ای */
         .card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 35px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s;
             border: 1px solid rgba(255, 255, 255, 0.18);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0) 60%
-            );
-            transform: rotate(30deg);
-            pointer-events: none;
         }
         
         .horizontal-card {
             display: flex;
             align-items: center;
             min-height: 180px;
-            width: 100%;
-            max-width: 550px;
         }
         
         .vertical-card {
             text-align: center;
-            width: 280px;
-            min-height: 220px;
+            min-height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         
         .card:hover {
-            transform: translateY(-15px) scale(1.02);
+            transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .card h3 {
             font-size: 1.6rem;
             margin-bottom: 15px;
             color: #fff;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .card h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
         }
         
         .card p {
             color: rgba(255,255,255,0.85);
             line-height: 1.8;
-            font-size: 1.05rem;
         }
         
         .card .number {
@@ -226,7 +171,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         /* محتوای کارت افقی */
@@ -234,47 +178,16 @@
             display: flex;
             align-items: center;
             gap: 30px;
-            width: 100%;
         }
         
         /* ریسپانسیو */
         @media (max-width: 992px) {
             .cards-container {
                 flex-direction: column;
-                align-items: center;
             }
             
             .left-cards, .right-cards {
                 width: 100%;
-                align-items: center;
-            }
-            
-            .horizontal-card, .vertical-card {
-                width: 100%;
-                max-width: 500px;
-            }
-            
-            .quote p {
-                font-size: 1.6rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .horizontal-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .horizontal-content {
-                flex-direction: column;
-            }
-            
-            .card .number {
-                margin-bottom: 10px;
-            }
-            
-            .quote p {
-                font-size: 1.4rem;
             }
         }
     </style>
@@ -292,7 +205,7 @@
         </div>
     </div>
     
-    <!-- بخش نقل قول -->
+    <!-- بخش نقل قول - بدون خطوط بالا و پایین -->
     <section class="quote">
         <p>"خلاقیت پنجره ای است که روح من از آن به جهان نگاه می کند"</p>
     </section>
@@ -310,7 +223,7 @@
                         <div class="number">5+</div>
                         <div>
                             <h3>سال تجربه</h3>
-                            <p>در طراحی و توسعه وب سایت های حرفه ای با جدیدترین تکنولوژی‌های روز دنیا</p>
+                            <p>در طراحی و توسعه وب سایت های حرفه ای</p>
                         </div>
                     </div>
                 </div>
@@ -321,7 +234,7 @@
                         <div class="number">12+</div>
                         <div>
                             <h3>Project Leader</h3>
-                            <p>مدیریت و هدایت موفق تیم‌های توسعه در پروژه‌های بین‌المللی</p>
+                            <p>مدیریت موفق پروژه های بین المللی</p>
                         </div>
                     </div>
                 </div>
@@ -333,14 +246,14 @@
                 <div class="card vertical-card">
                     <div class="number">50+</div>
                     <h3>پروژه موفق</h3>
-                    <p>اجرا و تحویل پروژه‌های حرفه‌ای با رضایت کامل کارفرمایان محترم</p>
+                    <p>با رضایت کامل کارفرمایان</p>
                 </div>
                 
                 <!-- کارت تضمین کیفیت -->
                 <div class="card vertical-card">
                     <div class="number">100%</div>
                     <h3>تضمین کیفیت</h3>
-                    <p>پشتیبانی 24 ساعته و ارائه گارانتی برای تمامی پروژه‌ها</p>
+                    <p>پشتیبانی 24 ساعته</p>
                 </div>
             </div>
         </div>
