@@ -14,9 +14,10 @@
         }
         
         body {
-            background: #000 url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80') no-repeat center/cover;
+            background: #000;
             color: #eee;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         
         /* Video Banner */
@@ -42,50 +43,75 @@
             z-index: 100;
             width: 120px;
             height: 120px;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .logo img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
 
         /* Quote Section */
         .quote {
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
         
         .quote p {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 300;
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.6;
             color: #fff;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         /* About Me Section */
         .about {
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         
         .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
             color: #fff;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #4facfe, transparent);
         }
         
         /* Cards Container */
@@ -116,53 +142,91 @@
             align-items: flex-end;
         }
         
-        /* استایل کارت شیشه‌ای */
+        /* استایل کارت شیشه‌ای حرفه‌ای */
         .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0) 60%
+            );
+            transform: rotate(30deg);
+            pointer-events: none;
         }
         
         .horizontal-card {
             display: flex;
             align-items: center;
-            height: 150px;
+            min-height: 180px;
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
         }
         
         .vertical-card {
             text-align: center;
-            width: 250px;
+            width: 280px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
             color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
         }
         
         .card p {
-            color: rgba(255,255,255,0.8);
-            line-height: 1.6;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            font-size: 1.05rem;
         }
         
         .card .number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
-            color: #4facfe;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         /* محتوای کارت افقی */
@@ -170,27 +234,47 @@
             display: flex;
             align-items: center;
             gap: 30px;
+            width: 100%;
         }
         
         /* ریسپانسیو */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .cards-container {
                 flex-direction: column;
-            }
-            
-            .left-cards, .right-cards {
                 align-items: center;
             }
             
-            .horizontal-card {
-                height: auto;
-                flex-direction: column;
-                text-align: center;
-                max-width: 100%;
+            .left-cards, .right-cards {
+                width: 100%;
+                align-items: center;
             }
             
-            .vertical-card {
+            .horizontal-card, .vertical-card {
                 width: 100%;
+                max-width: 500px;
+            }
+            
+            .quote p {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .horizontal-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .horizontal-content {
+                flex-direction: column;
+            }
+            
+            .card .number {
+                margin-bottom: 10px;
+            }
+            
+            .quote p {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -199,7 +283,7 @@
     <!-- بنر ویدیویی -->
     <div class="video-banner">
         <video autoplay muted loop>
-            <source src="video.mp4" type="video/mp4">
+            <source src="your-video.mp4" type="video/mp4">
         </video>
         
         <!-- لوگو -->
@@ -226,7 +310,7 @@
                         <div class="number">5+</div>
                         <div>
                             <h3>سال تجربه</h3>
-                            <p>در طراحی و توسعه وب سایت های حرفه ای</p>
+                            <p>در طراحی و توسعه وب سایت های حرفه ای با جدیدترین تکنولوژی‌های روز دنیا</p>
                         </div>
                     </div>
                 </div>
@@ -237,7 +321,7 @@
                         <div class="number">12+</div>
                         <div>
                             <h3>Project Leader</h3>
-                            <p>مدیریت موفق پروژه های بین المللی</p>
+                            <p>مدیریت و هدایت موفق تیم‌های توسعه در پروژه‌های بین‌المللی</p>
                         </div>
                     </div>
                 </div>
@@ -249,14 +333,14 @@
                 <div class="card vertical-card">
                     <div class="number">50+</div>
                     <h3>پروژه موفق</h3>
-                    <p>با رضایت کامل کارفرمایان</p>
+                    <p>اجرا و تحویل پروژه‌های حرفه‌ای با رضایت کامل کارفرمایان محترم</p>
                 </div>
                 
                 <!-- کارت تضمین کیفیت -->
                 <div class="card vertical-card">
                     <div class="number">100%</div>
                     <h3>تضمین کیفیت</h3>
-                    <p>پشتیبانی 24 ساعته</p>
+                    <p>پشتیبانی 24 ساعته و ارائه گارانتی برای تمامی پروژه‌ها</p>
                 </div>
             </div>
         </div>
