@@ -61,7 +61,7 @@
             filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
         }
 
-        /* Quote Section - بدون خطوط بالا و پایین */
+        /* Quote Section */
         .quote {
             padding: 80px 20px;
             text-align: center;
@@ -106,7 +106,7 @@
             padding: 20px;
         }
         
-        /* کارت‌های سمت چپ */
+        /* کارت‌های سمت چپ - عمودی */
         .left-cards {
             width: 48%;
             display: flex;
@@ -114,7 +114,7 @@
             gap: 30px;
         }
         
-        /* کارت‌های سمت راست */
+        /* کارت‌های سمت راست - افقی */
         .right-cards {
             width: 48%;
             display: flex;
@@ -146,6 +146,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
         }
         
         .card:hover {
@@ -179,8 +180,8 @@
             align-items: center;
             gap: 30px;
         }
-        
-        /* ریسپانسیو */
+
+        /* Responsive */
         @media (max-width: 992px) {
             .cards-container {
                 flex-direction: column;
@@ -189,23 +190,29 @@
             .left-cards, .right-cards {
                 width: 100%;
             }
+
+            .horizontal-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+
     <!-- بنر ویدیویی -->
     <div class="video-banner">
-        <video autoplay muted loop>
+        <video autoplay muted loop preload="auto">
             <source src="your-video.mp4" type="video/mp4">
         </video>
         
         <!-- لوگو -->
         <div class="logo">
-            <img src="logo.png" alt="لوگو من">
+            <img src="logo.png" alt="لوگوی وبسایت شخصی من">
         </div>
     </div>
     
-    <!-- بخش نقل قول - بدون خطوط بالا و پایین -->
+    <!-- بخش نقل قول -->
     <section class="quote">
         <p>"خلاقیت پنجره ای است که روح من از آن به جهان نگاه می کند"</p>
     </section>
@@ -215,48 +222,49 @@
         <h2>About Me</h2>
         
         <div class="cards-container">
-            <!-- سمت چپ - کارت‌های افقی -->
+            <!-- سمت چپ - کارت‌های عمودی -->
             <div class="left-cards">
-                <!-- کارت تجربه -->
-                <div class="card horizontal-card">
-                    <div class="horizontal-content">
-                        <div class="number">5+</div>
-                        <div>
-                            <h3>سال تجربه</h3>
-                            <p>در طراحی و توسعه وب سایت های حرفه ای</p>
-                        </div>
-                    </div>
+                <!-- کارت سال تجربه -->
+                <div class="card vertical-card">
+                    <div class="number">5+</div>
+                    <h3>سال تجربه</h3>
+                    <p>در طراحی و توسعه وب سایت های حرفه ای</p>
                 </div>
                 
                 <!-- کارت Project Leader -->
-                <div class="card horizontal-card">
-                    <div class="horizontal-content">
-                        <div class="number">12+</div>
-                        <div>
-                            <h3>Project Leader</h3>
-                            <p>مدیریت موفق پروژه های بین المللی</p>
-                        </div>
-                    </div>
+                <div class="card vertical-card">
+                    <div class="number">12+</div>
+                    <h3>Project Leader</h3>
+                    <p>مدیریت موفق پروژه های بین المللی</p>
                 </div>
             </div>
             
-            <!-- سمت راست - کارت‌های عمودی -->
+            <!-- سمت راست - کارت‌های افقی -->
             <div class="right-cards">
                 <!-- کارت پروژه موفق -->
-                <div class="card vertical-card">
-                    <div class="number">50+</div>
-                    <h3>پروژه موفق</h3>
-                    <p>با رضایت کامل کارفرمایان</p>
+                <div class="card horizontal-card">
+                    <div class="horizontal-content">
+                        <div class="number">50+</div>
+                        <div>
+                            <h3>پروژه موفق</h3>
+                            <p>با رضایت کامل کارفرمایان</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- کارت تضمین کیفیت -->
-                <div class="card vertical-card">
-                    <div class="number">100%</div>
-                    <h3>تضمین کیفیت</h3>
-                    <p>پشتیبانی 24 ساعته</p>
+                <div class="card horizontal-card">
+                    <div class="horizontal-content">
+                        <div class="number">100%</div>
+                        <div>
+                            <h3>تضمین کیفیت</h3>
+                            <p>پشتیبانی 24 ساعته</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 </body>
 </html>
