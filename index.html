@@ -1,174 +1,75 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #000;
-            color: #eee;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Cards Container */
-        .cards-container {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .left-cards, .right-cards {
-            width: 48%;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 35px;
-            transition: all 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .horizontal-card {
-            display: flex;
-            align-items: center;
-            min-height: 180px;
-        }
-
-        .vertical-card {
-            text-align: center;
-            min-height: 180px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .horizontal-content {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .card p {
-            color: rgba(255,255,255,0.85);
-            line-height: 1.8;
-        }
-
-        .card .number {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .cards-container {
-                flex-direction: column;
-            }
-
-            .left-cards, .right-cards {
-                width: 100%;
-            }
-
-            /* تنها کارت‌هایی با کلاس mobile-horizontal در موبایل افقی باشند */
-            .mobile-horizontal {
-                flex-direction: row !important;
-                align-items: center !important;
-                justify-content: flex-start !important;
-            }
-
-            .mobile-horizontal .horizontal-content {
-                flex-direction: row !important;
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .mobile-horizontal h3,
-            .mobile-horizontal p {
-                text-align: left !important;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پورتفویو مینی اپ تلگرام</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazir&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- هدر -->
+  <header>
+    <div class="logo">
+      <h1>مینی اپ تلگرام</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#features">ویژگی‌ها</a></li>
+        <li><a href="#about">درباره ما</a></li>
+        <li><a href="#contact">تماس</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- بخش کارت‌ها -->
-    <section style="padding: 60px 20px; text-align: center;">
-        <h2 style="color: #fff;">About Me</h2>
+  <!-- بنر معرفی -->
+  <section class="hero">
+    <h2>خلاقانه، سریع و آسان</h2>
+    <p>مینی اپ تلگرام با ویژگی‌های منحصر به فرد خود، تجربه کاربری بی‌نظیری را ارائه می‌دهد.</p>
+    <a href="#features" class="cta-button">مشاهده ویژگی‌ها</a>
+  </section>
 
-        <div class="cards-container">
-            <!-- سمت چپ - کارت‌های عمودی -->
-            <div class="left-cards">
-                <!-- کارت پروژه موفق -->
-                <div class="card vertical-card">
-                    <div class="number">50+</div>
-                    <h3>پروژه موفق</h3>
-                    <p>با رضایت کامل کارفرمایان</p>
-                </div>
+  <!-- ویژگی‌ها -->
+  <section id="features" class="features">
+    <h3>ویژگی‌های کلیدی</h3>
+    <div class="feature-item">
+      <h4>سرعت بالا</h4>
+      <p>اجرای سریع و بدون تاخیر برای تعامل بهتر با کاربران.</p>
+    </div>
+    <div class="feature-item">
+      <h4>پشتیبانی عالی</h4>
+      <p>پشتیبانی 24 ساعته برای رفع مشکلات کاربران.</p>
+    </div>
+    <div class="feature-item">
+      <h4>سازگاری با موبایل</h4>
+      <p>رابط کاربری بهینه برای دستگاه‌های مختلف.</p>
+    </div>
+  </section>
 
-                <!-- کارت تضمین کیفیت -->
-                <div class="card vertical-card">
-                    <div class="number">100%</div>
-                    <h3>تضمین کیفیت</h3>
-                    <p>پشتیبانی 24 ساعته</p>
-                </div>
-            </div>
+  <!-- درباره ما -->
+  <section id="about" class="about">
+    <h3>درباره ما</h3>
+    <p>ما یک تیم توسعه‌دهنده هستیم که هدف‌مان ساخت بهترین ابزارها و اپلیکیشن‌ها برای تلگرام است. با مینی اپ تلگرام، به راحتی می‌توانید با کاربران خود تعامل کنید.</p>
+  </section>
 
-            <!-- سمت راست - کارت‌های افقی در موبایل -->
-            <div class="right-cards">
-                <!-- کارت سال تجربه -->
-                <div class="card horizontal-card mobile-horizontal">
-                    <div class="horizontal-content">
-                        <div class="number">5+</div>
-                        <div>
-                            <h3>سال تجربه</h3>
-                            <p>در طراحی و توسعه وب سایت های حرفه ای</p>
-                        </div>
-                    </div>
-                </div>
+  <!-- تماس -->
+  <section id="contact" class="contact">
+    <h3>تماس با ما</h3>
+    <form action="#">
+      <label for="name">نام شما:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">ایمیل شما:</label>
+      <input type="email" id="email" name="email" required>
+      <textarea id="message" name="message" placeholder="پیام شما" required></textarea>
+      <button type="submit">ارسال پیام</button>
+    </form>
+  </section>
 
-                <!-- کارت Project Leader -->
-                <div class="card horizontal-card mobile-horizontal">
-                    <div class="horizontal-content">
-                        <div class="number">12+</div>
-                        <div>
-                            <h3>Project Leader</h3>
-                            <p>مدیریت موفق پروژه های بین المللی</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- فوتر -->
+  <footer>
+    <p>&copy; 2025 مینی اپ تلگرام - تمام حقوق محفوظ است.</p>
+  </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
