@@ -2,19 +2,18 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>صفحه لودینگ</title>
-  <link rel="stylesheet" href="loading.css" />
+  <link rel="stylesheet" href="loading.css">
 </head>
 <body>
-  <div class="spinner">
-    <div class="spinnerin"></div>
+  <div class="loader-container">
+    <div class="spinner">
+      <div class="spinnerin"></div>
+    </div>
+    <p class="loading-text">در حال بارگذاری...</p>
   </div>
 
-  <script>
-    // بعد 3 ثانیه به صفحه home.html هدایت می‌شویم
-    setTimeout(() => {
-      window.location.href = "servers.html";
-    }, 15000);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
