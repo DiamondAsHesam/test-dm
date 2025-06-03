@@ -4,6 +4,10 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     direction: rtl; /* راست به چپ */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 header {
@@ -12,7 +16,7 @@ header {
     padding: 20px 0;
 }
 
-/* لوگو به صورت پیش‌فرض */
+/* لوگو */
 #logo {
     width: 150px;
     height: auto;
@@ -48,7 +52,7 @@ header {
 }
 
 /* iPad Pro (portrait) و تبلت بزرگ */
-@media (min-width: 835px) and (max-width: 1024px) {
+@media (min-width: 835px) و (max-width: 1024px) {
     #logo {
         width: 170px;
     }
@@ -72,5 +76,63 @@ header {
 @media (min-width: 1921px) {
     #logo {
         width: 250px;
+    }
+}
+
+/* دکمه‌ها (سایدبار) */
+.button-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 220px;
+}
+
+button {
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    font-weight: 1000;
+    font-size: 17px;
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #212121;
+    z-index: -1;
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+}
+
+button:hover {
+    color: #e8e8e8;
+}
+
+button:hover::before {
+    width: 100%;
+}
+
+/* ریسپانسیو برای دکمه‌ها */
+@media (max-width: 480px) {
+    .button-container {
+        width: 100%;
+    }
+    button {
+        font-size: 15px;
+        padding: 12px 20px;
     }
 }
