@@ -9,13 +9,12 @@ body {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6); /* ✅ پس‌زمینه مشکی شفاف */
+  background: rgba(128, 128, 128, 0.5); /* خاکستری مات و شفاف */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  color: white;
 }
 
 .spinner {
