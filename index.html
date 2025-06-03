@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <title>سایت من با لودینگ</title>
-  <link rel="stylesheet" href="Styles.css">
+  <meta charset="UTF-8" />
+  <title>صفحه لودینگ</title>
+  <link rel="stylesheet" href="loading.css" />
 </head>
 <body>
-
-  <!-- لودینگ -->
-  <div id="loading">
-    <div class="spinner">
-      <div class="spinnerin"></div>
-    </div>
-    <p>در حال بارگذاری...</p>
+  <div class="spinner">
+    <div class="spinnerin"></div>
   </div>
 
-  <!-- محتوای اصلی -->
-  <div id="main-content">
-    <h1>خوش آمدید!</h1>
-    <p>این محتوای اصلی سایت شماست بعد از لودینگ زیبا 😊</p>
-  </div>
-
-  <script src="script.js"></script>
+  <script>
+    // بعد 3 ثانیه به صفحه home.html هدایت می‌شویم
+    setTimeout(() => {
+      window.location.href = "servers.html";
+    }, 15000);
+  </script>
 </body>
 </html>
