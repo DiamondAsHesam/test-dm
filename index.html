@@ -1,72 +1,24 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8" />
-  <title>سایت من</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <!-- استایل لودینگ -->
-  <link rel="stylesheet" href="loading.css" />
-  
-  <!-- استایل اصلی -->
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>سایت ساده</title>
+    
+    <!-- اینجا کد آیکون سایت (favicon) هست -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    
+    <!-- لینک به فایل CSS -->
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body style="overflow: hidden;">
-
-  <!-- بخش لودینگ -->
-  <div id="loading-screen" class="loader-container">
-    <div class="spinner">
-      <div class="spinnerin"></div>
-    </div>
-    <p class="loading-text">در حال بارگذاری...</p>
-  </div>
-
-  <!-- بخش محتوای اصلی (اول مخفی) -->
-  <div id="main-content" style="display: none;">
+<body>
     <header>
-      <nav>
-        <a href="#home">خانه</a>
-        <a href="#about">درباره ما</a>
-        <a href="#services">خدمات</a>
-        <a href="#contact">تماس</a>
-      </nav>
+        <!-- اینجا لوگو سایت قرار می‌گیره -->
+        <img id="logo" src="logo.png" alt="لوگو سایت" />
     </header>
 
-    <section id="home">
-      <h1>به سایت من خوش آمدید</h1>
-    </section>
-
-    <section id="about">
-      <h2>درباره ما</h2>
-      <p>ما عاشق طراحی هستیم!</p>
-    </section>
-
-    <section id="services">
-      <h2>خدمات ما</h2>
-      <p>طراحی سایت، اپلیکیشن و بیشتر</p>
-    </section>
-
-    <section id="contact">
-      <h2>ارتباط با ما</h2>
-      <p>info@example.com</p>
-    </section>
-  </div>
-
-  <script>
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loading-screen");
-      const main = document.getElementById("main-content");
-
-      // مخفی کردن لودینگ
-      loader.style.display = "none";
-
-      // نمایش محتوای اصلی
-      main.style.display = "block";
-
-      // اجازه دادن به اسکرول بعد از لود شدن
-      document.body.style.overflow = "auto";
-    });
-  </script>
-
+    <main>
+        <p>محتوای اصلی سایت اینجا قرار می‌گیرد.</p>
+    </main>
 </body>
 </html>
