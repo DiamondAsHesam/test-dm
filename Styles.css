@@ -1,13 +1,15 @@
 body {
     margin: 0;
-    background-color: #000; /* بک‌گراند سیاه */
+    background-color: #000;
     color: white;
     font-family: Arial, sans-serif;
-    direction: rtl; /* راست به چپ */
+    direction: rtl;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 header {
@@ -20,119 +22,119 @@ header {
 #logo {
     width: 150px;
     height: auto;
-    max-width: 80vw; /* حداکثر عرض نسبی */
+    max-width: 80vw;
+    margin-bottom: 10px;
 }
 
-/* موبایل کوچک */
-@media (max-width: 480px) {
-    #logo {
-        width: 100px;
-    }
+/* کانتینر اصلی که محتوا و سایدبار داخلش هست */
+.container {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: flex-start;
+    align-items: center; /* وسط عمودی */
+    gap: 20px;
 }
 
-/* موبایل بزرگ */
-@media (min-width: 481px) and (max-width: 600px) {
-    #logo {
-        width: 120px;
-    }
+/* محتوای اصلی */
+main {
+    flex: 1;
+    padding: 10px;
 }
 
-/* تبلت کوچک (مثلا سامسونگ گلکسی تب و مشابه) */
-@media (min-width: 601px) and (max-width: 767px) {
-    #logo {
-        width: 130px;
-    }
-}
-
-/* iPad معمولی (portrait) */
-@media (min-width: 768px) and (max-width: 834px) {
-    #logo {
-        width: 150px;
-    }
-}
-
-/* iPad Pro (portrait) و تبلت بزرگ */
-@media (min-width: 835px) و (max-width: 1024px) {
-    #logo {
-        width: 170px;
-    }
-}
-
-/* لپ‌تاپ کوچک */
-@media (min-width: 1025px) and (max-width: 1366px) {
-    #logo {
-        width: 180px;
-    }
-}
-
-/* مانیتور معمولی مثل 24 اینچ */
-@media (min-width: 1367px) and (max-width: 1920px) {
-    #logo {
-        width: 200px;
-    }
-}
-
-/* مانیتور خیلی بزرگ و تلویزیون */
-@media (min-width: 1921px) {
-    #logo {
-        width: 250px;
-    }
-}
-
-/* دکمه‌ها (سایدبار) */
-.button-container {
-    margin-top: 30px;
+/* سایدبار کنار راست صفحه، عمودی و وسط صفحه */
+.sidebar {
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 220px;
+    /* قرارگیری در سمت راست */
+    margin-left: auto;
 }
 
-button {
-    padding: 15px 25px;
-    border: unset;
+/* استایل دکمه‌ها */
+.sidebar button {
+    padding: 10px 20px; /* کوتاه‌تر و جمع‌وجور */
+    border: none;
     border-radius: 15px;
     color: #212121;
-    z-index: 1;
     background: #e8e8e8;
-    position: relative;
     font-weight: 1000;
     font-size: 17px;
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    transition: all 250ms;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3); /* سایه سفید ملایم */
+    position: relative;
     overflow: hidden;
     cursor: pointer;
+    transition: all 250ms;
+    z-index: 1;
 }
 
-button::before {
+.sidebar button::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
     width: 0;
-    border-radius: 15px;
+    height: 100%;
     background-color: #212121;
-    z-index: -1;
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3); /* سایه سفید ملایم */
     transition: all 250ms;
+    z-index: -1;
 }
 
-button:hover {
+.sidebar button:hover {
     color: #e8e8e8;
 }
 
-button:hover::before {
+.sidebar button:hover::before {
     width: 100%;
 }
 
-/* ریسپانسیو برای دکمه‌ها */
+/* ریسپانسیو برای لوگو */
 @media (max-width: 480px) {
-    .button-container {
+    #logo {
+        width: 100px;
+    }
+    .sidebar {
         width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 20px;
     }
-    button {
+    .sidebar button {
         font-size: 15px;
-        padding: 12px 20px;
+        padding: 8px 15px;
     }
+}
+
+/* ریسپانسیو برای لوگو در اندازه‌های مختلف */
+@media (min-width: 481px) and (max-width: 600px) {
+    #logo { width: 120px; }
+}
+
+@media (min-width: 601px) and (max-width: 767px) {
+    #logo { width: 130px; }
+}
+
+@media (min-width: 768px) and (max-width: 834px) {
+    #logo { width: 150px; }
+}
+
+@media (min-width: 835px) and (max-width: 1024px) {
+    #logo { width: 170px; }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px) {
+    #logo { width: 180px; }
+}
+
+@media (min-width: 1367px) and (max-width: 1920px) {
+    #logo { width: 200px; }
+}
+
+@media (min-width: 1921px) {
+    #logo { width: 250px; }
 }
