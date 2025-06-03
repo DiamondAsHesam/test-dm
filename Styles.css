@@ -1,1 +1,19 @@
+body {
+    margin: 0;
+    background-color: #000; /* بک‌گراند سیاه */
+    color: white;
+    font-family: Arial, sans-serif;
+    direction: rtl; /* راست به چپ */
+}
 
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* اینجا استایل لوگو هست */
+#logo {
+    width: 150px;
+    height: auto;
+}
