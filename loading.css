@@ -1,21 +1,19 @@
 body {
   margin: 0;
-  font-family: 'Vazir', sans-serif;
-  background: #000; /* پس‌زمینه مشکی */
-  color: #fff; /* رنگ نوشته سفید برای خوانایی */
+  background-color: rgba(0, 0, 0, 0.8); /* بک‌گراند سیاه مات */
+  color: #fff;
+  font-family: 'Tahoma', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  direction: rtl;
 }
 
-/* لودینگ */
-#loading {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: #000; /* پس‌زمینه مشکی */
+.loader-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  z-index: 9999;
 }
 
 .spinner {
@@ -25,12 +23,12 @@ body {
   border-radius: 50%;
   border: 2px solid #444;
   box-shadow: 
-    -10px -10px 10px #6359f8,
-    0px -10px 10px 0px #9c32e2,
-    10px -10px 10px #f36896,
-    10px 0 10px #ff0b0b,
-    10px 10px 10px 0px #ff5500,
-    0 10px 10px 0px #ff9500,
+    -10px -10px 10px #6359f8, 
+    0px -10px 10px 0px #9c32e2, 
+    10px -10px 10px #f36896, 
+    10px 0 10px #ff0b0b, 
+    10px 10px 10px 0px #ff5500, 
+    0 10px 10px 0px #ff9500, 
     -10px 10px 10px 0px #ffb700;
   animation: rot55 0.7s linear infinite;
   position: relative;
@@ -47,16 +45,15 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.loading-text {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
 @keyframes rot55 {
   to {
     transform: rotate(360deg);
   }
-}
-
-/* محتوای اصلی */
-#main-content {
-  display: none;
-  padding: 2rem;
-  text-align: center;
-  color: #fff; /* رنگ نوشته در بخش اصلی هم سفید */
 }
