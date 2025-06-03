@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.8); /* بک‌گراند سیاه مات */
+  background-color: #000000; /* بک‌گراند کاملاً سیاه */
   color: #fff;
   font-family: 'Tahoma', sans-serif;
   display: flex;
