@@ -12,8 +12,65 @@ header {
     padding: 20px 0;
 }
 
-/* اینجا استایل لوگو هست */
+/* لوگو به صورت پیش‌فرض */
 #logo {
     width: 150px;
     height: auto;
+    max-width: 80vw; /* حداکثر عرض نسبی */
+}
+
+/* موبایل کوچک */
+@media (max-width: 480px) {
+    #logo {
+        width: 100px;
+    }
+}
+
+/* موبایل بزرگ */
+@media (min-width: 481px) and (max-width: 600px) {
+    #logo {
+        width: 120px;
+    }
+}
+
+/* تبلت کوچک (مثلا سامسونگ گلکسی تب و مشابه) */
+@media (min-width: 601px) and (max-width: 767px) {
+    #logo {
+        width: 130px;
+    }
+}
+
+/* iPad معمولی (portrait) */
+@media (min-width: 768px) and (max-width: 834px) {
+    #logo {
+        width: 150px;
+    }
+}
+
+/* iPad Pro (portrait) و تبلت بزرگ */
+@media (min-width: 835px) and (max-width: 1024px) {
+    #logo {
+        width: 170px;
+    }
+}
+
+/* لپ‌تاپ کوچک */
+@media (min-width: 1025px) and (max-width: 1366px) {
+    #logo {
+        width: 180px;
+    }
+}
+
+/* مانیتور معمولی مثل 24 اینچ */
+@media (min-width: 1367px) and (max-width: 1920px) {
+    #logo {
+        width: 200px;
+    }
+}
+
+/* مانیتور خیلی بزرگ و تلویزیون */
+@media (min-width: 1921px) {
+    #logo {
+        width: 250px;
+    }
 }
