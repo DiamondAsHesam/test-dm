@@ -1,116 +1,60 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   font-family: 'Vazir', sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
+  background: #f8f8f8;
 }
 
-header {
-  background-color: #333;
-  color: white;
-  padding: 10px 0;
-  text-align: center;
-}
-
-header nav ul {
-  list-style: none;
-}
-
-header nav ul li {
-  display: inline;
-  margin-right: 20px;
-}
-
-header nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.hero {
-  background: #0066cc;
-  color: white;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.hero h2 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.cta-button {
-  background-color: #ff6600;
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-.features {
-  padding: 40px 20px;
-  text-align: center;
-  background-color: #ffffff;
-}
-
-.features h3 {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.feature-item {
-  display: inline-block;
-  width: 30%;
-  margin: 20px;
-  padding: 20px;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-}
-
-.about, .contact {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.contact form {
+/* لودینگ */
+#loading {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-.contact input, .contact textarea {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.spinner {
+  width: 3em;
+  height: 3em;
+  cursor: not-allowed;
+  border-radius: 50%;
+  border: 2px solid #444;
+  box-shadow: 
+    -10px -10px 10px #6359f8,
+    0px -10px 10px 0px #9c32e2,
+    10px -10px 10px #f36896,
+    10px 0 10px #ff0b0b,
+    10px 10px 10px 0px #ff5500,
+    0 10px 10px 0px #ff9500,
+    -10px 10px 10px 0px #ffb700;
+  animation: rot55 0.7s linear infinite;
+  position: relative;
 }
 
-.contact button {
-  padding: 10px;
-  background-color: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.spinnerin {
+  border: 2px solid #444;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-footer {
+@keyframes rot55 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* محتوای اصلی */
+#main-content {
+  display: none;
+  padding: 2rem;
   text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: white;
-  margin-top: 40px;
 }
