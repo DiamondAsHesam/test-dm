@@ -1,23 +1,20 @@
-const htmlRoot = document.getElementById("html-root");
 const body = document.body;
-const toggleBtn = document.getElementById("theme-toggle-btn");
+const checkbox = document.getElementById("theme-toggle-checkbox");
 
 // بررسی تم ذخیره‌شده
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "dark") {
     body.classList.add("dark-mode");
-    htmlRoot.setAttribute("data-theme", "dark");
+    checkbox.checked = true;
 }
 
 // تغییر تم
-toggleBtn.addEventListener("click", () => {
-    body.classList.toggle("dark-mode");
-
-    if (body.classList.contains("dark-mode")) {
+checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+        body.classList.add("dark-mode");
         localStorage.setItem("theme", "dark");
-        htmlRoot.setAttribute("data-theme", "dark");
     } else {
+        body.classList.remove("dark-mode");
         localStorage.setItem("theme", "light");
-        htmlRoot.removeAttribute("data-theme");
     }
 });
