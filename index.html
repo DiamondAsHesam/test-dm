@@ -5,21 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Diamond Community</title>
 
-    <!-- Favicon با استفاده از Diamond Community.jpg -->
+    <!-- Favicon با عکس -->
     <link rel="icon" href="Diamond Community.jpg" type="image/jpeg" sizes="any">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="Diamond Community.jpg">
 
-    <!-- استایل و فونت -->
+    <!-- استایل -->
     <link rel="stylesheet" href="style.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- دکمه تم -->
-    <button class="theme-toggle" id="theme-toggle-btn">
-        <i class="fas fa-sun sun"></i>
-        <i class="fas fa-moon moon" style="opacity: 0; transform: scale(0);"></i>
-    </button>
+    <!-- دکمه تم - سمت چپ بالا -->
+    <label class="theme-switch">
+        <input type="checkbox" class="theme-switch__checkbox" id="theme-toggle-checkbox">
+        <div class="theme-switch__container">
+            <div class="theme-switch__circle-container">
+                <div class="theme-switch__sun-moon-container">
+                    <div class="theme-switch__moon">
+                        <div class="theme-switch__spot"></div>
+                        <div class="theme-switch__spot"></div>
+                        <div class="theme-switch__spot"></div>
+                    </div>
+                </div>
+                <div class="theme-switch__clouds"></div>
+                <div class="theme-switch__stars-container">
+                    ✦✦✦
+                </div>
+            </div>
+        </div>
+    </label>
 
     <script src="script.js"></script>
 </body>
