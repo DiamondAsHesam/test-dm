@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت من</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.8.9/build/spline-viewer.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* اسپلاین بک‌گراند */
+        spline-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scale(1.2);
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        /* استایل ناوبری */
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            background-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .button-container {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 280px;
+            height: 50px;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .button {
+            outline: 0 !important;
+            border: 0 !important;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        .button.active {
+            transform: translateY(-8px);
+        }
+
+        .button.active::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 1.5s infinite;
+            top: -2px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 1; }
+            70% { transform: scale(1.2); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .icon {
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .button.active .icon {
+            transform: scale(1.1);
+        }
+        
+        .label-container {
+            position: absolute;
+            top: -32px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .button.active .label-container {
+            opacity: 1;
+        }
+
+        .label {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .brand-section {
+            text-align: center;
+            margin-top: 50px;
+            padding-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .brand-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.1);
+        }
+        
+        .brand-slogan {
+            font-size: 15px;
+            color: #aaa;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.1);
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- اسپلاین بک‌گراند -->
+    <spline-viewer
+        class="background"
+        url="https://prod.spline.design/jUzm8r8uGU4eMcxz/scene.splinecode"
+    ></spline-viewer>
+
+    <!-- ناوبری -->
+    <div class="nav-container">
+        <div class="button-container">
+            <button class="button" onclick="activateButton(this)">
+                <div class="label-container">
+                    <span class="label">خانه</span>
+                </div>
+                <i class="icon fas fa-home"></i>
+            </button>
+
+            <button class="button" onclick="activateButton(this)">
+                <div class="label-container">
+                    <span class="label">درباره من</span>
+                </div>
+                <i class="icon fas fa-user"></i>
+            </button>
+
+            <button class="button" onclick="activateButton(this)">
+                <div class="label-container">
+                    <span class="label">محصولات</span>
+                </div>
+                <i class="icon fas fa-box-open"></i>
+            </button>
+
+            <button class="button" onclick="activateButton(this)">
+                <div class="label-container">
+                    <span class="label">کمک</span>
+                </div>
+                <i class="icon fas fa-question-circle"></i>
+            </button>
+        </div>
+        
+        <div class="brand-section">
+            <div class="brand-name">نوین شاپ</div>
+            <div class="brand-slogan">بهترین تجربه خرید آنلاین</div>
+        </div>
+    </div>
+
+    <div class="content"></div>
+
+    <script>
+        function activateButton(clickedButton) {
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            clickedButton.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstButton = document.querySelector('.button');
+            if (firstButton) {
+                firstButton.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
