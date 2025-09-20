@@ -19,7 +19,6 @@
             --bg-color: #f8f9fa;
             --white-color: #fff;
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --glow-color: #3498db; /* رنگ درخشش */
         }
 
         * {
@@ -167,13 +166,14 @@
             border-radius: 15px;
             box-shadow: var(--box-shadow);
             padding: 1.5rem;
+            /* تغییر اینجا انجام شده */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
         }
 
+        /* انیمیشن جدید برای محصولات */
         .product-card:hover {
-            transform: translateY(-15px) scale(1.05); /* بلند شدن و بزرگ‌نمایی */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 0 20px var(--glow-color); /* سایه عمیق‌تر و درخشش */
+            transform: translateY(-5px); /* بلند شدن */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* سایه عمیق‌تر */
         }
         
         .product-image {
@@ -340,7 +340,7 @@
         <h2 class="section-title" data-aos="fade-down">محصولات برجسته</h2>
         <div class="product-grid">
             <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://bittelamericas.com/wp-content/uploads/2021/07/HS1-WC_Product-scaled.jpg" alt="ساعت هوشمند X" class="product-image">
+                <img src="https://bittelamericas.com/wp-content/uploads/2021/07/HS1-WC_Product-scaled.jpg" alt="پد شارژر وایرلس" class="product-image">
                 <h3 class="product-name">پد شارژر وایرلس</h3>
                 <p class="product-price">2,500,000 تومان</p>
                 <button class="add-to-cart-btn">افزودن به سبد خرید</button>
