@@ -56,7 +56,8 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
+            /* تغییر اینجا انجام شده */
+            border-radius: 30px; 
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
             padding: 1rem 2rem;
             max-width: 900px;
@@ -88,17 +89,36 @@
             color: var(--secondary-color);
         }
 
-        /* بخش معرفی اصلی */
+        /* بخش معرفی اصلی با ویدیوی پس‌زمینه */
         .hero-section {
+            position: relative;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(135deg, #e0f7fa 0%, #d1c4e9 100%);
-            color: var(--primary-color);
+            color: var(--white-color); /* رنگ متن رو سفید کردیم تا روی ویدیو دیده بشه */
+            overflow: hidden; /* برای جلوگیری از نمایش بخش‌های اضافی ویدیو */
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* برای اینکه ویدیو کل صفحه رو بپوشونه */
+            z-index: -1;
         }
 
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.4); /* یک لایه تیره برای بهتر دیده شدن متن */
+            padding: 2rem 3rem;
+            border-radius: 15px;
+        }
+        
         .hero-content h2 {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -166,14 +186,12 @@
             border-radius: 15px;
             box-shadow: var(--box-shadow);
             padding: 1.5rem;
-            /* تغییر اینجا انجام شده */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* انیمیشن جدید برای محصولات */
         .product-card:hover {
-            transform: translateY(-5px); /* بلند شدن */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* سایه عمیق‌تر */
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
         }
         
         .product-image {
@@ -329,6 +347,10 @@
     </header>
 
     <section class="hero-section">
+        <video autoplay muted loop class="hero-video">
+            <source src="hero-video.mp4" type="video/mp4">
+            مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
         <div class="hero-content" data-aos="fade-up">
             <h2>آینده تکنولوژی در دستان شما</h2>
             <p>جدیدترین و شیک‌ترین گجت‌های هوشمند را در TrendyBox کشف کنید.</p>
