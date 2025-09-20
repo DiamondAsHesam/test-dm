@@ -168,25 +168,14 @@
             box-shadow: var(--box-shadow);
             padding: 1.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative; /* برای انیمیشن Glow */
+            position: relative;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            animation: glow 1.5s infinite alternate; /* انیمیشن Glow */
+            transform: translateY(-15px) scale(1.05); /* بلند شدن و بزرگ‌نمایی */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 0 20px var(--glow-color); /* سایه عمیق‌تر و درخشش */
         }
-
-        /* انیمیشن Glow */
-        @keyframes glow {
-            from {
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 0 0px var(--glow-color);
-            }
-            to {
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 0 15px var(--glow-color);
-            }
-        }
-
+        
         .product-image {
             width: 100%;
             height: 250px;
@@ -351,27 +340,27 @@
         <h2 class="section-title" data-aos="fade-down">محصولات برجسته</h2>
         <div class="product-grid">
             <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Smart+Watch+X" alt="ساعت هوشمند X" class="product-image">
-                <h3 class="product-name">ساعت هوشمند X</h3>
-                <p class="product-price">7,500,000 تومان</p>
+                <img src="https://bittelamericas.com/wp-content/uploads/2021/07/HS1-WC_Product-scaled.jpg" alt="ساعت هوشمند X" class="product-image">
+                <h3 class="product-name">پد شارژر وایرلس</h3>
+                <p class="product-price">2,500,000 تومان</p>
                 <button class="add-to-cart-btn">افزودن به سبد خرید</button>
             </div>
             <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Wireless+Headphones+Pro" alt="هدفون بی‌سیم پرو" class="product-image">
-                <h3 class="product-name">هدفون بی‌سیم پرو</h3>
-                <p class="product-price">3,200,000 تومان</p>
+                <img src="https://pahpad.center/shop/wp-content/uploads/2023/09/mini-4-pro-3.jpg" alt="پهپاد مینی ۴ پرو" class="product-image">
+                <h3 class="product-name">پهپاد مینی ۴ پرو</h3>
+                <p class="product-price">67,000,000 تومان</p>
                 <button class="add-to-cart-btn">افزودن به سبد خرید</button>
             </div>
             <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Mini+Drone+Fly" alt="مینی پهپاد پرواز" class="product-image">
-                <h3 class="product-name">مینی پهپاد پرواز</h3>
-                <p class="product-price">12,500,000 تومان</p>
+                <img src="https://m.media-amazon.com/images/I/71Hj72GiJQL.jpg" alt="گیم‌پد بی‌سیم" class="product-image">
+                <h3 class="product-name">گیم‌پد بی‌سیم</h3>
+                <p class="product-price">4,000,000 تومان</p>
                 <button class="add-to-cart-btn">افزودن به سبد خرید</button>
             </div>
             <div class="product-card" data-aos="fade-up" data-aos-delay="400">
-                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Smart+Speaker+Home" alt="اسپیکر هوشمند خانه" class="product-image">
-                <h3 class="product-name">اسپیکر هوشمند خانه</h3>
-                <p class="product-price">5,800,000 تومان</p>
+                <img src="https://www.ionaudio.com/assets/images/pdp/party_boom_plus/party-boom-plus-xca-01.png" alt="اسپیکر پارتی بوم" class="product-image">
+                <h3 class="product-name">اسپیکر پارتی بوم</h3>
+                <p class="product-price">11,500,000 تومان</p>
                 <button class="add-to-cart-btn">افزودن به سبد خرید</button>
             </div>
         </div>
@@ -424,7 +413,7 @@
                 e.preventDefault();
                 const targetSection = document.querySelector(this.getAttribute('href'));
                 window.scrollTo({
-                    top: targetSection.offsetTop - 100, // 100 پیکسل برای هدر
+                    top: targetSection.offsetTop - 100,
                     behavior: 'smooth'
                 });
             });
@@ -432,8 +421,8 @@
 
         // فعال‌سازی انیمیشن‌های AOS
         AOS.init({
-            duration: 1200, // مدت زمان انیمیشن
-            once: true,    // فقط یک بار انیمیشن اجرا بشه
+            duration: 1200,
+            once: true,
         });
     </script>
 </body>
