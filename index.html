@@ -3,227 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سایت من</title>
+    <title>TrendyBox - گجت‌های هوشمند و تکنولوژی</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.8.9/build/spline-viewer.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+        /* سبک‌های اصلی و متغیرها */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --white-color: #fff;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-        
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Vazirmatn', sans-serif;
+            direction: rtl;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
             overflow-x: hidden;
         }
-        
-        /* اسپلاین بک‌گراند */
-        spline-viewer {
+
+        /* هدر و ناوبری */
+        .header {
+            width: 100%;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            transform: scale(1.2);
-            z-index: -1;
-            opacity: 0.7;
-        }
-        
-        /* استایل ناوبری */
-        .nav-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 40px;
-            background-color: transparent;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .button-container {
-            display: flex;
-            background-color: rgba(255, 255, 255, 0.8);
-            width: 280px;
-            height: 50px;
-            align-items: center;
-            justify-content: space-around;
-            border-radius: 25px;
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-            position: relative;
-            backdrop-filter: blur(5px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: background-color 0.3s ease-in-out;
         }
 
-        .button {
-            outline: 0 !important;
-            border: 0 !important;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: transparent;
+        .navbar {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* بخش معرفی اصلی */
+        .hero-section {
+            height: 100vh;
+            display: flex;
             justify-content: center;
-            color: #000;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #e0f7fa 0%, #d1c4e9 100%);
+            color: var(--primary-color);
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #1e2a3a;
+            transform: translateY(-5px);
+        }
+
+        /* بخش‌های مشترک */
+        .section {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
             position: relative;
-            z-index: 2;
+            display: inline-block;
         }
 
-        .button.active {
-            transform: translateY(-8px);
-        }
-
-        .button.active::before {
+        .section-title::after {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 50%;
-            z-index: -1;
-            animation: pulse 1.5s infinite;
-            top: -2px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 1; }
-            70% { transform: scale(1.2); opacity: 0; }
-            100% { opacity: 0; }
+        /* بخش محصولات */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
-        .icon {
-            font-size: 20px;
-            transition: all 0.3s ease;
+        .product-card {
+            background-color: var(--white-color);
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .button.active .icon {
-            transform: scale(1.1);
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
-        
-        .label-container {
-            position: absolute;
-            top: -32px;
-            left: 0;
+
+        .product-image {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
         }
 
-        .button.active .label-container {
-            opacity: 1;
+        .product-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
         }
 
-        .label {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #000;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-        }
-        
-        .brand-section {
-            text-align: center;
-            margin-top: 50px;
-            padding-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .brand-name {
-            font-size: 24px;
+        .product-price {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
             font-weight: bold;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(255,255,255,0.1);
+            margin-bottom: 1.5rem;
         }
-        
-        .brand-slogan {
-            font-size: 15px;
-            color: #aaa;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.1);
+
+        .add-to-cart-btn {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-            margin-top: 30px;
+
+        .add-to-cart-btn:hover {
+            background-color: #1e2a3a;
+        }
+
+        /* بخش درباره ما */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* بخش نظرات مشتریان */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--white-color);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* بخش تماس با ما */
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white-color);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        /* رسپانسیو بودن */
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: center;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- اسپلاین بک‌گراند -->
-    <spline-viewer
-        class="background"
-        url="https://prod.spline.design/jUzm8r8uGU4eMcxz/scene.splinecode"
-    ></spline-viewer>
 
-    <!-- ناوبری -->
-    <div class="nav-container">
-        <div class="button-container">
-            <button class="button" onclick="activateButton(this)">
-                <div class="label-container">
-                    <span class="label">خانه</span>
-                </div>
-                <i class="icon fas fa-home"></i>
-            </button>
+    <header class="header">
+        <nav class="navbar">
+            <h1 class="logo">TrendyBox</h1>
+            <ul class="nav-links">
+                <li><a href="#products">محصولات</a></li>
+                <li><a href="#about">درباره ما</a></li>
+                <li><a href="#testimonials">نظرات</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <button class="button" onclick="activateButton(this)">
-                <div class="label-container">
-                    <span class="label">درباره من</span>
-                </div>
-                <i class="icon fas fa-user"></i>
-            </button>
-
-            <button class="button" onclick="activateButton(this)">
-                <div class="label-container">
-                    <span class="label">محصولات</span>
-                </div>
-                <i class="icon fas fa-box-open"></i>
-            </button>
-
-            <button class="button" onclick="activateButton(this)">
-                <div class="label-container">
-                    <span class="label">کمک</span>
-                </div>
-                <i class="icon fas fa-question-circle"></i>
-            </button>
+    <section class="hero-section">
+        <div class="hero-content" data-aos="fade-up">
+            <h2>آینده تکنولوژی در دستان شما</h2>
+            <p>جدیدترین و شیک‌ترین گجت‌های هوشمند را در TrendyBox کشف کنید.</p>
+            <a href="#products" class="cta-button" data-aos="zoom-in" data-aos-delay="500">مشاهده محصولات</a>
         </div>
-        
-        <div class="brand-section">
-            <div class="brand-name">نوین شاپ</div>
-            <div class="brand-slogan">بهترین تجربه خرید آنلاین</div>
+    </section>
+
+    <section id="products" class="section products-section">
+        <h2 class="section-title" data-aos="fade-down">محصولات برجسته</h2>
+        <div class="product-grid">
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Smart+Watch+X" alt="ساعت هوشمند X" class="product-image">
+                <h3 class="product-name">ساعت هوشمند X</h3>
+                <p class="product-price">7,500,000 تومان</p>
+                <button class="add-to-cart-btn">افزودن به سبد خرید</button>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Wireless+Headphones+Pro" alt="هدفون بی‌سیم پرو" class="product-image">
+                <h3 class="product-name">هدفون بی‌سیم پرو</h3>
+                <p class="product-price">3,200,000 تومان</p>
+                <button class="add-to-cart-btn">افزودن به سبد خرید</button>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Mini+Drone+Fly" alt="مینی پهپاد پرواز" class="product-image">
+                <h3 class="product-name">مینی پهپاد پرواز</h3>
+                <p class="product-price">12,500,000 تومان</p>
+                <button class="add-to-cart-btn">افزودن به سبد خرید</button>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://via.placeholder.com/400x300/e0f7fa/2c3e50?text=Smart+Speaker+Home" alt="اسپیکر هوشمند خانه" class="product-image">
+                <h3 class="product-name">اسپیکر هوشمند خانه</h3>
+                <p class="product-price">5,800,000 تومان</p>
+                <button class="add-to-cart-btn">افزودن به سبد خرید</button>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="content"></div>
+    <section id="about" class="section about-section">
+        <h2 class="section-title" data-aos="fade-down">درباره ما</h2>
+        <div class="about-content" data-aos="fade-up">
+            <p>TrendyBox با هدف ارائه جدیدترین و شیک‌ترین گجت‌های تکنولوژی در ایران تاسیس شده است. ما معتقدیم که تکنولوژی باید زیبا و کاربردی باشد. تیم ما با دقت بهترین محصولات را از سراسر جهان انتخاب می‌کند تا تجربه‌ای منحصربه‌فرد برای شما رقم بزند. با TrendyBox، همیشه یک قدم جلوتر از دیگران باشید.</p>
+        </div>
+    </section>
 
+    <section id="testimonials" class="section testimonials-section">
+        <h2 class="section-title" data-aos="fade-down">نظرات مشتریان</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <p class="testimonial-text">"ساعت هوشمندی که خریدم بی‌نظیره! هم طراحی فوق‌العاده‌ای داره و هم کاراییش عالیه."</p>
+                <p class="testimonial-author">- سارا احمدی</p>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <p class="testimonial-text">"خدمات پس از فروششون عالی بود. خیلی سریع و با حوصله به سوالم جواب دادن."</p>
+                <p class="testimonial-author">- محمد رضایی</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <h2 class="section-title" data-aos="fade-down">تماس با ما</h2>
+        <div class="contact-form-container" data-aos="fade-up">
+            <form action="#" class="contact-form">
+                <input type="text" placeholder="نام و نام خانوادگی" required>
+                <input type="email" placeholder="ایمیل" required>
+                <textarea placeholder="پیام شما" rows="5" required></textarea>
+                <button type="submit" class="cta-button">ارسال پیام</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function activateButton(clickedButton) {
-            const buttons = document.querySelectorAll('.button');
-            buttons.forEach(button => {
-                button.classList.remove('active');
+        // اسکرول نرم برای لینک‌های داخلی
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetSection = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100, // 100 پیکسل برای هدر
+                    behavior: 'smooth'
+                });
             });
-            clickedButton.classList.add('active');
-        }
+        });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstButton = document.querySelector('.button');
-            if (firstButton) {
-                firstButton.classList.add('active');
-            }
+        // فعال‌سازی انیمیشن‌های AOS
+        AOS.init({
+            duration: 1200, // مدت زمان انیمیشن
+            once: true,    // فقط یک بار انیمیشن اجرا بشه
         });
     </script>
 </body>
