@@ -19,6 +19,7 @@
             --bg-color: #f8f9fa;
             --white-color: #fff;
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --glow-color: #3498db; /* رنگ درخشش */
         }
 
         * {
@@ -167,11 +168,23 @@
             box-shadow: var(--box-shadow);
             padding: 1.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* برای انیمیشن Glow */
         }
 
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            animation: glow 1.5s infinite alternate; /* انیمیشن Glow */
+        }
+
+        /* انیمیشن Glow */
+        @keyframes glow {
+            from {
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 0 0px var(--glow-color);
+            }
+            to {
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 0 15px var(--glow-color);
+            }
         }
 
         .product-image {
@@ -266,6 +279,26 @@
         .contact-form textarea {
             resize: vertical;
         }
+
+        /* بخش آیکون‌های پلتفرم */
+        .social-icons {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icons a {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
 
         /* رسپانسیو بودن */
         @media (max-width: 768px) {
@@ -374,6 +407,12 @@
                 <textarea placeholder="پیام شما" rows="5" required></textarea>
                 <button type="submit" class="cta-button">ارسال پیام</button>
             </form>
+            <div class="social-icons" data-aos="fade-up" data-aos-delay="300">
+                <a href="https://instagram.com/your_trendybox" target="_blank" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/your_trendybox" target="_blank" title="تلگرام"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://twitter.com/your_trendybox" target="_blank" title="توییتر"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:info@trendybox.com" title="ایمیل"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
     </section>
 
