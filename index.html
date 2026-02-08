@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <media name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title></title>
   <style>
     * {
@@ -25,7 +25,8 @@
       background-position: center;
       background-repeat: no-repeat;
       z-index: 1;
-      transition: filter 0.4s ease; /* تغییر نرم blur */
+      transition: filter 0.4s ease; /* تغییر نرم blur موقع resize */
+      filter: blur(15px); /* پیش‌فرض برای موبایل */
     }
 
     .content {
@@ -46,10 +47,10 @@
       filter: drop-shadow(0 6px 20px rgba(255, 0, 0, 0.5));
     }
 
-    /* دسکتاپ و تبلت بزرگ - blur بیشتر */
+    /* دسکتاپ و تبلت بزرگ (min-width: 768px) - blur بیشتر */
     @media (min-width: 768px) {
       .background {
-        filter: blur(30%);
+        filter: blur(30px);
       }
       .youtube-logo {
         width: 260px;
@@ -59,10 +60,10 @@
       }
     }
 
-    /* موبایل و تبلت کوچک - blur کمتر */
+    /* موبایل و تبلت کوچک (max-width: 767px) - blur کمتر */
     @media (max-width: 767px) {
       .background {
-        filter: blur(15%);
+        filter: blur(15px);
       }
       .youtube-logo {
         width: 180px;
