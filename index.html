@@ -1,85 +1,78 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: #000;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .background {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            background-image: url('https://uploadkon.ir/uploads/493408_266898e941043b2ec88d19d4b3684c682a.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            filter: blur(15px);
-            z-index: 1;
-        }
-        
-        /* برای پشتیبانی بهتر در موبایل */
-        @media (max-width: 768px) {
-            .background {
-                background-attachment: scroll;
-            }
-        }
-        
-        .logo-container {
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .logo {
-            width: 150px;
-            height: auto;
-            max-width: 90%;
-        }
-        
-        /* برای اطمینان از نمایش درست در تمام دستگاه‌ها */
-        @media (max-height: 600px) {
-            .logo {
-                width: 120px;
-            }
-            .logo-container {
-                top: 3%;
-            }
-        }
-        
-        @media (min-height: 1000px) {
-            .logo {
-                width: 200px;
-            }
-            .logo-container {
-                top: 8%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://uploadkon.ir/uploads/c69308_26Bck11.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(15px);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 5vh;          /* فاصله از بالا - با درصد responsive تره */
+    }
+
+    .youtube-logo {
+      width: 220px;
+      max-width: 80vw;           /* در موبایل خیلی بزرگ نشه */
+      height: auto;
+      opacity: 0.95;
+      filter: drop-shadow(0 6px 20px rgba(255, 0, 0, 0.5));
+    }
+
+    @media (max-width: 768px) {
+      .youtube-logo {
+        width: 180px;
+      }
+      .content {
+        padding-top: 6vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .youtube-logo {
+        width: 140px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="logo-container">
-        <img src="https://uploadkon.ir/uploads/fb8108_26copilot-image-176947277.jpeg" alt="" class="logo">
-    </div>
+
+  <div class="background"></div>
+
+  <div class="content">
+    <img 
+      src="https://uploadkon.ir/uploads/52ef08_26طراحی-بدون-عنوان.png" 
+      alt="" 
+      class="youtube-logo"
+    />
+  </div>
+
 </body>
 </html>
