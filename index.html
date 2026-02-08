@@ -24,8 +24,8 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      filter: blur(15px);
       z-index: 1;
+      transition: filter 0.4s ease; /* تغییر نرم blur */
     }
 
     .content {
@@ -35,18 +35,35 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 5vh;          /* فاصله از بالا - با درصد responsive تره */
+      padding-top: 5vh;
     }
 
     .youtube-logo {
       width: 220px;
-      max-width: 80vw;           /* در موبایل خیلی بزرگ نشه */
+      max-width: 80vw;
       height: auto;
       opacity: 0.95;
       filter: drop-shadow(0 6px 20px rgba(255, 0, 0, 0.5));
     }
 
-    @media (max-width: 768px) {
+    /* دسکتاپ و تبلت بزرگ - blur بیشتر */
+    @media (min-width: 768px) {
+      .background {
+        filter: blur(30%);
+      }
+      .youtube-logo {
+        width: 260px;
+      }
+      .content {
+        padding-top: 8vh;
+      }
+    }
+
+    /* موبایل و تبلت کوچک - blur کمتر */
+    @media (max-width: 767px) {
+      .background {
+        filter: blur(15%);
+      }
       .youtube-logo {
         width: 180px;
       }
@@ -55,9 +72,13 @@
       }
     }
 
+    /* موبایل خیلی کوچک */
     @media (max-width: 480px) {
       .youtube-logo {
         width: 140px;
+      }
+      .content {
+        padding-top: 5vh;
       }
     }
   </style>
