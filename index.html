@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سایت با پس‌زمینه دو قسمتی</title>
+    <title></title>
     <style>
         * {
             margin: 0;
@@ -12,93 +12,43 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #000;
-            color: #fff;
-            overflow-x: hidden;
             height: 100vh;
+            overflow: hidden;
         }
         
-        .container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            position: relative;
-        }
-        
-        .top-section {
-            height: 40vh;
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
             background-image: url('https://uploadkon.ir/uploads/493408_266898e941043b2ec88d19d4b3684c682a.jpg');
             background-size: cover;
             background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        
-        .top-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        
-        .bottom-section {
-            height: 60vh;
-            width: 100%;
-            background-image: url('https://uploadkon.ir/uploads/349508_26fe4bcc294e906524a69355f236ffe896.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .bottom-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-repeat: no-repeat;
+            filter: blur(15px);
+            transform: scale(1.05);
         }
         
         .logo-container {
             position: absolute;
-            top: 15%;
+            top: 5%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            text-align: center;
         }
         
         .logo {
-            max-width: 180px;
-            max-height: 120px;
-            width: auto;
+            width: 150px;
             height: auto;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-        }
-        
-        @media (max-width: 768px) {
-            .logo {
-                max-width: 140px;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="top-section"></div>
-        <div class="bottom-section"></div>
-        
-        <div class="logo-container">
-            <img src="https://uploadkon.ir/uploads/fb8108_26copilot-image-176947277.jpeg" alt="لوگو" class="logo">
-        </div>
+    <div class="background"></div>
+    <div class="logo-container">
+        <img src="https://uploadkon.ir/uploads/fb8108_26copilot-image-176947277.jpeg" alt="" class="logo">
     </div>
 </body>
 </html>
