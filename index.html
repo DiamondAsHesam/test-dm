@@ -127,7 +127,7 @@
             animation-delay: 0.6s;
         }
 
-        /* SVG با بریدگی (شیار) در لبه چپ و راست وسط */
+        /* SVG با بریدگی عمیق‌تر و لبه‌های نرم */
         .shape-svg {
             width: 100%;
             height: 100%;
@@ -229,17 +229,21 @@
 <div class="giant-shape">
     <svg class="shape-svg" viewBox="0 0 700 280" preserveAspectRatio="none">
         <defs>
-            <!-- ماسک برای ایجاد بریدگی در لبه چپ و راست وسط -->
+            <!-- فیلتر برای نرم کردن لبه‌های بریدگی -->
+            <filter id="softNotch" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+            </filter>
+            <!-- ماسک با دو دایره (بریدگی عمیق‌تر) که فیلتر نرم کننده روی آن اعمال شده -->
             <mask id="notchMask">
                 <!-- همه جا سفید (نمایان) -->
                 <rect width="700" height="280" fill="white" />
-                <!-- بریدگی چپ: یک دایره سیاه در وسط لبه چپ -->
-                <circle cx="0" cy="140" r="30" fill="black" />
-                <!-- بریدگی راست: یک دایره سیاه در وسط لبه راست -->
-                <circle cx="700" cy="140" r="30" fill="black" />
+                <!-- بریدگی چپ: دایره بزرگتر با فیلتر نرم -->
+                <circle cx="0" cy="140" r="55" fill="black" filter="url(#softNotch)" />
+                <!-- بریدگی راست: دایره بزرگتر با فیلتر نرم -->
+                <circle cx="700" cy="140" r="55" fill="black" filter="url(#softNotch)" />
             </mask>
         </defs>
-        <!-- مستطیل قرمز با گوشه‌های گرد و اعمال ماسک -->
+        <!-- مستطیل قرمز با گوشه‌های گرد و اعمال ماسک نرم شده -->
         <rect x="0" y="0" width="700" height="280" rx="70" ry="70" fill="rgb(142, 22, 0)" mask="url(#notchMask)" />
     </svg>
 </div>
