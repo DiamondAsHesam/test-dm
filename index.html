@@ -99,7 +99,7 @@
             margin-top: 40px;
         }
 
-        /* مستطیل دراز با گوشه‌های گرد و حفره وسط بالا و پایین */
+        /* مستطیل دراز با حفره‌های بزرگ و گرد در بالا و پایین (با استفاده از mask) */
         .hero-shape {
             position: relative;
             width: 700px;
@@ -112,34 +112,43 @@
             height: 100%;
             background: rgb(142, 22, 0);
             border-radius: 80px;
-            position: relative;
-            overflow: visible;
+            /* mask برای ایجاد دو حفره گرد در لبه بالا و پایین */
+            -webkit-mask: radial-gradient(circle 50px at 50% -20px, transparent 99%, black 100%) 
+                         top left,
+                         radial-gradient(circle 50px at 50% calc(100% + 20px), transparent 99%, black 100%) 
+                         bottom left;
+            -webkit-mask-composite: exclude;
+            mask: radial-gradient(circle 50px at 50% -20px, transparent 99%, black 100%) 
+                  top left,
+                  radial-gradient(circle 50px at 50% calc(100% + 20px), transparent 99%, black 100%) 
+                  bottom left;
+            mask-composite: exclude;
+            /* fallback برای مرورگرهایی که mask-composite پشتیبانی نمی‌کنند */
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
         }
 
-        /* حفره بالایی (وسط) */
-        .hole-top {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 40px;
-            background-color: #E7E7E7;
-            border-radius: 50%;
-            z-index: 5;
+        /* روش مطمئن‌تر برای مرورگرهای مدرن: استفاده از mask با two gradients */
+        @supports (mask-composite: exclude) {
+            .rectangle {
+                mask: 
+                    linear-gradient(#000 0 0),
+                    radial-gradient(circle 60px at 50% -30px, transparent 98%, #000 100%),
+                    radial-gradient(circle 60px at 50% calc(100% + 30px), transparent 98%, #000 100%);
+                mask-composite: exclude;
+            }
         }
 
-        /* حفره پایینی (وسط) */
-        .hole-bottom {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 40px;
-            background-color: #E7E7E7;
-            border-radius: 50%;
-            z-index: 5;
+        /* برای مرورگرهای WebKit (Chrome, Safari, Edge) */
+        @supports (-webkit-mask-composite: source-over) {
+            .rectangle {
+                -webkit-mask: 
+                    linear-gradient(#000 0 0),
+                    radial-gradient(circle 60px at 50% -30px, transparent 98%, #000 100%),
+                    radial-gradient(circle 60px at 50% calc(100% + 30px), transparent 98%, #000 100%);
+                -webkit-mask-composite: source-over, exclude;
+                mask-composite: exclude, exclude;
+            }
         }
 
         .character-wrapper {
@@ -187,16 +196,19 @@
             .hero-shape {
                 height: 200px;
             }
-            .rectangle {
-                border-radius: 60px;
-            }
             .character-wrapper {
                 width: 110px;
                 height: 110px;
             }
-            .hole-top, .hole-bottom {
-                width: 45px;
-                height: 30px;
+            /* تنظیم سایز حفره در موبایل */
+            @supports (mask-composite: exclude) {
+                .rectangle {
+                    mask: 
+                        linear-gradient(#000 0 0),
+                        radial-gradient(circle 40px at 50% -20px, transparent 98%, #000 100%),
+                        radial-gradient(circle 40px at 50% calc(100% + 20px), transparent 98%, #000 100%);
+                    mask-composite: exclude;
+                }
             }
         }
 
@@ -204,8 +216,9 @@
             .hero-shape {
                 height: 160px;
             }
-            .rectangle {
-                border-radius: 50px;
+            .character-wrapper {
+                width: 85px;
+                height: 85px;
             }
             .nav-links li a {
                 font-size: 0.7rem;
@@ -213,15 +226,14 @@
             .nav-links {
                 gap: 0.7rem;
             }
-            .character-wrapper {
-                width: 85px;
-                height: 85px;
-            }
-            .hole-top, .hole-bottom {
-                width: 35px;
-                height: 25px;
-                top: -12px;
-                bottom: -12px;
+            @supports (mask-composite: exclude) {
+                .rectangle {
+                    mask: 
+                        linear-gradient(#000 0 0),
+                        radial-gradient(circle 30px at 50% -15px, transparent 98%, #000 100%),
+                        radial-gradient(circle 30px at 50% calc(100% + 15px), transparent 98%, #000 100%);
+                    mask-composite: exclude;
+                }
             }
         }
     </style>
@@ -246,8 +258,6 @@
 <div class="hero-section">
     <div class="hero-shape">
         <div class="rectangle"></div>
-        <div class="hole-top"></div>
-        <div class="hole-bottom"></div>
         <div class="character-wrapper">
             <img src="assets/photo/character.png" alt="character" class="character-img">
         </div>
