@@ -117,6 +117,7 @@
             height: 140px;
         }
 
+        /* شیپ قرمز */
         .giant-shape {
             position: relative;
             margin: 40px 24px 20px 24px;
@@ -155,7 +156,6 @@
             text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
         }
 
-        /* @KnownAsHesam خیلی بزرگتر */
         .small-handle {
             font-size: 2.2rem;
             font-weight: 700;
@@ -189,57 +189,47 @@
             margin-bottom: 0;
         }
 
-        @media (max-width: 1100px) {
-            .giant-shape {
-                padding: 0 40px 0 50px;
-            }
-            .portfolio-text {
-                font-size: 5rem;
-            }
-            .character-container {
-                width: 200px;
-            }
-            .small-handle {
-                font-size: 1.8rem;
-                padding: 6px 16px;
-            }
+        /* بخش جدید: خط نازک و متن درباره من */
+        .about-section {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideFadeUp 0.6s ease forwards;
+            animation-delay: 0.9s;
         }
 
-        @media (max-width: 780px) {
-            .giant-shape {
-                height: 220px;
-                padding: 0 30px 0 40px;
-                border-radius: 50px;
-                margin: 30px 20px 20px 20px;
-            }
-            .portfolio-text {
-                font-size: 3.5rem;
-            }
-            .character-container {
-                width: 150px;
-            }
-            .small-handle {
-                font-size: 1.3rem;
-                padding: 5px 12px;
-            }
+        .thin-line {
+            width: 70px;
+            height: 2px;
+            background: #222;
+            margin: 0 auto 20px auto;
+            border-radius: 2px;
         }
 
-        @media (max-width: 550px) {
-            .giant-shape {
-                height: 160px;
-                padding: 0 20px 0 25px;
-                border-radius: 40px;
-                margin: 25px 16px 15px 16px;
+        .about-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .about-text:hover {
+            opacity: 1;
+        }
+
+        @keyframes slideFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            .portfolio-text {
-                font-size: 2.2rem;
-            }
-            .character-container {
-                width: 100px;
-            }
-            .small-handle {
-                font-size: 0.9rem;
-                padding: 3px 8px;
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -275,6 +265,72 @@
                 transform: translateX(-50%) translateY(0);
             }
         }
+
+        @media (max-width: 1100px) {
+            .giant-shape {
+                padding: 0 40px 0 50px;
+            }
+            .portfolio-text {
+                font-size: 5rem;
+            }
+            .character-container {
+                width: 200px;
+            }
+            .small-handle {
+                font-size: 1.8rem;
+                padding: 6px 16px;
+            }
+        }
+
+        @media (max-width: 780px) {
+            .giant-shape {
+                height: 220px;
+                padding: 0 30px 0 40px;
+                border-radius: 50px;
+                margin: 30px 20px 20px 20px;
+            }
+            .portfolio-text {
+                font-size: 3.5rem;
+            }
+            .character-container {
+                width: 150px;
+            }
+            .small-handle {
+                font-size: 1.3rem;
+                padding: 5px 12px;
+            }
+            .about-text {
+                font-size: 1rem;
+            }
+            .thin-line {
+                width: 60px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .giant-shape {
+                height: 160px;
+                padding: 0 20px 0 25px;
+                border-radius: 40px;
+                margin: 25px 16px 15px 16px;
+            }
+            .portfolio-text {
+                font-size: 2.2rem;
+            }
+            .character-container {
+                width: 100px;
+            }
+            .small-handle {
+                font-size: 0.9rem;
+                padding: 3px 8px;
+            }
+            .about-text {
+                font-size: 0.85rem;
+            }
+            .thin-line {
+                width: 50px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -302,6 +358,12 @@
     <div class="character-container">
         <img src="assets/photo/character.png" alt="character" class="character-img">
     </div>
+</div>
+
+<!-- خط و متن درباره من -->
+<div class="about-section">
+    <div class="thin-line"></div>
+    <div class="about-text">درباره من</div>
 </div>
 
 <script>
