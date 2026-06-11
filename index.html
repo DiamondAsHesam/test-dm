@@ -87,50 +87,7 @@
         }
 
         .spacer {
-            height: 160px;
-        }
-
-        .hero-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            position: relative;
-            margin-top: 40px;
-        }
-
-        .hero-shape {
-            position: relative;
-            width: 700px;
-            max-width: 90vw;
-            height: 280px;
-        }
-
-        .custom-shape {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .character-wrapper {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            width: 160px;
-            height: 160px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-        }
-
-        .character-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
+            height: 100px;
         }
 
         @media (max-width: 780px) {
@@ -154,23 +111,9 @@
             .nav-links li a {
                 font-size: 0.8rem;
             }
-            .hero-shape {
-                height: 200px;
-            }
-            .character-wrapper {
-                width: 110px;
-                height: 110px;
-            }
         }
 
         @media (max-width: 550px) {
-            .hero-shape {
-                height: 160px;
-            }
-            .character-wrapper {
-                width: 85px;
-                height: 85px;
-            }
             .nav-links li a {
                 font-size: 0.7rem;
             }
@@ -196,32 +139,6 @@
 </div>
 
 <div class="spacer"></div>
-
-<div class="hero-section">
-    <div class="hero-shape">
-        <svg class="custom-shape" width="700" height="280" viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <!-- فیلتر قوی‌تر برای نرمی و گردی بیشتر لبه حفره‌ها -->
-                <filter id="softRound" x="-30%" y="-30%" width="160%" height="160%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
-                    <!-- استفاده از تابع گاما برای حفظ شفافیت مرکز و گردی لبه -->
-                    <feComponentTransfer>
-                        <feFuncA type="table" tableValues="0 0.8 1 1 1" />
-                    </feComponentTransfer>
-                </filter>
-            </defs>
-            <!-- مستطیل پایه با گوشه‌های خیلی گرد -->
-            <rect x="0" y="0" width="700" height="280" rx="80" ry="80" fill="rgb(142, 22, 0)" />
-            <!-- حفره بالا: دایره بزرگتر با موقعیت پایین‌تر برای عمق بیشتر و گردی نرم -->
-            <circle cx="350" cy="-40" r="80" fill="#E7E7E7" filter="url(#softRound)" />
-            <!-- حفره پایین -->
-            <circle cx="350" cy="320" r="80" fill="#E7E7E7" filter="url(#softRound)" />
-        </svg>
-        <div class="character-wrapper">
-            <img src="assets/photo/character.png" alt="character" class="character-img">
-        </div>
-    </div>
-</div>
 
 <script>
     function updateDate() {
