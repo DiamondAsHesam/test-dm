@@ -92,47 +92,18 @@
 
         .hero-section {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             width: 100%;
             position: relative;
+            margin-top: 40px;
         }
 
-        .text-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            z-index: 1;
-            margin-bottom: -40px;
-        }
-
-        .bg-text {
-            font-size: 8rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            color: black;
-            text-align: center;
-            white-space: nowrap;
-            font-family: 'Inter', sans-serif;
-            user-select: none;
-            pointer-events: none;
-            text-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        .shape-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            z-index: 2;
-        }
-
-        /* مستطیل با گوشه‌های خیلی گرد */
+        /* مستطیل دراز با گوشه‌های گرد و حفره وسط بالا و پایین */
         .hero-shape {
             position: relative;
-            width: 500px;
+            width: 700px;
+            max-width: 90vw;
             height: 280px;
         }
 
@@ -142,7 +113,33 @@
             background: rgb(142, 22, 0);
             border-radius: 80px;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+        }
+
+        /* حفره بالایی (وسط) */
+        .hole-top {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background-color: #E7E7E7;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        /* حفره پایینی (وسط) */
+        .hole-bottom {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background-color: #E7E7E7;
+            border-radius: 50%;
+            z-index: 5;
         }
 
         .character-wrapper {
@@ -188,30 +185,23 @@
                 font-size: 0.8rem;
             }
             .hero-shape {
-                width: 350px;
                 height: 200px;
             }
             .rectangle {
                 border-radius: 60px;
             }
-            .bg-text {
-                font-size: 3rem;
-            }
-            .text-container {
-                margin-bottom: -20px;
-            }
             .character-wrapper {
                 width: 110px;
                 height: 110px;
             }
+            .hole-top, .hole-bottom {
+                width: 45px;
+                height: 30px;
+            }
         }
 
         @media (max-width: 550px) {
-            .bg-text {
-                font-size: 1.8rem;
-            }
             .hero-shape {
-                width: 280px;
                 height: 160px;
             }
             .rectangle {
@@ -223,12 +213,15 @@
             .nav-links {
                 gap: 0.7rem;
             }
-            .text-container {
-                margin-bottom: -15px;
-            }
             .character-wrapper {
                 width: 85px;
                 height: 85px;
+            }
+            .hole-top, .hole-bottom {
+                width: 35px;
+                height: 25px;
+                top: -12px;
+                bottom: -12px;
             }
         }
     </style>
@@ -251,15 +244,12 @@
 <div class="spacer"></div>
 
 <div class="hero-section">
-    <div class="text-container">
-        <div class="bg-text" id="backText">KnownAsHesam</div>
-    </div>
-    <div class="shape-wrapper">
-        <div class="hero-shape">
-            <div class="rectangle"></div>
-            <div class="character-wrapper">
-                <img src="assets/photo/character.png" alt="character" class="character-img">
-            </div>
+    <div class="hero-shape">
+        <div class="rectangle"></div>
+        <div class="hole-top"></div>
+        <div class="hole-bottom"></div>
+        <div class="character-wrapper">
+            <img src="assets/photo/character.png" alt="character" class="character-img">
         </div>
     </div>
 </div>
@@ -272,9 +262,6 @@
         document.getElementById('liveDate').innerText = formatted;
     }
     updateDate();
-
-    let myText = "KnownAsHesam";
-    document.getElementById('backText').innerText = myText;
 </script>
 </body>
 </html>
