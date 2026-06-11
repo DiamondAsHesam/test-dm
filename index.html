@@ -117,6 +117,7 @@
             height: 100px;
         }
 
+        /* شیپ قرمز */
         .giant-shape {
             position: relative;
             margin: 20px 24px;
@@ -131,16 +132,16 @@
             overflow: hidden;
         }
 
-        /* فقط گوشه‌های بالای شیپ سیاه گرد شود (چپ و راست بالا) */
+        /* شیپ سیاه - فاصله زیاد از چپ و راست */
         .inner-shape {
             position: absolute;
             bottom: 0;
-            left: 35px;
-            right: 35px;
+            left: 60px;
+            right: 60px;
             width: auto;
             height: 70%;
             background: black;
-            border-radius: 40px 40px 0 0;   /* فقط بالا گرد، پایین تیز */
+            border-radius: 40px 40px 0 0;   /* فقط گوشه‌های بالا گرد */
         }
 
         @keyframes slideFromTop {
@@ -203,8 +204,8 @@
                 margin: 20px 20px;
             }
             .inner-shape {
-                left: 25px;
-                right: 25px;
+                left: 40px;
+                right: 40px;
                 border-radius: 30px 30px 0 0;
                 height: 65%;
             }
@@ -223,8 +224,8 @@
                 margin: 15px 16px;
             }
             .inner-shape {
-                left: 18px;
-                right: 18px;
+                left: 25px;
+                right: 25px;
                 border-radius: 20px 20px 0 0;
                 height: 60%;
             }
