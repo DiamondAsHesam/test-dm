@@ -99,7 +99,6 @@
             margin-top: 40px;
         }
 
-        /* مستطیل دراز با حفره‌های نرم و گرد (با SVG mask) */
         .hero-shape {
             position: relative;
             width: 700px;
@@ -107,30 +106,10 @@
             height: 280px;
         }
 
-        .rectangle {
+        .custom-shape {
             width: 100%;
             height: 100%;
-            background: rgb(142, 22, 0);
-            border-radius: 80px;
-            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280"><defs><mask id="holeMask"><rect width="700" height="280" fill="white" /><circle cx="350" cy="-30" r="70" fill="black" /><circle cx="350" cy="310" r="70" fill="black" /></mask></defs><rect width="700" height="280" fill="black" mask="url(%23holeMask)" /></svg>');
-            mask-size: 100% 100%;
-            mask-repeat: no-repeat;
-            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280"><defs><mask id="holeMask"><rect width="700" height="280" fill="white" /><circle cx="350" cy="-30" r="70" fill="black" /><circle cx="350" cy="310" r="70" fill="black" /></mask></defs><rect width="700" height="280" fill="black" mask="url(%23holeMask)" /></svg>');
-            -webkit-mask-size: 100% 100%;
-            -webkit-mask-repeat: no-repeat;
-        }
-
-        /* برای اطمینان از نرمی لبه‌ها، یک سایه داخلی بسیار خفیف و نرم */
-        .rectangle::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: inherit;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
-            pointer-events: none;
+            display: block;
         }
 
         .character-wrapper {
@@ -182,11 +161,6 @@
                 width: 110px;
                 height: 110px;
             }
-            /* تنظیم mask برای سایز موبایل */
-            .rectangle {
-                mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" width="700" height="200"><defs><mask id="holeMask"><rect width="700" height="200" fill="white" /><circle cx="350" cy="-25" r="50" fill="black" /><circle cx="350" cy="225" r="50" fill="black" /></mask></defs><rect width="700" height="200" fill="black" mask="url(%23holeMask)" /></svg>');
-                -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" width="700" height="200"><defs><mask id="holeMask"><rect width="700" height="200" fill="white" /><circle cx="350" cy="-25" r="50" fill="black" /><circle cx="350" cy="225" r="50" fill="black" /></mask></defs><rect width="700" height="200" fill="black" mask="url(%23holeMask)" /></svg>');
-            }
         }
 
         @media (max-width: 550px) {
@@ -202,10 +176,6 @@
             }
             .nav-links {
                 gap: 0.7rem;
-            }
-            .rectangle {
-                mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 160" width="700" height="160"><defs><mask id="holeMask"><rect width="700" height="160" fill="white" /><circle cx="350" cy="-20" r="40" fill="black" /><circle cx="350" cy="180" r="40" fill="black" /></mask></defs><rect width="700" height="160" fill="black" mask="url(%23holeMask)" /></svg>');
-                -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 160" width="700" height="160"><defs><mask id="holeMask"><rect width="700" height="160" fill="white" /><circle cx="350" cy="-20" r="40" fill="black" /><circle cx="350" cy="180" r="40" fill="black" /></mask></defs><rect width="700" height="160" fill="black" mask="url(%23holeMask)" /></svg>');
             }
         }
     </style>
@@ -229,7 +199,25 @@
 
 <div class="hero-section">
     <div class="hero-shape">
-        <div class="rectangle"></div>
+        <!-- طراحی دقیق SVG با حفره‌های نرم و بدون لبه تیز -->
+        <svg class="custom-shape" width="700" height="280" viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- تعریف مسیر حفره بالا (دایره) -->
+                <clipPath id="holeTop">
+                    <circle cx="350" cy="-20" r="65" />
+                </clipPath>
+                <!-- تعریف مسیر حفره پایین (دایره) -->
+                <clipPath id="holeBottom">
+                    <circle cx="350" cy="300" r="65" />
+                </clipPath>
+            </defs>
+            <!-- مستطیل پایه با گوشه‌های خیلی گرد -->
+            <rect x="0" y="0" width="700" height="280" rx="80" ry="80" fill="rgb(142, 22, 0)" />
+            <!-- حفره بالا (با استفاده از برش روی یک دایره همرنگ پس‌زمینه) -->
+            <circle cx="350" cy="-20" r="70" fill="#E7E7E7" />
+            <!-- حفره پایین -->
+            <circle cx="350" cy="300" r="70" fill="#E7E7E7" />
+        </svg>
         <div class="character-wrapper">
             <img src="assets/photo/character.png" alt="character" class="character-img">
         </div>
