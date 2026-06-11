@@ -20,7 +20,7 @@
             padding: 0 24px;
         }
 
-        /* لوگو و ناوبری مثل قبل (حذف نشده، فقط تکرار نکردم) */
+        /* لوگو و تاریخ بیرون ناوبری */
         .logo-outside {
             position: fixed;
             top: 20px;
@@ -37,13 +37,15 @@
             animation: slideFadeIn 0.6s ease forwards;
             animation-delay: 0.1s;
         }
+
         .date-outside {
             position: fixed;
             top: 20px;
             right: 32px;
-            font-family: monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
-            background: rgba(0,0,0,0.05);
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.05);
             padding: 6px 14px;
             border-radius: 40px;
             backdrop-filter: blur(4px);
@@ -53,55 +55,83 @@
             animation: slideFadeIn 0.6s ease forwards;
             animation-delay: 0.2s;
         }
+
+        /* ناوبری شیشه‌ای وسط */
         .navbar {
             position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255,255,255,0.55);
+            background: rgba(255, 255, 255, 0.55);
             backdrop-filter: blur(14px);
             border-radius: 18px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 10px 28px;
             z-index: 1000;
+            border: none;
             opacity: 0;
             transform: translateX(-50%) translateY(-20px);
             animation: slideFadeInNav 0.6s ease forwards;
             animation-delay: 0.15s;
         }
+
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
         }
+
         .nav-links li a {
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             color: #1f1f2b;
+            transition: 0.2s;
         }
-        .spacer { height: 140px; }
 
-        /* بخش بالای شیپ (متن و مربع‌ها) مثل قبل */
+        .nav-links li a:hover {
+            color: #000;
+            opacity: 0.7;
+        }
+
+        .spacer {
+            height: 140px;
+        }
+
+        /* بخش بالای شیپ: متن و مربع‌ها */
         .above-shape {
             margin: 20px 24px 80px 24px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 30px;
             opacity: 0;
-            animation: slideFadeIn 0.6s forwards 0.4s;
+            transform: translateY(-20px);
+            animation: slideFadeIn 0.6s ease forwards;
+            animation-delay: 0.4s;
         }
+
         .greeting-text {
             font-size: 2.5rem;
             font-weight: 800;
-            background: rgba(255,255,240,0.3);
+            letter-spacing: -0.02em;
+            color: #1a1a1a;
+            background: rgba(255, 255, 240, 0.3);
             backdrop-filter: blur(4px);
             padding: 12px 28px;
             border-radius: 60px;
+            white-space: nowrap;
         }
+
         .social-cubes {
             display: flex;
             gap: 45px;
         }
+
         .social-cube {
             width: 70px;
             height: 70px;
@@ -113,54 +143,76 @@
             font-size: 2.2rem;
             font-weight: 700;
             color: white;
-            transition: 0.25s;
-            transform-origin: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
         }
+
         .social-cube:hover {
             transform: translateY(-8px);
-            background: rgb(142,22,0);
+            background: rgb(142, 22, 0);
         }
+
+        /* پخش پلاش مربع‌ها */
         .social-cube:nth-child(1) { transform: translateY(-15px) rotate(-3deg); }
         .social-cube:nth-child(2) { transform: translateY(10px) rotate(2deg); }
         .social-cube:nth-child(3) { transform: translateY(-5px) rotate(5deg); }
         .social-cube:nth-child(4) { transform: translateY(20px) rotate(-4deg); }
 
-        /* شیپ قرمز */
+        /* شیپ قرمز آجری */
         .giant-shape {
+            position: relative;
             margin: 0 24px 20px 24px;
             height: 280px;
-            background: rgb(142,22,0);
+            background: rgb(142, 22, 0);
             border-radius: 70px;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: slideFromTop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            animation-delay: 0.6s;
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 60px 0 70px;
-            opacity: 0;
-            transform: translateY(-50px);
-            animation: slideFromTop 0.7s forwards 0.6s;
-            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
         }
-        .left-content { display: flex; flex-direction: column; gap: 12px; }
+
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .portfolio-text {
             font-size: 6.5rem;
             font-weight: 900;
+            letter-spacing: -0.03em;
             color: white;
             text-transform: uppercase;
-            text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+            line-height: 1;
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
         }
+
         .small-handle {
             font-size: 2.2rem;
-            background: rgba(0,0,0,0.35);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.35);
             padding: 8px 20px;
             border-radius: 60px;
             backdrop-filter: blur(4px);
+            font-family: monospace;
         }
+
         .character-container {
             width: 240px;
             height: 100%;
             display: flex;
             align-items: flex-end;
+            justify-content: center;
+            overflow: visible;
         }
+
         .character-img {
             width: 100%;
             height: auto;
@@ -169,8 +221,8 @@
             object-position: bottom center;
         }
 
-        /* ========== المان انیمیشن‌دار خاص (بدون کانتینر اضافی) ========== */
-        .animated-element {
+        /* المان انیمیشن‌دار خاص زیر شیپ - فقط حلقه‌های چرخان و ضربان */
+        .animated-ring {
             display: flex;
             justify-content: center;
             margin: 60px 0 80px 0;
@@ -180,51 +232,58 @@
             animation-delay: 0.9s;
         }
 
-        /* یک حلقه دوتایی با چرخش و ضربان */
         .double-ring {
             position: relative;
             width: 80px;
             height: 80px;
         }
+
         .ring {
             position: absolute;
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 2px solid rgba(142,22,0,0.3);
+            border: 2px solid rgba(142, 22, 0, 0.3);
             top: 0;
             left: 0;
             animation: pulse 2s ease-in-out infinite;
         }
+
         .ring:nth-child(2) {
-            border-color: rgb(142,22,0);
+            border-color: rgb(142, 22, 0);
             width: 60%;
             height: 60%;
             top: 20%;
             left: 20%;
             animation: rotate 3s linear infinite, pulse 1.8s ease-in-out infinite reverse;
         }
+
         .ring:nth-child(3) {
-            border-color: rgba(0,0,0,0.2);
+            border-color: rgba(0, 0, 0, 0.2);
             width: 30%;
             height: 30%;
             top: 35%;
             left: 35%;
             animation: rotateRev 2.5s linear infinite;
         }
+
+        /* انیمیشن‌ها */
         @keyframes pulse {
             0% { transform: scale(0.95); opacity: 0.7; }
             50% { transform: scale(1.05); opacity: 1; }
             100% { transform: scale(0.95); opacity: 0.7; }
         }
+
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
         @keyframes rotateRev {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(-360deg); }
         }
+
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.5); }
             100% { opacity: 1; transform: scale(1); }
@@ -234,75 +293,103 @@
             0% { opacity: 0; transform: translateY(-50px); }
             100% { opacity: 1; transform: translateY(0); }
         }
+
         @keyframes slideFadeIn {
             0% { opacity: 0; transform: translateY(-20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
+
         @keyframes slideFadeInNav {
             0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
             100% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
         /* ریسپانسیو */
+        @media (max-width: 1100px) {
+            .giant-shape { padding: 0 40px 0 50px; }
+            .portfolio-text { font-size: 5rem; }
+            .character-container { width: 200px; }
+            .small-handle { font-size: 1.8rem; }
+        }
+
         @media (max-width: 780px) {
-            .giant-shape { height: 220px; padding: 0 30px; }
+            .above-shape { flex-direction: column; margin-bottom: 60px; }
+            .greeting-text { font-size: 1.6rem; white-space: normal; text-align: center; }
+            .social-cubes { gap: 25px; }
+            .social-cube { width: 55px; height: 55px; font-size: 1.8rem; border-radius: 16px; }
+            .giant-shape { height: 220px; padding: 0 30px 0 40px; border-radius: 50px; margin: 0 20px 20px 20px; }
             .portfolio-text { font-size: 3.5rem; }
             .character-container { width: 150px; }
             .small-handle { font-size: 1.3rem; }
             .double-ring { width: 60px; height: 60px; }
+            .animated-ring { margin: 50px 0 60px 0; }
         }
+
         @media (max-width: 550px) {
-            .giant-shape { height: 160px; padding: 0 20px; }
+            .giant-shape { height: 160px; padding: 0 20px 0 25px; border-radius: 40px; margin: 0 16px 15px 16px; }
             .portfolio-text { font-size: 2.2rem; }
             .character-container { width: 100px; }
             .small-handle { font-size: 0.9rem; }
+            .greeting-text { font-size: 1.2rem; }
+            .social-cube { width: 45px; height: 45px; font-size: 1.4rem; border-radius: 14px; }
             .double-ring { width: 50px; height: 50px; }
+            .animated-ring { margin: 40px 0 50px 0; }
         }
     </style>
 </head>
 <body>
-    <div class="logo-outside">✧ HESAM</div>
-    <div class="date-outside" id="liveDate"></div>
-    <div class="navbar">
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Skills</a></li><li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-    <div class="spacer"></div>
 
-    <div class="above-shape">
-        <div class="greeting-text">👋 Hey There I'm Hesam</div>
-        <div class="social-cubes">
-            <div class="social-cube">?</div><div class="social-cube">?</div><div class="social-cube">?</div><div class="social-cube">?</div>
-        </div>
-    </div>
+<div class="logo-outside">✧ HESAM</div>
+<div class="date-outside" id="liveDate"></div>
 
-    <div class="giant-shape">
-        <div class="left-content">
-            <div class="portfolio-text">Portfolio</div>
-            <div class="small-handle">@KnownAsHesam</div>
-        </div>
-        <div class="character-container">
-            <img src="assets/photo/character.png" alt="character" class="character-img">
-        </div>
-    </div>
+<div class="navbar">
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Skills</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
 
-    <!-- المان انیمیشن‌دار خاص: حلقه‌های هم مرکز با چرخش و ضربان -->
-    <div class="animated-element">
-        <div class="double-ring">
-            <div class="ring"></div>
-            <div class="ring"></div>
-            <div class="ring"></div>
-        </div>
-    </div>
+<div class="spacer"></div>
 
-    <script>
-        function updateDate() {
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('liveDate').innerText = now.toLocaleDateString('en-US', options);
-        }
-        updateDate();
-    </script>
+<div class="above-shape">
+    <div class="greeting-text">👋 Hey There I'm Hesam</div>
+    <div class="social-cubes">
+        <div class="social-cube">?</div>
+        <div class="social-cube">?</div>
+        <div class="social-cube">?</div>
+        <div class="social-cube">?</div>
+    </div>
+</div>
+
+<div class="giant-shape">
+    <div class="left-content">
+        <div class="portfolio-text">Portfolio</div>
+        <div class="small-handle">@KnownAsHesam</div>
+    </div>
+    <div class="character-container">
+        <img src="assets/photo/character.png" alt="character" class="character-img">
+    </div>
+</div>
+
+<div class="animated-ring">
+    <div class="double-ring">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+    </div>
+</div>
+
+<script>
+    function updateDate() {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formatted = now.toLocaleDateString('en-US', options);
+        document.getElementById('liveDate').innerText = formatted;
+    }
+    updateDate();
+</script>
 </body>
 </html>
