@@ -117,7 +117,6 @@
             height: 100px;
         }
 
-        /* کانتینر شیپ */
         .giant-shape {
             margin: 20px 24px;
             height: 280px;
@@ -127,7 +126,6 @@
             animation-delay: 0.6s;
         }
 
-        /* SVG با بریدگی عمیق‌تر و لبه‌های نرم */
         .shape-svg {
             width: 100%;
             height: 100%;
@@ -229,21 +227,17 @@
 <div class="giant-shape">
     <svg class="shape-svg" viewBox="0 0 700 280" preserveAspectRatio="none">
         <defs>
-            <!-- فیلتر برای نرم کردن لبه‌های بریدگی -->
-            <filter id="softNotch" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-            </filter>
-            <!-- ماسک با دو دایره (بریدگی عمیق‌تر) که فیلتر نرم کننده روی آن اعمال شده -->
+            <!-- ماسک برای ایجاد شیارهای گرد و نرم (بدون بلور) -->
             <mask id="notchMask">
                 <!-- همه جا سفید (نمایان) -->
                 <rect width="700" height="280" fill="white" />
-                <!-- بریدگی چپ: دایره بزرگتر با فیلتر نرم -->
-                <circle cx="0" cy="140" r="55" fill="black" filter="url(#softNotch)" />
-                <!-- بریدگی راست: دایره بزرگتر با فیلتر نرم -->
-                <circle cx="700" cy="140" r="55" fill="black" filter="url(#softNotch)" />
+                <!-- شیار چپ: یک شکل قرصی (pill) با گوشه‌های کاملاً گرد -->
+                <rect x="-20" y="100" width="75" height="80" rx="40" ry="40" fill="black" />
+                <!-- شیار راست: شکل قرصی مشابه -->
+                <rect x="645" y="100" width="75" height="80" rx="40" ry="40" fill="black" />
             </mask>
         </defs>
-        <!-- مستطیل قرمز با گوشه‌های گرد و اعمال ماسک نرم شده -->
+        <!-- مستطیل قرمز با گوشه‌های گرد و اعمال ماسک -->
         <rect x="0" y="0" width="700" height="280" rx="70" ry="70" fill="rgb(142, 22, 0)" mask="url(#notchMask)" />
     </svg>
 </div>
