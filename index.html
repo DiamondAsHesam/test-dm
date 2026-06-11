@@ -9,14 +9,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none; /* غیرقابل کپی شدن کل محتوا */
+            user-select: none;
         }
 
         body {
             background-color: #E7E7E7;
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             min-height: 100vh;
-            padding: 0 24px;
+            overflow-x: hidden; /* جلوگیری از اسکرول افقی */
         }
 
         /* لوگو */
@@ -115,11 +115,40 @@
             opacity: 0.7;
         }
 
+        /* فاصله برای جلوگیری از تداخل نوار fixed */
         .spacer {
             height: 100px;
         }
 
-        /* انیمیشن‌ها */
+        /* ========== شیپ دراز چسبیده به چپ با گوشه گرد راست ========== */
+        .giant-shape {
+            position: relative;
+            left: -24px;               /* جبران padding بدنه */
+            width: calc(100% + 48px);  /* کامل تا لبه راست صفحه */
+            height: 280px;
+            background: rgb(142, 22, 0);
+            border-radius: 0 70px 70px 0; /* فقط سمت راست گرد */
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateX(-40px);
+            animation: slideFromLeft 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            animation-delay: 0.6s;
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
+        }
+
+        /* انیمیشن ورود از چپ */
+        @keyframes slideFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* انیمیشن‌های قبلی */
         @keyframes slideFadeIn {
             0% {
                 opacity: 0;
@@ -142,7 +171,7 @@
             }
         }
 
-        /* ریسپانسیو */
+        /* ریسپانسیو برای موبایل */
         @media (max-width: 780px) {
             .logo-outside {
                 font-size: 1.2rem;
@@ -164,6 +193,10 @@
             .nav-links li a {
                 font-size: 0.8rem;
             }
+            .giant-shape {
+                height: 200px;
+                border-radius: 0 50px 50px 0;
+            }
         }
 
         @media (max-width: 550px) {
@@ -172,6 +205,10 @@
             }
             .nav-links {
                 gap: 0.7rem;
+            }
+            .giant-shape {
+                height: 150px;
+                border-radius: 0 40px 40px 0;
             }
         }
     </style>
@@ -192,6 +229,9 @@
 </div>
 
 <div class="spacer"></div>
+
+<!-- شیپ دراز چسبیده به چپ با گوشه گرد راست -->
+<div class="giant-shape"></div>
 
 <script>
     function updateDate() {
