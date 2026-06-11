@@ -113,14 +113,14 @@
             opacity: 0.7;
         }
 
-        /* فاصله بیشتر از نوار ناوبری */
         .spacer {
-            height: 140px; /* قبلاً 100px بود */
+            height: 140px;
         }
 
-        /* شیپ پایین‌تر آمده */
+        /* شیپ قرمز - حالا overflow: visible برای بیرون زدن کاراکتر */
         .giant-shape {
-            margin: 40px 24px 20px 24px; /* فاصله از بالا بیشتر */
+            position: relative;
+            margin: 40px 24px 20px 24px;
             height: 280px;
             background: rgb(142, 22, 0);
             border-radius: 70px;
@@ -129,19 +129,89 @@
             animation: slideFromTop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
             animation-delay: 0.6s;
             box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
+            overflow: visible;  /* اجازه بیرون زدن کاراکتر از بالا */
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 500;
+            justify-content: space-between;
+            padding: 0 60px 0 70px;
         }
 
-        /* فعلاً داخل شیپ یک placeholder ساده قرار دادم تا خالی نباشد. در صورت نیاز عوض می‌شود */
-        .giant-shape::before {
-            content: "✨";
-            font-size: 3rem;
-            opacity: 0.7;
+        /* متن Portfolio در سمت چپ */
+        .portfolio-text {
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: white;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            line-height: 1;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        /* کانتینر کاراکتر در سمت راست */
+        .character-container {
+            position: relative;
+            width: 240px;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;  /* کاراکتر به پایین بچسبد */
+            justify-content: center;
+            overflow: visible;
+            z-index: 2;
+        }
+
+        .character-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 110%;       /* از ارتفاع شیپ بیشتر تا از بالا بیرون بزند */
+            object-fit: contain;
+            object-position: bottom center;  /* پایین کاراکتر در پایین کانتینر بماند */
+            margin-bottom: 0;
+        }
+
+        /* برای اطمینان از اینکه پایین کاراکتر داخل شیپ است، تصویر را از پایین تراز می‌کنیم */
+        @media (max-width: 1100px) {
+            .giant-shape {
+                padding: 0 40px 0 50px;
+            }
+            .portfolio-text {
+                font-size: 5rem;
+            }
+            .character-container {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 780px) {
+            .giant-shape {
+                height: 220px;
+                padding: 0 30px 0 40px;
+                border-radius: 50px;
+                margin: 30px 20px 20px 20px;
+            }
+            .portfolio-text {
+                font-size: 3.5rem;
+            }
+            .character-container {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .giant-shape {
+                height: 160px;
+                padding: 0 20px 0 25px;
+                border-radius: 40px;
+                margin: 25px 16px 15px 16px;
+            }
+            .portfolio-text {
+                font-size: 2.2rem;
+            }
+            .character-container {
+                width: 100px;
+            }
         }
 
         @keyframes slideFromTop {
@@ -176,54 +246,6 @@
                 transform: translateX(-50%) translateY(0);
             }
         }
-
-        @media (max-width: 780px) {
-            .logo-outside {
-                font-size: 1.2rem;
-                top: 22px;
-                left: 20px;
-            }
-            .date-outside {
-                font-size: 0.7rem;
-                top: 22px;
-                right: 20px;
-                padding: 4px 10px;
-            }
-            .navbar {
-                padding: 8px 20px;
-            }
-            .nav-links {
-                gap: 1rem;
-            }
-            .nav-links li a {
-                font-size: 0.8rem;
-            }
-            .spacer {
-                height: 120px;
-            }
-            .giant-shape {
-                height: 200px;
-                border-radius: 50px;
-                margin: 30px 20px 20px 20px;
-            }
-        }
-
-        @media (max-width: 550px) {
-            .nav-links li a {
-                font-size: 0.7rem;
-            }
-            .nav-links {
-                gap: 0.7rem;
-            }
-            .spacer {
-                height: 100px;
-            }
-            .giant-shape {
-                height: 150px;
-                border-radius: 40px;
-                margin: 25px 16px 15px 16px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -243,7 +265,12 @@
 
 <div class="spacer"></div>
 
-<div class="giant-shape"></div>
+<div class="giant-shape">
+    <div class="portfolio-text">Portfolio</div>
+    <div class="character-container">
+        <img src="assets/photo/character.png" alt="character" class="character-img">
+    </div>
+</div>
 
 <script>
     function updateDate() {
