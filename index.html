@@ -120,7 +120,7 @@
             height: 100px;
         }
 
-        /* شیپ دراز قرمز */
+        /* شیپ دراز قرمز - انیمیشن از بالا به پایین */
         .giant-shape {
             position: relative;
             margin: 20px 24px;
@@ -128,33 +128,34 @@
             background: rgb(142, 22, 0);
             border-radius: 70px;
             opacity: 0;
-            transform: translateX(-40px);
-            animation: slideFromLeft 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            transform: translateY(-50px);   /* از بالا شروع کن */
+            animation: slideFromTop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
             animation-delay: 0.6s;
             box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
             overflow: hidden;
         }
 
-        /* شیپ داخلی سیاه - با فاصله از چپ و راست */
+        /* شیپ داخلی سیاه - فاصله بیشتر از چپ/راست و گردی بیشتر */
         .inner-shape {
             position: absolute;
             bottom: 0;
-            left: 15px;
-            right: 15px;
+            left: 35px;
+            right: 35px;
             width: auto;
             height: 70%;
             background: black;
-            border-radius: 0 0 60px 60px;  /* گوشه پایین گرد */
+            border-radius: 0 0 100px 100px;   /* لبه پایین خیلی گرد */
         }
 
-        @keyframes slideFromLeft {
+        /* انیمیشن جدید از بالا به پایین */
+        @keyframes slideFromTop {
             0% {
                 opacity: 0;
-                transform: translateX(-40px);
+                transform: translateY(-50px);
             }
             100% {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
@@ -207,9 +208,9 @@
                 margin: 20px 20px;
             }
             .inner-shape {
-                left: 12px;
-                right: 12px;
-                border-radius: 0 0 45px 45px;
+                left: 25px;
+                right: 25px;
+                border-radius: 0 0 70px 70px;
                 height: 65%;
             }
         }
@@ -227,9 +228,9 @@
                 margin: 15px 16px;
             }
             .inner-shape {
-                left: 10px;
-                right: 10px;
-                border-radius: 0 0 35px 35px;
+                left: 18px;
+                right: 18px;
+                border-radius: 0 0 50px 50px;
                 height: 60%;
             }
         }
