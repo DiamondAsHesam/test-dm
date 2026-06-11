@@ -117,20 +117,17 @@
             height: 100px;
         }
 
+        /* شیپ ساده بدون هیچ شیاری */
         .giant-shape {
             margin: 20px 24px;
             height: 280px;
+            background: rgb(142, 22, 0);
+            border-radius: 70px;
             opacity: 0;
             transform: translateY(-50px);
             animation: slideFromTop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
             animation-delay: 0.6s;
-        }
-
-        .shape-svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-            filter: drop-shadow(0 15px 30px -10px rgba(0,0,0,0.2));
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
         }
 
         @keyframes slideFromTop {
@@ -189,6 +186,7 @@
             }
             .giant-shape {
                 height: 200px;
+                border-radius: 50px;
                 margin: 20px 20px;
             }
         }
@@ -202,6 +200,7 @@
             }
             .giant-shape {
                 height: 150px;
+                border-radius: 40px;
                 margin: 15px 16px;
             }
         }
@@ -224,23 +223,7 @@
 
 <div class="spacer"></div>
 
-<div class="giant-shape">
-    <svg class="shape-svg" viewBox="0 0 700 280" preserveAspectRatio="none">
-        <defs>
-            <!-- ماسک برای ایجاد شیارهای گرد و نرم (بدون بلور) -->
-            <mask id="notchMask">
-                <!-- همه جا سفید (نمایان) -->
-                <rect width="700" height="280" fill="white" />
-                <!-- شیار چپ: یک شکل قرصی (pill) با گوشه‌های کاملاً گرد -->
-                <rect x="-20" y="100" width="75" height="80" rx="40" ry="40" fill="black" />
-                <!-- شیار راست: شکل قرصی مشابه -->
-                <rect x="645" y="100" width="75" height="80" rx="40" ry="40" fill="black" />
-            </mask>
-        </defs>
-        <!-- مستطیل قرمز با گوشه‌های گرد و اعمال ماسک -->
-        <rect x="0" y="0" width="700" height="280" rx="70" ry="70" fill="rgb(142, 22, 0)" mask="url(#notchMask)" />
-    </svg>
-</div>
+<div class="giant-shape"></div>
 
 <script>
     function updateDate() {
