@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Portfolio | Hesam</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="favicon.jpg">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+        body.scroll-enabled {
+            overflow: auto !important;
+        }
+
+        /* Skeleton Loader */
+        .skeleton-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #E7E7E7;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            overflow: hidden;
+        }
+        .skeleton-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .skeleton-header {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+        .skeleton-logo, .skeleton-date, .skeleton-nav, .skeleton-cube, .skeleton-shape, .skeleton-about, .skeleton-line, .skeleton-bio, .skeleton-greeting {
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        .skeleton-logo { width: 100px; height: 30px; border-radius: 8px; }
+        .skeleton-date { width: 80px; height: 30px; border-radius: 20px; }
+        .skeleton-nav { width: 400px; height: 45px; border-radius: 30px; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); }
+        .skeleton-hero { margin-top: 150px; display: flex; flex-direction: column; align-items: center; gap: 30px; width: 80%; max-width: 800px; }
+        .skeleton-greeting { width: 250px; height: 60px; border-radius: 60px; }
+        .skeleton-cubes { display: flex; gap: 20px; }
+        .skeleton-cube { width: 70px; height: 70px; border-radius: 20px; }
+        .skeleton-shape { width: 80%; max-width: 800px; height: 280px; border-radius: 70px; margin-top: 20px; }
+        .skeleton-about { width: 300px; height: 30px; border-radius: 10px; margin-top: 50px; }
+        .skeleton-line { width: 200px; height: 20px; margin-top: 20px; }
+        .skeleton-bio { width: 80%; max-width: 600px; height: 80px; border-radius: 20px; margin-top: 30px; }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Main Content */
+        body {
+            background-color: #E7E7E7;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 0 24px;
+        }
+        body.rtl {
+            direction: rtl;
+        }
+        body.rtl .logo-outside {
+            left: auto;
+            right: 32px;
+        }
+        body.rtl .date-outside {
+            right: auto;
+            left: 32px;
+        }
+        body.rtl .about-container {
+            direction: rtl;
+        }
+        body.rtl .info-item {
+            justify-content: flex-start;
+            flex-direction: row-reverse;
+        }
+        body.rtl .contact-container {
+            direction: rtl;
+        }
+        body.rtl .contact-info-item {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+        body.rtl .footer {
+            direction: rtl;
+        }
+        body.rtl .faq-item {
+            text-align: right;
+        }
+        body.rtl .faq-question {
+            justify-content: space-between;
+            flex-direction: row-reverse;
+        }
+        @media (max-width: 768px) {
+            body.rtl .logo-outside { right: 16px; left: auto; }
+            body.rtl .date-outside { left: 16px; right: auto; }
+        }
+
+        .main-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.01s ease, transform 0.01s ease;
+        }
+        .main-content.show-initial {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .animate-on-scroll.show-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        .logo-outside {
+            position: fixed;
+            top: 20px;
+            left: 32px;
+            font-weight: 800;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #1e1e2a, #2d2d3a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            z-index: 1001;
+        }
+        .date-outside {
+            position: fixed;
+            top: 20px;
+            right: 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(0,0,0,0.05);
+            padding: 6px 14px;
+            border-radius: 40px;
+            color: #2c2c2e;
+            backdrop-filter: blur(4px);
+            z-index: 1001;
+        }
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.55);
+            backdrop-filter: blur(14px);
+            border-radius: 18px;
+            padding: 10px 28px;
+            z-index: 1000;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #1f1f2b;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-links li a:hover {
+            color: #000;
+            opacity: 0.7;
+        }
+        .spacer {
+            height: 140px;
+        }
+
+        /* Hero */
+        .above-shape {
+            margin: 20px 24px 80px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+        }
+        .greeting-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: rgba(255,255,240,0.3);
+            backdrop-filter: blur(4px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .social-cubes {
+            display: flex;
+            gap: 45px;
+        }
+        .social-cube {
+            width: 70px;
+            height: 70px;
+            background: #1e1e2a;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+        }
+        .social-cube:hover { transform: translateY(-8px); background: rgb(142,22,0); }
+        .social-cube:nth-child(1) { transform: translateY(-15px) rotate(-3deg); }
+        .social-cube:nth-child(2) { transform: translateY(10px) rotate(2deg); }
+        .social-cube:nth-child(3) { transform: translateY(-5px) rotate(5deg); }
+        .social-cube:nth-child(4) { transform: translateY(20px) rotate(-4deg); }
+
+        /* Red shape with globe */
+        .giant-shape {
+            margin: 0 24px 20px;
+            min-height: 280px;
+            background: rgb(142,22,0);
+            border-radius: 70px;
+            position: relative;
+            padding: 30px 40px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .lang-globe {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 2px solid rgb(142,22,0);
+            color: black;
+            z-index: 20;
+            transition: 0.2s;
+        }
+        .lang-globe:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+        .bars-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .vertical-bar {
+            width: 70px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+        .fill-level {
+            width: 100%;
+            background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.85) 8px, rgba(255,255,255,0.3) 8px, rgba(255,255,255,0.3) 16px);
+            border-radius: 30px;
+        }
+        .bar1 { height: 180px; }
+        .bar1 .fill-level { height: 75%; }
+        .bar2 { height: 220px; }
+        .bar2 .fill-level { height: 55%; }
+        .bar3 { height: 150px; }
+        .bar3 .fill-level { height: 90%; }
+        .bar4 { height: 200px; }
+        .bar4 .fill-level { height: 45%; }
+
+        /* About Section */
+        .about-section {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+            position: relative;
+        }
+        .about-line-above {
+            width: 100%;
+            height: 1px;
+            background: #aaa;
+            margin-bottom: 30px;
+            opacity: 0.5;
+        }
+        .about-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 40px;
+        }
+        .about-info {
+            flex: 1;
+            min-width: 250px;
+        }
+        .about-map {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .map-image {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 30px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            object-fit: cover;
+        }
+        .map-image:hover {
+            transform: scale(1.02);
+        }
+        .info-card {
+            background: rgba(255,255,255,0.5);
+            border-radius: 40px;
+            padding: 25px 30px;
+            backdrop-filter: blur(4px);
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #2c2c2e;
+        }
+        .info-icon {
+            font-size: 1.6rem;
+            background: rgb(142,22,0);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            color: white;
+        }
+        .bio-text {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Intro */
+        .intro-modern {
+            max-width: 1100px;
+            width: 90%;
+            margin: 100px auto 80px;
+            padding: 50px 70px;
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            text-align: center;
+        }
+        .intro-modern-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: rgb(142,22,0);
+            margin-bottom: 20px;
+        }
+        .intro-modern-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            max-width: 700px;
+            margin: 0 auto 80px;
+            scroll-margin-top: 100px;
+        }
+        .skills-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            width: 0%;
+            height: 100%;
+            background: rgb(142,22,0);
+            border-radius: 10px;
+            transition: width 1.2s ease-out;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+        .faq-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        .faq-container {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 20px;
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #1a1a1a;
+            transition: 0.2s;
+        }
+        .faq-question:hover {
+            background: rgba(142,22,0,0.05);
+        }
+        .faq-question i {
+            font-size: 1.2rem;
+            color: rgb(142,22,0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            padding: 0 20px;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #2c2c2e;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 18px 20px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            max-width: 1100px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+        }
+        .contact-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 40px;
+        }
+        .contact-info {
+            flex: 1;
+            min-width: 250px;
+        }
+        .contact-form {
+            flex: 1.5;
+            min-width: 280px;
+        }
+        .contact-info-card {
+            background: rgba(255,255,255,0.5);
+            border-radius: 40px;
+            padding: 25px 30px;
+            backdrop-filter: blur(4px);
+            height: 100%;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            color: #2c2c2e;
+        }
+        .contact-info-icon {
+            font-size: 1.5rem;
+            background: rgb(142,22,0);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            color: white;
+        }
+        .main-social {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin: 20px 0 10px;
+        }
+        .main-social a {
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .main-social a:hover {
+            transform: scale(1.1);
+        }
+        .main-social img {
+            width: 55px;
+            height: 55px;
+            display: inline-block;
+            border-radius: 0;
+            background: transparent;
+        }
+        .thanks-message {
+            text-align: center;
+            margin: 30px 0 20px;
+            padding: 15px;
+            background: rgba(142,22,0,0.1);
+            border-radius: 50px;
+            font-weight: 500;
+            color: #2c2c2e;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: rgb(142,22,0);
+            background: white;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .submit-btn {
+            background: rgb(142,22,0);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background: #a12e0a;
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1c1c1c;
+            border-radius: 40px 40px 0 0;
+            padding: 40px 30px 25px;
+            margin-top: 60px;
+            color: #e0e0e0;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: rgb(142,22,0);
+        }
+        body.rtl .footer-col h4::after {
+            left: auto;
+            right: 0;
+        }
+        .footer-col p {
+            line-height: 1.6;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            opacity: 0.8;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+            color: rgb(142,22,0);
+        }
+        .footer-social {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .footer-social-title {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+        .footer-social-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .footer-social-icons a {
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .footer-social-icons a:hover {
+            transform: scale(1.1);
+        }
+        .footer-social-icons img {
+            display: inline-block;
+            width: 42px;
+            height: 42px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        .footer-bottom span {
+            color: rgb(142,22,0);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgb(142,22,0);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+            font-size: 1.5rem;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: #a12e0a;
+            transform: translateY(-3px);
+        }
+        body.rtl .back-to-top {
+            right: auto;
+            left: 30px;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            z-index: 2000;
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Language switch loader */
+        .lang-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #E7E7E7;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .lang-loader.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lang-loader .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #ccc;
+            border-top-color: rgb(142,22,0);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 0 16px; }
+            .logo-outside { font-size: 0.9rem; left: 16px; }
+            .date-outside { font-size: 0.55rem; right: 16px; padding: 2px 6px; }
+            .navbar { padding: 4px 12px; top: 18px; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links li a { font-size: 0.7rem; }
+            .spacer { height: 100px; }
+            .above-shape { gap: 50px; margin: 20px 16px 60px; }
+            .greeting-text { font-size: 1.4rem; white-space: normal; text-align: center; }
+            .social-cubes { gap: 20px; }
+            .social-cube { width: 50px; height: 50px; font-size: 1.5rem; }
+            .giant-shape { padding: 20px; flex-wrap: wrap; }
+            .bars-container { flex-wrap: wrap; gap: 15px; }
+            .vertical-bar { width: 55px; }
+            .bar1 { height: 130px; }
+            .bar2 { height: 160px; }
+            .bar3 { height: 110px; }
+            .bar4 { height: 145px; }
+            .about-section { margin-top: 80px; }
+            .about-container { flex-direction: column-reverse; padding: 25px; }
+            .intro-modern { width: 95%; padding: 30px 20px; margin: 60px auto; }
+            .skills-section { margin-bottom: 60px; }
+            .skills-title { font-size: 1.6rem; }
+            .lang-globe { width: 40px; height: 40px; font-size: 1.4rem; top: -20px; }
+            .contact-container { flex-direction: column; padding: 25px; }
+            .footer-container { flex-direction: column; text-align: center; }
+            .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+            body.rtl .footer-col h4::after { right: 50%; left: auto; transform: translateX(50%); }
+            .back-to-top { width: 40px; height: 40px; font-size: 1.2rem; bottom: 20px; right: 20px; }
+            body.rtl .back-to-top { right: auto; left: 20px; }
+            .main-social img { width: 45px; height: 45px; }
+            .footer-social-icons img { width: 36px; height: 36px; gap: 15px; }
+            .faq-question { font-size: 0.95rem; padding: 14px 16px; }
+            .faq-answer { font-size: 0.85rem; }
+        }
+        @media (max-width: 550px) {
+            .nav-links { gap: 0.6rem; }
+            .nav-links li a { font-size: 0.65rem; }
+            .vertical-bar { width: 45px; }
+            .bar1 { height: 100px; }
+            .bar2 { height: 130px; }
+            .bar3 { height: 85px; }
+            .bar4 { height: 115px; }
+            .skills-title { font-size: 1.3rem; }
+            .main-social img { width: 40px; height: 40px; }
+            .footer-social-icons img { width: 32px; height: 32px; }
+        }
+    </style>
+</head>
+<body class="no-scroll">
+
+<div class="skeleton-loader" id="skeletonLoader">
+    <div class="skeleton-header">
+        <div class="skeleton-logo"></div>
+        <div class="skeleton-date"></div>
+    </div>
+    <div class="skeleton-nav"></div>
+    <div class="skeleton-hero">
+        <div class="skeleton-greeting"></div>
+        <div class="skeleton-cubes">
+            <div class="skeleton-cube"></div><div class="skeleton-cube"></div><div class="skeleton-cube"></div><div class="skeleton-cube"></div>
+        </div>
+        <div class="skeleton-shape"></div>
+        <div class="skeleton-about"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-bio"></div>
+    </div>
+</div>
+
+<div class="lang-loader" id="langLoader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text" id="langLoaderText">Loading...</div>
+</div>
+
+<div class="main-content" id="mainContent">
+    <div class="logo-outside">✧ HESAM</div>
+    <div class="date-outside" id="liveDate"></div>
+
+    <div class="navbar">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" data-key="home">Home</a></li>
+            <li><a href="#about" data-key="about">About</a></li>
+            <li><a href="#" id="portfolioBtn" data-key="portfolio">Portfolio</a></li>
+            <li><a href="#skills" data-key="skills">Skills</a></li>
+            <li><a href="#contact" data-key="contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="spacer" id="home"></div>
+
+    <div class="above-shape animate-on-scroll">
+        <div class="greeting-text" id="greetingText">👋 Hey There I'm Hesam</div>
+        <div class="social-cubes">
+            <div class="social-cube">?</div><div class="social-cube">?</div><div class="social-cube">?</div><div class="social-cube">?</div>
+        </div>
+    </div>
+
+    <div class="giant-shape animate-on-scroll">
+        <div class="lang-globe" id="languageSwitch">🌐</div>
+        <div class="bars-container">
+            <div class="vertical-bar bar1"><div class="fill-level"></div></div>
+            <div class="vertical-bar bar2"><div class="fill-level"></div></div>
+            <div class="vertical-bar bar3"><div class="fill-level"></div></div>
+            <div class="vertical-bar bar4"><div class="fill-level"></div></div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about-section animate-on-scroll" id="about">
+        <div class="about-line-above"></div>
+        <div class="about-title" id="aboutTitle">About Me</div>
+        <div class="about-container">
+            <div class="about-info">
+                <div class="info-card">
+                    <div class="info-item"><div class="info-icon">🎂</div><div class="info-text" id="birthText">July 19, 2007</div></div>
+                    <div class="info-item"><div class="info-icon">📍</div><div class="info-text" id="locationText">IRAN, Gorgan</div></div>
+                    <div class="bio-text" id="aboutBio">I'm Hesam, a front-end designer and developer with 3 years of experience. My expertise lies in React, Next.js, and creating modern, smooth user experiences. I love turning ideas into clean code and practical products. Ready to collaborate on creative projects.</div>
+                </div>
+            </div>
+            <div class="about-map">
+                <img src="assets/photo/map.png" alt="Map of Iran" class="map-image" id="mapImage">
+            </div>
+        </div>
+    </div>
+
+    <div class="intro-modern animate-on-scroll">
+        <div class="intro-modern-title" id="introTitle">✦ Introduction ✦</div>
+        <div class="intro-modern-text" id="introText">Over the years, I've worked with various technologies and always strive to learn and update my knowledge.<br><strong id="introStrong">Below, you can see my professional skills</strong></div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="skills-section animate-on-scroll" id="skills">
+        <div class="skills-title" id="skillsTitle">My Skills</div>
+        <div id="skillsList">
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="Computer">Computer</span><span class="skill-percent" data-level="Computer">Professional</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="AI">Artificial Intelligence</span><span class="skill-percent" data-level="AI">Intermediate</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="Crypto">Crypto</span><span class="skill-percent" data-level="Crypto">Intermediate</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="Arzdigital">Arzdigital</span><span class="skill-percent" data-level="Arzdigital">Intermediate</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="Photoshop">Photoshop</span><span class="skill-percent" data-level="Photoshop">Beginner</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="Gamer">Gamer</span><span class="skill-percent" data-level="Gamer">Professional</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="WebsiteCoding">Website Coding</span><span class="skill-percent" data-level="WebsiteCoding">Semi-Intermediate</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="English">English Language</span><span class="skill-percent" data-level="English">Semi-Intermediate</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="SocialMedia">Social Media Activity</span><span class="skill-percent" data-level="SocialMedia">Professional</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span class="skill-name" data-skill="RoundClock">24/7 Activity</span><span class="skill-percent" data-level="RoundClock">Professional</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section animate-on-scroll">
+        <div class="faq-title" id="faqTitle">Frequently Asked Questions</div>
+        <div class="faq-container" id="faqContainer">
+            <div class="faq-item">
+                <div class="faq-question"><span id="faq1q">What services do you offer?</span><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer" id="faq1a">I offer front-end development, responsive web design, React/Next.js development, and UI/UX consulting services.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span id="faq2q">How long does a project typically take?</span><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer" id="faq2a">Project timelines vary based on complexity. A simple website may take 1-2 weeks, while complex web applications can take 4-8 weeks.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span id="faq3q">Do you work with international clients?</span><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer" id="faq3a">Yes! I work with clients from all around the world. English is my primary language for communication.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span id="faq4q">What is your pricing model?</span><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer" id="faq4a">I offer both fixed-price for specific projects and hourly rates for ongoing work. Contact me for a custom quote.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span id="faq5q">Do you provide post-launch support?</span><i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer" id="faq5a">Yes, I provide 1 month of free support after launch, and ongoing maintenance packages are available.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section animate-on-scroll" id="contact">
+        <div class="contact-title" id="contactTitle">Contact Me</div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-info-card">
+                    <div class="contact-info-item"><div class="contact-info-icon">📞</div><div class="contact-info-text" id="contactPhone">+98 912 345 6789</div></div>
+                    <div class="contact-info-item"><div class="contact-info-icon">✉️</div><div class="contact-info-text" id="contactEmail">hesam@example.com</div></div>
+                    <div class="contact-info-item"><div class="contact-info-icon">📍</div><div class="contact-info-text" id="contactAddress">IRAN, Gorgan</div></div>
+                    <div class="main-social">
+                        <a href="https://www.linkedin.com/in/known-ashesam-399039413?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="assets/icons/linkedin.png" alt="LinkedIn"></a>
+                        <a href="https://github.com/DiamondAsHesam" target="_blank"><img src="assets/icons/github.png" alt="GitHub"></a>
+                    </div>
+                    <div class="thanks-message" id="thanksMessage">Thank you for visiting my portfolio! 🙏</div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group"><input type="text" id="nameInput" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" id="emailInput" placeholder="Your Email" required></div>
+                    <div class="form-group"><textarea id="messageInput" placeholder="Your Message" required></textarea></div>
+                    <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">✨ Coming Soon...</div>
+</div>
+
+<!-- Footer with all social media links -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4 style="color: white;">Hesam</h4>
+            <p>Front-end developer & designer<br>Creating modern digital experiences</p>
+        </div>
+        <div class="footer-col">
+            <h4 id="footerQuickLinks">Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="#home" data-key="home">Home</a></li>
+                <li><a href="#about" data-key="about">About</a></li>
+                <li><a href="#skills" data-key="skills">Skills</a></li>
+                <li><a href="#contact" data-key="contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 id="footerContact">Contact</h4>
+            <p>📞 +98 912 345 6789<br>✉️ hesam@example.com<br>📍 IRAN, Gorgan</p>
+        </div>
+    </div>
+    <div class="footer-social">
+        <div class="footer-social-title" id="footerSocialTitle">Follow me on social media</div>
+        <div class="footer-social-icons">
+            <a href="https://www.instagram.com/knownashesam" target="_blank"><img src="assets/icons/instagram.png" alt="Instagram"></a>
+            <a href="https://x.com/KnownAsHesam" target="_blank"><img src="assets/icons/x.png" alt="X"></a>
+            <a href="https://www.threads.com/@knownashesam" target="_blank"><img src="assets/icons/threads.png" alt="Threads"></a>
+            <a href="https://t.me/DiamondAsHesam" target="_blank"><img src="assets/icons/telegram.png" alt="Telegram"></a>
+            <a href="https://discord.gg/MWr2QCCMTv" target="_blank"><img src="assets/icons/discord.png" alt="Discord"></a>
+            <a href="#" target="_blank"><img src="assets/icons/facebook.png" alt="Facebook"></a>
+            <a href="https://pin.it/7kxQlIF76" target="_blank"><img src="assets/icons/pinterest.png" alt="Pinterest"></a>
+            <a href="https://open.spotify.com/user/31acoyzgqnirjhb4s76rpsjep7za?si=C8Mg2tPqQKWxx6ow4qHNog" target="_blank"><img src="assets/icons/spotify.png" alt="Spotify"></a>
+            <a href="https://youtube.com/@knownashesam?si=fzsW2hTysqWGqzuc" target="_blank"><img src="assets/icons/youtube.png" alt="YouTube"></a>
+            <a href="#" target="_blank"><img src="assets/icons/messenger.png" alt="Messenger"></a>
+            <a href="#" target="_blank"><img src="assets/icons/redit.png" alt="Reddit"></a>
+            <a href="https://github.com/DiamondAsHesam" target="_blank"><img src="assets/icons/github.png" alt="GitHub"></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2025 <span>Hesam</span>. All rights reserved. | Designed with ❤️
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTop">↑</button>
+
+<script>
+    // FAQ Accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            item.classList.toggle('active');
+        });
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80;
+                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Translations
+    const translations = {
+        en: {
+            dir: 'ltr', logo: '✧ HESAM',
+            nav: { home: 'Home', about: 'About', portfolio: 'Portfolio', skills: 'Skills', contact: 'Contact' },
+            greeting: '👋 Hey There I\'m Hesam',
+            aboutTitle: 'About Me',
+            birth: 'July 19, 2007',
+            location: 'IRAN, Gorgan',
+            aboutBio: "I'm Hesam, a front-end designer and developer with 3 years of experience. My expertise lies in React, Next.js, and creating modern, smooth user experiences. I love turning ideas into clean code and practical products. Ready to collaborate on creative projects.",
+            introTitle: '✦ Introduction ✦',
+            introText: 'Over the years, I\'ve worked with various technologies and always strive to learn and update my knowledge.',
+            introStrong: 'Below, you can see my professional skills',
+            skillsTitle: 'My Skills',
+            skills: {
+                Computer: { name: 'Computer', level: 'Professional' },
+                AI: { name: 'Artificial Intelligence', level: 'Intermediate' },
+                Crypto: { name: 'Crypto', level: 'Intermediate' },
+                Arzdigital: { name: 'Arzdigital', level: 'Intermediate' },
+                Photoshop: { name: 'Photoshop', level: 'Beginner' },
+                Gamer: { name: 'Gamer', level: 'Professional' },
+                WebsiteCoding: { name: 'Website Coding', level: 'Semi-Intermediate' },
+                English: { name: 'English Language', level: 'Semi-Intermediate' },
+                SocialMedia: { name: 'Social Media Activity', level: 'Professional' },
+                RoundClock: { name: '24/7 Activity', level: 'Professional' }
+            },
+            faqTitle: 'Frequently Asked Questions',
+            faq1q: 'What services do you offer?',
+            faq1a: 'I offer front-end development, responsive web design, React/Next.js development, and UI/UX consulting services.',
+            faq2q: 'How long does a project typically take?',
+            faq2a: 'Project timelines vary based on complexity. A simple website may take 1-2 weeks, while complex web applications can take 4-8 weeks.',
+            faq3q: 'Do you work with international clients?',
+            faq3a: 'Yes! I work with clients from all around the world. English is my primary language for communication.',
+            faq4q: 'What is your pricing model?',
+            faq4a: 'I offer both fixed-price for specific projects and hourly rates for ongoing work. Contact me for a custom quote.',
+            faq5q: 'Do you provide post-launch support?',
+            faq5a: 'Yes, I provide 1 month of free support after launch, and ongoing maintenance packages are available.',
+            contactTitle: 'Contact Me',
+            contactPhone: '+98 912 345 6789',
+            contactEmail: 'hesam@example.com',
+            contactAddress: 'IRAN, Gorgan',
+            thanksMessage: 'Thank you for visiting my portfolio! 🙏',
+            notification: '✨ Coming Soon...',
+            loaderText: 'Changing Language...',
+            formName: 'Your Name',
+            formEmail: 'Your Email',
+            formMessage: 'Your Message',
+            submitBtn: 'Send Message',
+            footerQuickLinks: 'Quick Links',
+            footerContact: 'Contact',
+            footerSocialTitle: 'Follow me on social media'
+        },
+        fa: {
+            dir: 'rtl', logo: '✧ حسام',
+            nav: { home: 'خانه', about: 'درباره من', portfolio: 'نمونه کارها', skills: 'مهارت‌ها', contact: 'تماس با من' },
+            greeting: '👋 سلام، من حسام هستم',
+            aboutTitle: 'درباره من',
+            birth: '۲۸ تیر ۱۳۸۶',
+            location: 'ایران، گرگان',
+            aboutBio: "من حسام هستم، طراح و توسعه‌دهنده فرانت‌اند با ۳ سال تجربه. تخصص من در React، Next.js و خلق تجربه‌های کاربری مدرن و روان است. عاشق اینم که ایده‌ها رو به کد تمیز و محصولات کاربردی تبدیل کنم. آماده همکاری در پروژه‌های خلاقانه.",
+            introTitle: '✦ معرفی ✦',
+            introText: 'در این سال‌ها با تکنولوژی‌های مختلفی کار کردم و همیشه به دنبال یادگیری و به‌روزرسانی دانشم هستم.',
+            introStrong: 'در ادامه، مهارت‌های تخصصی من رو می‌بینید',
+            skillsTitle: 'مهارت‌های من',
+            skills: {
+                Computer: { name: 'کامپیوتر', level: 'حرفه‌ای' },
+                AI: { name: 'هوش مصنوعی', level: 'متوسط' },
+                Crypto: { name: 'کریپتو', level: 'متوسط' },
+                Arzdigital: { name: 'ارزدیجیتال', level: 'متوسط' },
+                Photoshop: { name: 'فتوشاپ', level: 'مبتدی' },
+                Gamer: { name: 'گیمر', level: 'حرفه‌ای' },
+                WebsiteCoding: { name: 'وبسایت کدینگ', level: 'نیمه متوسط' },
+                English: { name: 'زبان انگلیسی', level: 'نیمه متوسط' },
+                SocialMedia: { name: 'فعالیت در سوشیال مدیا', level: 'حرفه‌ای' },
+                RoundClock: { name: 'فعالیت ۲۴ ساعته', level: 'حرفه‌ای' }
+            },
+            faqTitle: 'سوالات متداول',
+            faq1q: 'چه خدماتی ارائه می‌دهید؟',
+            faq1a: 'توسعه فرانت‌اند، طراحی ریسپانسیو وب، توسعه React/Next.js و مشاوره UI/UX.',
+            faq2q: 'مدت زمان انجام پروژه چقدر است؟',
+            faq2a: 'زمان پروژه به پیچیدگی آن بستگی دارد. یک وب‌سایت ساده ۱-۲ هفته و برنامه‌های پیچیده ۴-۸ هفته زمان می‌برد.',
+            faq3q: 'با مشتریان بین‌المللی کار می‌کنید؟',
+            faq3a: 'بله! با مشتریانی از سراسر جهان کار می‌کنم. زبان انگلیسی زبان اصلی ارتباطی من است.',
+            faq4q: 'مدل قیمت‌گذاری شما چگونه است؟',
+            faq4a: 'هم قیمت ثابت برای پروژه‌های مشخص و هم نرخ ساعتی برای کارهای جاری ارائه می‌دهم. برای دریافت قیمت سفارشی با من تماس بگیرید.',
+            faq5q: 'پشتیبانی پس از راه‌اندازی ارائه می‌دهید؟',
+            faq5a: 'بله، ۱ ماه پشتیبانی رایگان پس از راه‌اندازی و همچنین پکیج‌های نگهداری مداوم ارائه می‌شود.',
+            contactTitle: 'تماس با من',
+            contactPhone: '۰۹۱۲ ۳۴۵ ۶۷۸۹',
+            contactEmail: 'hesam@example.com',
+            contactAddress: 'ایران، گرگان',
+            thanksMessage: 'ممنون از بازدید شما از پورتفولیوی من! 🙏',
+            notification: '✨ به زودی...',
+            loaderText: 'در حال تغییر زبان...',
+            formName: 'نام شما',
+            formEmail: 'ایمیل شما',
+            formMessage: 'پیام شما',
+            submitBtn: 'ارسال پیام',
+            footerQuickLinks: 'دسترسی سریع',
+            footerContact: 'تماس',
+            footerSocialTitle: 'مرا در شبکه‌های اجتماعی دنبال کنید'
+        }
+    };
+
+    let currentLang = 'en';
+    let isChangingLanguage = false;
+
+    function applyLanguage(lang) {
+        const t = translations[lang];
+        if (lang === 'fa') {
+            document.body.classList.add('rtl');
+            document.documentElement.setAttribute('dir', 'rtl');
+            document.documentElement.setAttribute('lang', 'fa');
+        } else {
+            document.body.classList.remove('rtl');
+            document.documentElement.setAttribute('dir', 'ltr');
+            document.documentElement.setAttribute('lang', 'en');
+        }
+        document.querySelector('.logo-outside').textContent = t.logo;
+        document.querySelectorAll('#navLinks li a').forEach(link => {
+            const key = link.getAttribute('data-key');
+            if (key && t.nav[key]) link.textContent = t.nav[key];
+        });
+        document.getElementById('greetingText').textContent = t.greeting;
+        document.getElementById('aboutTitle').textContent = t.aboutTitle;
+        document.getElementById('birthText').textContent = t.birth;
+        document.getElementById('locationText').textContent = t.location;
+        document.getElementById('aboutBio').textContent = t.aboutBio;
+        document.getElementById('introTitle').textContent = t.introTitle;
+        document.getElementById('introText').innerHTML = t.introText + '<br><strong id="introStrong">' + t.introStrong + '</strong>';
+        document.getElementById('skillsTitle').textContent = t.skillsTitle;
+        document.querySelectorAll('#skillsList .skill-item').forEach(item => {
+            const nameSpan = item.querySelector('.skill-name');
+            const levelSpan = item.querySelector('.skill-percent');
+            const key = nameSpan.getAttribute('data-skill');
+            if (key && t.skills[key]) {
+                nameSpan.textContent = t.skills[key].name;
+                levelSpan.textContent = t.skills[key].level;
+            }
+        });
+        document.getElementById('faqTitle').textContent = t.faqTitle;
+        document.getElementById('faq1q').textContent = t.faq1q;
+        document.getElementById('faq1a').textContent = t.faq1a;
+        document.getElementById('faq2q').textContent = t.faq2q;
+        document.getElementById('faq2a').textContent = t.faq2a;
+        document.getElementById('faq3q').textContent = t.faq3q;
+        document.getElementById('faq3a').textContent = t.faq3a;
+        document.getElementById('faq4q').textContent = t.faq4q;
+        document.getElementById('faq4a').textContent = t.faq4a;
+        document.getElementById('faq5q').textContent = t.faq5q;
+        document.getElementById('faq5a').textContent = t.faq5a;
+        document.getElementById('contactTitle').textContent = t.contactTitle;
+        document.getElementById('contactPhone').textContent = t.contactPhone;
+        document.getElementById('contactEmail').textContent = t.contactEmail;
+        document.getElementById('contactAddress').textContent = t.contactAddress;
+        document.getElementById('thanksMessage').textContent = t.thanksMessage;
+        document.getElementById('nameInput').placeholder = t.formName;
+        document.getElementById('emailInput').placeholder = t.formEmail;
+        document.getElementById('messageInput').placeholder = t.formMessage;
+        document.getElementById('submitBtn').textContent = t.submitBtn;
+        document.getElementById('notification').textContent = t.notification;
+        document.getElementById('footerQuickLinks').textContent = t.footerQuickLinks;
+        document.getElementById('footerContact').textContent = t.footerContact;
+        document.getElementById('footerSocialTitle').textContent = t.footerSocialTitle;
+        currentLang = lang;
+        updateDate();
+    }
+
+    async function switchLanguage(lang) {
+        if (isChangingLanguage || lang === currentLang) return;
+        isChangingLanguage = true;
+        document.getElementById('langLoaderText').textContent = translations[lang === 'en' ? 'en' : 'fa'].loaderText;
+        document.getElementById('langLoader').classList.add('show');
+        await new Promise(r => setTimeout(r, 800));
+        applyLanguage(lang);
+        document.getElementById('langLoader').classList.remove('show');
+        isChangingLanguage = false;
+    }
+
+    document.getElementById('languageSwitch').addEventListener('click', () => {
+        switchLanguage(currentLang === 'en' ? 'fa' : 'en');
+    });
+
+    // Initial loader
+    document.body.classList.add('no-scroll');
+    setTimeout(() => {
+        const loader = document.getElementById('skeletonLoader');
+        loader.classList.add('hide');
+        document.body.classList.remove('no-scroll');
+        document.body.classList.add('scroll-enabled');
+        setTimeout(() => {
+            loader.style.display = 'none';
+            document.getElementById('mainContent').classList.add('show-initial');
+        }, 500);
+    }, 2500);
+
+    function updateDate() {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const dateStr = currentLang === 'fa' ? now.toLocaleDateString('fa-IR', options) : now.toLocaleDateString('en-US', options);
+        document.getElementById('liveDate').innerText = dateStr;
+    }
+    updateDate();
+
+    document.getElementById('portfolioBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        const notif = document.getElementById('notification');
+        notif.classList.add('show');
+        setTimeout(() => notif.classList.remove('show'), 2000);
+    });
+
+    // Scroll animations
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => e.isIntersecting ? e.target.classList.add('show-item') : e.target.classList.remove('show-item'));
+    }, { threshold: 0.2 });
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Skills progress
+    const skillsSection = document.querySelector('.skills-section');
+    let skillsAnimated = false;
+    const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !skillsAnimated) {
+                skillsAnimated = true;
+                document.querySelectorAll('.skill-item').forEach(item => {
+                    const progressBar = item.querySelector('.skill-progress');
+                    const levelSpan = item.querySelector('.skill-percent');
+                    const levelText = levelSpan.textContent;
+                    let percent = 0;
+                    if (levelText.includes('Professional') || levelText.includes('حرفه‌ای')) percent = 90;
+                    else if (levelText.includes('Intermediate') || levelText.includes('متوسط')) percent = 60;
+                    else if (levelText.includes('Semi-Intermediate') || levelText.includes('نیمه متوسط')) percent = 45;
+                    else if (levelText.includes('Beginner') || levelText.includes('مبتدی')) percent = 20;
+                    progressBar.style.width = percent + '%';
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+    if (skillsSection) skillsObserver.observe(skillsSection);
+
+    // Back to Top
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) backToTopBtn.classList.add('show');
+        else backToTopBtn.classList.remove('show');
+    });
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Contact Form Submit
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const notif = document.getElementById('notification');
+        notif.textContent = currentLang === 'en' ? '✨ Message sent successfully!' : '✨ پیام با موفقیت ارسال شد!';
+        notif.classList.add('show');
+        setTimeout(() => {
+            notif.classList.remove('show');
+            setTimeout(() => {
+                notif.textContent = currentLang === 'en' ? '✨ Coming Soon...' : '✨ به زودی...';
+            }, 500);
+        }, 2000);
+        contactForm.reset();
+    });
+
+    applyLanguage('en');
+</script>
+</body>
+</html>
