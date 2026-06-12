@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -12,7 +12,7 @@
             user-select: none;
         }
 
-        /* ========== استایل لودر اسکلتون - فقط برای موبایل درست شده ========== */
+        /* ========== استایل لودر اسکلتون ========== */
         .skeleton-loader {
             position: fixed;
             top: 0;
@@ -26,70 +26,61 @@
             align-items: center;
             justify-content: center;
             transition: opacity 0.5s ease, visibility 0.5s ease;
-            overflow: hidden;
         }
         .skeleton-loader.hide {
             opacity: 0;
             visibility: hidden;
         }
 
-        /* هدر لودر - لوگو سمت راست، تاریخ سمت چپ (برای RTL) */
         .skeleton-header {
-            position: fixed;
+            position: absolute;
             top: 20px;
             left: 0;
             right: 0;
             display: flex;
             justify-content: space-between;
-            padding: 0 20px;
-            z-index: 10;
+            padding: 0 32px;
         }
         .skeleton-logo {
-            width: 80px;
-            height: 28px;
+            width: 100px;
+            height: 30px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 8px;
         }
         .skeleton-date {
-            width: 70px;
-            height: 28px;
+            width: 80px;
+            height: 30px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 20px;
         }
-
-        /* ناوبری لودر - وسط و پایین‌تر از هدر */
         .skeleton-nav {
-            position: fixed;
-            top: 70px;
+            position: absolute;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 250px;
-            height: 40px;
+            width: 320px;
+            height: 45px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 30px;
-            z-index: 5;
         }
-
-        /* محتوای اصلی لودر */
         .skeleton-hero {
             margin-top: 140px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
             width: 90%;
             max-width: 800px;
-            padding: 0 20px;
         }
         .skeleton-greeting {
-            width: 220px;
-            height: 45px;
+            width: 260px;
+            height: 55px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
@@ -97,31 +88,28 @@
         }
         .skeleton-cubes {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 20px;
         }
         .skeleton-cube {
-            width: 50px;
-            height: 50px;
+            width: 65px;
+            height: 65px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
-            border-radius: 16px;
+            border-radius: 20px;
         }
         .skeleton-shape {
-            width: 95%;
+            width: 90%;
             max-width: 800px;
-            height: 180px;
+            height: 250px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
-            border-radius: 50px;
-            margin-top: 10px;
+            border-radius: 70px;
         }
         .skeleton-about {
-            width: 150px;
-            height: 25px;
+            width: 180px;
+            height: 28px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
@@ -129,24 +117,21 @@
             margin-top: 30px;
         }
         .skeleton-line {
-            width: 120px;
-            height: 15px;
+            width: 130px;
+            height: 18px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 10px;
-            margin-top: 15px;
         }
         .skeleton-bio {
-            width: 90%;
-            max-width: 500px;
-            height: 60px;
+            width: 85%;
+            max-width: 550px;
+            height: 75px;
             background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 20px;
-            margin-top: 20px;
-            margin-bottom: 40px;
         }
 
         @keyframes shimmer {
@@ -163,7 +148,6 @@
             padding: 0 24px;
         }
 
-        /* انیمیشن ورود اولیه برای کل محتوا */
         .main-content {
             opacity: 0;
             transform: translateY(30px);
@@ -175,7 +159,6 @@
             transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        /* المان‌های انیمیشنی اسکرول */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(40px);
@@ -186,11 +169,10 @@
             transform: translateY(0);
         }
 
-        /* ========== هدر و ناوبری ========== */
         .logo-outside {
             position: fixed;
             top: 20px;
-            right: 32px;
+            left: 32px;
             font-weight: 800;
             font-size: 1.6rem;
             background: linear-gradient(135deg, #1e1e2a, #2d2d3a);
@@ -203,7 +185,7 @@
         .date-outside {
             position: fixed;
             top: 20px;
-            left: 32px;
+            right: 32px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             font-weight: 500;
@@ -230,15 +212,12 @@
             justify-content: center;
             padding: 10px 28px;
             z-index: 1000;
-            border: none;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
-            margin: 0;
-            padding: 0;
         }
 
         .nav-links li a {
@@ -247,7 +226,6 @@
             font-size: 0.95rem;
             color: #1f1f2b;
             transition: 0.2s;
-            display: inline-block;
             cursor: pointer;
         }
 
@@ -260,7 +238,6 @@
             height: 140px;
         }
 
-        /* بقیه محتوا */
         .above-shape {
             margin: 20px 24px 80px 24px;
             display: flex;
@@ -269,6 +246,7 @@
             align-items: center;
             gap: 100px;
         }
+
         .greeting-text {
             font-size: 2.5rem;
             font-weight: 800;
@@ -279,9 +257,15 @@
             white-space: nowrap;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .social-cubes { display: flex; gap: 45px; }
+
+        .social-cubes {
+            display: flex;
+            gap: 45px;
+        }
+
         .social-cube {
-            width: 70px; height: 70px;
+            width: 70px;
+            height: 70px;
             background: #1e1e2a;
             border-radius: 20px;
             display: flex;
@@ -294,7 +278,12 @@
             transition: 0.25s;
             box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
         }
-        .social-cube:hover { transform: translateY(-8px); background: rgb(142,22,0); }
+
+        .social-cube:hover {
+            transform: translateY(-8px);
+            background: rgb(142,22,0);
+        }
+
         .social-cube:nth-child(1) { transform: translateY(-15px) rotate(-3deg); }
         .social-cube:nth-child(2) { transform: translateY(10px) rotate(2deg); }
         .social-cube:nth-child(3) { transform: translateY(-5px) rotate(5deg); }
@@ -312,6 +301,7 @@
             gap: 20px;
             padding: 30px 40px;
         }
+
         .vertical-bar {
             width: 70px;
             background: rgba(0,0,0,0.4);
@@ -322,11 +312,13 @@
             justify-content: flex-end;
             overflow: hidden;
         }
+
         .fill-level {
             width: 100%;
             background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.85) 8px, rgba(255,255,255,0.3) 8px, rgba(255,255,255,0.3) 16px);
             border-radius: 30px;
         }
+
         .bar1 { height: 180px; }
         .bar1 .fill-level { height: 75%; }
         .bar2 { height: 220px; }
@@ -340,12 +332,14 @@
             text-align: center;
             margin: 60px 0 40px 0;
         }
+
         .about-line {
             width: 300px;
             height: 1px;
             background: #888;
             margin: 0 auto 20px auto;
         }
+
         .about-text {
             font-size: 1.4rem;
             font-weight: 500;
@@ -355,6 +349,7 @@
             opacity: 0.7;
             margin-bottom: 16px;
         }
+
         .bio-short {
             max-width: 650px;
             margin: 0 auto 60px auto;
@@ -375,8 +370,8 @@
             backdrop-filter: blur(10px);
             border-radius: 60px;
             border: 1px solid rgba(255,255,255,0.6);
-            overflow: hidden;
         }
+
         .intro-modern-title {
             text-align: center;
             font-size: 0.9rem;
@@ -385,12 +380,14 @@
             color: rgb(142,22,0);
             margin-bottom: 20px;
         }
+
         .intro-modern-text {
             text-align: center;
             font-size: 1.2rem;
             line-height: 1.8;
             color: #1a1a1a;
         }
+
         .intro-modern-text strong {
             color: rgb(142,22,0);
         }
@@ -399,6 +396,7 @@
             max-width: 700px;
             margin: 0 auto 100px auto;
         }
+
         .skills-title {
             text-align: center;
             font-size: 2rem;
@@ -406,17 +404,21 @@
             margin-bottom: 40px;
             color: #1a1a1a;
         }
+
         .skill-item {
             margin-bottom: 20px;
         }
+
         .skill-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
             font-weight: 500;
         }
+
         .skill-name { color: #1a1a1a; }
         .skill-percent { color: #666; }
+
         .skill-bar {
             width: 100%;
             height: 8px;
@@ -424,6 +426,7 @@
             border-radius: 10px;
             overflow: hidden;
         }
+
         .skill-progress {
             width: 0%;
             height: 100%;
@@ -448,64 +451,71 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
             border: 1px solid rgba(255,255,255,0.2);
         }
+
         .notification.show {
             transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
 
-        /* ========== ریسپانسیو موبایل ========== */
+        /* ========== موبایل ========== */
         @media (max-width: 768px) {
             body {
                 padding: 0 16px;
             }
-            
-            /* لوگو سمت راست، تاریخ سمت چپ - چسبیده به لبه */
+
             .logo-outside {
                 font-size: 0.9rem;
                 top: 18px;
-                right: 4px;
-                left: auto;
+                left: 4px;
             }
+
             .date-outside {
                 font-size: 0.55rem;
                 top: 18px;
-                left: 4px;
-                right: auto;
+                right: 4px;
                 padding: 2px 6px;
             }
-            
+
             .navbar {
                 top: 18px;
                 padding: 4px 12px;
             }
+
             .nav-links {
                 gap: 0.8rem;
             }
+
             .nav-links li a {
                 font-size: 0.7rem;
             }
+
             .spacer {
                 height: 100px;
             }
+
             .above-shape {
                 gap: 50px;
                 margin: 20px 16px 60px 16px;
             }
+
             .greeting-text {
                 font-size: 1.4rem;
                 white-space: normal;
                 text-align: center;
                 padding: 8px 20px;
             }
+
             .social-cubes {
                 gap: 20px;
             }
+
             .social-cube {
                 width: 50px;
                 height: 50px;
                 font-size: 1.5rem;
                 border-radius: 16px;
             }
+
             .giant-shape {
                 flex-wrap: wrap;
                 gap: 15px;
@@ -513,84 +523,75 @@
                 border-radius: 50px;
                 min-height: auto;
             }
+
             .vertical-bar {
                 width: 55px;
             }
+
             .bar1 { height: 130px; }
             .bar2 { height: 160px; }
             .bar3 { height: 110px; }
             .bar4 { height: 145px; }
+
             .about-line {
                 width: 200px;
             }
+
             .about-text {
                 font-size: 1.1rem;
             }
+
             .bio-short {
                 font-size: 0.9rem;
                 margin-bottom: 50px;
             }
+
             .intro-modern {
                 width: 95%;
                 padding: 30px 20px;
                 margin: 60px auto;
             }
+
             .intro-modern-text {
                 font-size: 1rem;
             }
+
             .skills-title {
                 font-size: 1.6rem;
             }
-            
-            /* ===== رفع مشکل لودر در موبایل - جدا شدن کامل لوگو و تاریخ از ناوبری ===== */
-            .skeleton-loader {
-                justify-content: flex-start;
-                padding-top: 80px;
-            }
-            .skeleton-header {
-                top: 15px;
-                padding: 0 16px;
-            }
-            .skeleton-logo {
-                width: 65px;
-                height: 24px;
-            }
-            .skeleton-date {
-                width: 55px;
-                height: 24px;
-            }
+
+            /* لودر موبایل */
             .skeleton-nav {
-                top: 60px;
-                width: 220px;
-                height: 36px;
+                width: 240px;
+                height: 38px;
             }
-            .skeleton-hero {
-                margin-top: 120px;
-                gap: 18px;
-            }
+
             .skeleton-greeting {
-                height: 42px;
                 width: 200px;
+                height: 45px;
             }
+
             .skeleton-cube {
-                width: 42px;
-                height: 42px;
+                width: 48px;
+                height: 48px;
             }
+
             .skeleton-shape {
-                height: 150px;
-                border-radius: 40px;
+                height: 180px;
             }
+
             .skeleton-about {
-                height: 20px;
-                width: 130px;
-                margin-top: 25px;
+                width: 140px;
+                height: 24px;
             }
+
             .skeleton-line {
-                height: 12px;
                 width: 100px;
+                height: 15px;
             }
+
             .skeleton-bio {
-                height: 55px;
+                height: 60px;
             }
         }
 
@@ -598,62 +599,53 @@
             .nav-links {
                 gap: 0.6rem;
             }
+
             .nav-links li a {
                 font-size: 0.65rem;
             }
+
             .vertical-bar {
                 width: 45px;
             }
+
             .bar1 { height: 100px; }
             .bar2 { height: 130px; }
             .bar3 { height: 85px; }
             .bar4 { height: 115px; }
+
             .giant-shape {
                 gap: 12px;
                 padding: 15px;
             }
+
             .about-line {
                 width: 150px;
             }
+
             .about-text {
                 font-size: 0.9rem;
             }
+
             .bio-short {
                 font-size: 0.85rem;
             }
+
             .skills-title {
                 font-size: 1.3rem;
             }
-            
-            /* تنظیمات بیشتر برای لودر در صفحه خیلی کوچک */
+
             .skeleton-nav {
-                top: 55px;
-                width: 190px;
-                height: 34px;
+                width: 210px;
+                height: 35px;
             }
-            .skeleton-hero {
-                margin-top: 110px;
-            }
+
             .skeleton-cube {
-                width: 38px;
-                height: 38px;
+                width: 40px;
+                height: 40px;
             }
+
             .skeleton-shape {
-                height: 130px;
-            }
-            .skeleton-bio {
-                height: 50px;
-            }
-        }
-        
-        /* برای صفحه‌نمایش‌های بلندتر */
-        @media (min-height: 700px) and (max-width: 768px) {
-            .skeleton-loader {
-                justify-content: center;
-                padding-top: 0;
-            }
-            .skeleton-hero {
-                margin-top: 0;
+                height: 150px;
             }
         }
     </style>
@@ -674,4 +666,148 @@
             <div class="skeleton-cube"></div>
             <div class="skeleton-cube"></div>
         </div>
-      
+        <div class="skeleton-shape"></div>
+        <div class="skeleton-about"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-bio"></div>
+    </div>
+</div>
+
+<div class="main-content" id="mainContent">
+    <div class="logo-outside">✧ HESAM</div>
+    <div class="date-outside" id="liveDate"></div>
+
+    <div class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#" id="portfolioBtn">Portfolio</a></li>
+            <li><a href="#">Skills</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="above-shape animate-on-scroll">
+        <div class="greeting-text">👋 Hey There I'm Hesam</div>
+        <div class="social-cubes">
+            <div class="social-cube">?</div>
+            <div class="social-cube">?</div>
+            <div class="social-cube">?</div>
+            <div class="social-cube">?</div>
+        </div>
+    </div>
+
+    <div class="giant-shape animate-on-scroll">
+        <div class="vertical-bar bar1"><div class="fill-level"></div></div>
+        <div class="vertical-bar bar2"><div class="fill-level"></div></div>
+        <div class="vertical-bar bar3"><div class="fill-level"></div></div>
+        <div class="vertical-bar bar4"><div class="fill-level"></div></div>
+    </div>
+
+    <div class="about-section animate-on-scroll">
+        <div class="about-line"></div>
+        <div class="about-text">درباره من</div>
+    </div>
+
+    <div class="bio-short animate-on-scroll">
+        من حسام هستم، طراح و توسعه‌دهنده فرانت‌اند با ۳ سال تجربه. تخصص من در React، Next.js و خلق تجربه‌های کاربری مدرن و روان است. عاشق اینم که ایده‌ها رو به کد تمیز و محصولات کاربردی تبدیل کنم. آماده همکاری در پروژه‌های خلاقانه.
+    </div>
+
+    <div class="intro-modern animate-on-scroll">
+        <div class="intro-modern-title">✦ معرفی ✦</div>
+        <div class="intro-modern-text">
+            در این سال‌ها با تکنولوژی‌های مختلفی کار کردم و همیشه به دنبال یادگیری و به‌روزرسانی دانشم هستم.<br>
+            <strong>در ادامه، مهارت‌های تخصصی من رو می‌بینید</strong>
+        </div>
+    </div>
+
+    <div class="skills-section animate-on-scroll">
+        <div class="skills-title">مهارت‌های من</div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Computer | کامپیوتر</span><span class="skill-percent">حرفه‌ای</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Intelligence | هوش مصنوعی</span><span class="skill-percent">متوسط</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Crypto | کریپتو</span><span class="skill-percent">متوسط</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Arzdigital | ارزدیجیتال</span><span class="skill-percent">متوسط</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Photo Shop | فتوشاپ</span><span class="skill-percent">مبتدی</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Gamer | گیمر</span><span class="skill-percent">حرفه‌ای</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+    </div>
+
+    <div id="notification" class="notification">✨ به زودی...</div>
+</div>
+
+<script>
+    setTimeout(function() {
+        var loader = document.getElementById('skeletonLoader');
+        var mainContent = document.getElementById('mainContent');
+        loader.classList.add('hide');
+        setTimeout(function() {
+            loader.style.display = 'none';
+            mainContent.classList.add('show-initial');
+        }, 500);
+    }, 2500);
+
+    function updateDate() {
+        var now = new Date();
+        var dateElem = document.getElementById('liveDate');
+        if(dateElem) {
+            dateElem.innerText = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+    }
+    updateDate();
+
+    var portfolioBtn = document.getElementById('portfolioBtn');
+    var notification = document.getElementById('notification');
+    if (portfolioBtn) {
+        portfolioBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            notification.classList.add('show');
+            setTimeout(function() {
+                notification.classList.remove('show');
+            }, 2000);
+        });
+    }
+
+    var animatedElements = document.querySelectorAll('.animate-on-scroll');
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show-item');
+            } else {
+                entry.target.classList.remove('show-item');
+            }
+        });
+    }, { threshold: 0.2 });
+    animatedElements.forEach(function(el) {
+        observer.observe(el);
+    });
+
+    var skillsSection = document.querySelector('.skills-section');
+    var skillsAnimated = false;
+    var skillsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !skillsAnimated) {
+                skillsAnimated = true;
+                var skillItems = document.querySelectorAll('.skill-item');
+                skillItems.forEach(function(item) {
+                    var progressBar = item.querySelector('.skill-progress');
+                    var skillNameElem = item.querySelector('.skill-name');
+                    if(skillNameElem) {
+                        var skillName = skillNameElem.innerText;
+                        var percent = 0;
+                        if (skillName.includes('Computer')) percent = 95;
+                        else if (skillName.includes('Intelligence')) percent = 70;
+                        else if (skillName.includes('Crypto')) percent = 65;
+                        else if (skillName.includes('Arzdigital')) percent = 60;
+                        else if (skillName.includes('Photo Shop')) percent = 40;
+                        else if (skillName.includes('Gamer')) percent = 90;
+                        if(progressBar) progressBar.style.width = percent + '%';
+                    }
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+    if (skillsSection) skillsObserver.observe(skillsSection);
+</script>
+</body>
+</html>
