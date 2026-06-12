@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>پورتفولیو | Hesam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        /* ========== استایل لودر اسکلتون - فقط برای موبایل درست شده ========== */
+        .skeleton-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #E7E7E7;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            overflow: hidden;
+        }
+        .skeleton-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* هدر لودر - لوگو سمت راست، تاریخ سمت چپ (برای RTL) */
+        .skeleton-header {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        .skeleton-logo {
+            width: 80px;
+            height: 28px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+        .skeleton-date {
+            width: 70px;
+            height: 28px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 20px;
+        }
+
+        /* ناوبری لودر - وسط و پایین‌تر از هدر */
+        .skeleton-nav {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 40px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 30px;
+            z-index: 5;
+        }
+
+        /* محتوای اصلی لودر */
+        .skeleton-hero {
+            margin-top: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 90%;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .skeleton-greeting {
+            width: 220px;
+            height: 45px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 60px;
+        }
+        .skeleton-cubes {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .skeleton-cube {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 16px;
+        }
+        .skeleton-shape {
+            width: 95%;
+            max-width: 800px;
+            height: 180px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 50px;
+            margin-top: 10px;
+        }
+        .skeleton-about {
+            width: 150px;
+            height: 25px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .skeleton-line {
+            width: 120px;
+            height: 15px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .skeleton-bio {
+            width: 90%;
+            max-width: 500px;
+            height: 60px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ========== محتوای اصلی ========== */
+        body {
+            background-color: #E7E7E7;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 0 24px;
+        }
+
+        /* انیمیشن ورود اولیه برای کل محتوا */
+        .main-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.01s ease, transform 0.01s ease;
+        }
+        .main-content.show-initial {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        /* المان‌های انیمیشنی اسکرول */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .animate-on-scroll.show-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== هدر و ناوبری ========== */
+        .logo-outside {
+            position: fixed;
+            top: 20px;
+            right: 32px;
+            font-weight: 800;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #1e1e2a, #2d2d3a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            z-index: 1001;
+        }
+
+        .date-outside {
+            position: fixed;
+            top: 20px;
+            left: 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 6px 14px;
+            border-radius: 40px;
+            color: #2c2c2e;
+            backdrop-filter: blur(4px);
+            z-index: 1001;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(14px);
+            border-radius: 18px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 28px;
+            z-index: 1000;
+            border: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #1f1f2b;
+            transition: 0.2s;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .nav-links li a:hover {
+            color: #000;
+            opacity: 0.7;
+        }
+
+        .spacer {
+            height: 140px;
+        }
+
+        /* بقیه محتوا */
+        .above-shape {
+            margin: 20px 24px 80px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+        }
+        .greeting-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: rgba(255,255,240,0.3);
+            backdrop-filter: blur(4px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .social-cubes { display: flex; gap: 45px; }
+        .social-cube {
+            width: 70px; height: 70px;
+            background: #1e1e2a;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+        }
+        .social-cube:hover { transform: translateY(-8px); background: rgb(142,22,0); }
+        .social-cube:nth-child(1) { transform: translateY(-15px) rotate(-3deg); }
+        .social-cube:nth-child(2) { transform: translateY(10px) rotate(2deg); }
+        .social-cube:nth-child(3) { transform: translateY(-5px) rotate(5deg); }
+        .social-cube:nth-child(4) { transform: translateY(20px) rotate(-4deg); }
+
+        .giant-shape {
+            margin: 0 24px 20px 24px;
+            min-height: 280px;
+            background: rgb(142,22,0);
+            border-radius: 70px;
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px 40px;
+        }
+        .vertical-bar {
+            width: 70px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+        .fill-level {
+            width: 100%;
+            background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.85) 8px, rgba(255,255,255,0.3) 8px, rgba(255,255,255,0.3) 16px);
+            border-radius: 30px;
+        }
+        .bar1 { height: 180px; }
+        .bar1 .fill-level { height: 75%; }
+        .bar2 { height: 220px; }
+        .bar2 .fill-level { height: 55%; }
+        .bar3 { height: 150px; }
+        .bar3 .fill-level { height: 90%; }
+        .bar4 { height: 200px; }
+        .bar4 .fill-level { height: 45%; }
+
+        .about-section {
+            text-align: center;
+            margin: 60px 0 40px 0;
+        }
+        .about-line {
+            width: 300px;
+            height: 1px;
+            background: #888;
+            margin: 0 auto 20px auto;
+        }
+        .about-text {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 16px;
+        }
+        .bio-short {
+            max-width: 650px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c2c2e;
+        }
+
+        .intro-modern {
+            position: relative;
+            max-width: 1100px;
+            width: 90%;
+            margin: 100px auto 80px auto;
+            padding: 50px 70px;
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.6);
+            overflow: hidden;
+        }
+        .intro-modern-title {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: rgb(142,22,0);
+            margin-bottom: 20px;
+        }
+        .intro-modern-text {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #1a1a1a;
+        }
+        .intro-modern-text strong {
+            color: rgb(142,22,0);
+        }
+
+        .skills-section {
+            max-width: 700px;
+            margin: 0 auto 100px auto;
+        }
+        .skills-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .skill-name { color: #1a1a1a; }
+        .skill-percent { color: #666; }
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            width: 0%;
+            height: 100%;
+            background: rgb(142,22,0);
+            border-radius: 10px;
+            transition: width 1.2s ease-out;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            z-index: 2000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* ========== ریسپانسیو موبایل ========== */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 16px;
+            }
+            
+            /* لوگو سمت راست، تاریخ سمت چپ - چسبیده به لبه */
+            .logo-outside {
+                font-size: 0.9rem;
+                top: 18px;
+                right: 4px;
+                left: auto;
+            }
+            .date-outside {
+                font-size: 0.55rem;
+                top: 18px;
+                left: 4px;
+                right: auto;
+                padding: 2px 6px;
+            }
+            
+            .navbar {
+                top: 18px;
+                padding: 4px 12px;
+            }
+            .nav-links {
+                gap: 0.8rem;
+            }
+            .nav-links li a {
+                font-size: 0.7rem;
+            }
+            .spacer {
+                height: 100px;
+            }
+            .above-shape {
+                gap: 50px;
+                margin: 20px 16px 60px 16px;
+            }
+            .greeting-text {
+                font-size: 1.4rem;
+                white-space: normal;
+                text-align: center;
+                padding: 8px 20px;
+            }
+            .social-cubes {
+                gap: 20px;
+            }
+            .social-cube {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                border-radius: 16px;
+            }
+            .giant-shape {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 20px;
+                border-radius: 50px;
+                min-height: auto;
+            }
+            .vertical-bar {
+                width: 55px;
+            }
+            .bar1 { height: 130px; }
+            .bar2 { height: 160px; }
+            .bar3 { height: 110px; }
+            .bar4 { height: 145px; }
+            .about-line {
+                width: 200px;
+            }
+            .about-text {
+                font-size: 1.1rem;
+            }
+            .bio-short {
+                font-size: 0.9rem;
+                margin-bottom: 50px;
+            }
+            .intro-modern {
+                width: 95%;
+                padding: 30px 20px;
+                margin: 60px auto;
+            }
+            .intro-modern-text {
+                font-size: 1rem;
+            }
+            .skills-title {
+                font-size: 1.6rem;
+            }
+            
+            /* ===== رفع مشکل لودر در موبایل - جدا شدن کامل لوگو و تاریخ از ناوبری ===== */
+            .skeleton-loader {
+                justify-content: flex-start;
+                padding-top: 80px;
+            }
+            .skeleton-header {
+                top: 15px;
+                padding: 0 16px;
+            }
+            .skeleton-logo {
+                width: 65px;
+                height: 24px;
+            }
+            .skeleton-date {
+                width: 55px;
+                height: 24px;
+            }
+            .skeleton-nav {
+                top: 60px;
+                width: 220px;
+                height: 36px;
+            }
+            .skeleton-hero {
+                margin-top: 120px;
+                gap: 18px;
+            }
+            .skeleton-greeting {
+                height: 42px;
+                width: 200px;
+            }
+            .skeleton-cube {
+                width: 42px;
+                height: 42px;
+            }
+            .skeleton-shape {
+                height: 150px;
+                border-radius: 40px;
+            }
+            .skeleton-about {
+                height: 20px;
+                width: 130px;
+                margin-top: 25px;
+            }
+            .skeleton-line {
+                height: 12px;
+                width: 100px;
+            }
+            .skeleton-bio {
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .nav-links {
+                gap: 0.6rem;
+            }
+            .nav-links li a {
+                font-size: 0.65rem;
+            }
+            .vertical-bar {
+                width: 45px;
+            }
+            .bar1 { height: 100px; }
+            .bar2 { height: 130px; }
+            .bar3 { height: 85px; }
+            .bar4 { height: 115px; }
+            .giant-shape {
+                gap: 12px;
+                padding: 15px;
+            }
+            .about-line {
+                width: 150px;
+            }
+            .about-text {
+                font-size: 0.9rem;
+            }
+            .bio-short {
+                font-size: 0.85rem;
+            }
+            .skills-title {
+                font-size: 1.3rem;
+            }
+            
+            /* تنظیمات بیشتر برای لودر در صفحه خیلی کوچک */
+            .skeleton-nav {
+                top: 55px;
+                width: 190px;
+                height: 34px;
+            }
+            .skeleton-hero {
+                margin-top: 110px;
+            }
+            .skeleton-cube {
+                width: 38px;
+                height: 38px;
+            }
+            .skeleton-shape {
+                height: 130px;
+            }
+            .skeleton-bio {
+                height: 50px;
+            }
+        }
+        
+        /* برای صفحه‌نمایش‌های بلندتر */
+        @media (min-height: 700px) and (max-width: 768px) {
+            .skeleton-loader {
+                justify-content: center;
+                padding-top: 0;
+            }
+            .skeleton-hero {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="skeleton-loader" id="skeletonLoader">
+    <div class="skeleton-header">
+        <div class="skeleton-logo"></div>
+        <div class="skeleton-date"></div>
+    </div>
+    <div class="skeleton-nav"></div>
+    <div class="skeleton-hero">
+        <div class="skeleton-greeting"></div>
+        <div class="skeleton-cubes">
+            <div class="skeleton-cube"></div>
+            <div class="skeleton-cube"></div>
+            <div class="skeleton-cube"></div>
+            <div class="skeleton-cube"></div>
+        </div>
+      
