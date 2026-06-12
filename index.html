@@ -2,8 +2,14 @@
 <html lang="fa" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>پورتفولیو | Hesam</title>
+    
+    <!-- ========== Favicon ========== -->
+    <link rel="icon" type="image/jpeg" href="Known.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="Known.jpg">
+    <link rel="apple-touch-icon" href="Known.jpg">
+    
     <style>
         * {
             margin: 0;
@@ -12,6 +18,137 @@
             user-select: none;
         }
 
+        /* ========== استایل لودر اسکلتون ========== */
+        .skeleton-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #E7E7E7;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .skeleton-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .skeleton-header {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+        .skeleton-logo {
+            width: 100px;
+            height: 30px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+        .skeleton-date {
+            width: 80px;
+            height: 30px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 20px;
+        }
+        .skeleton-nav {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 45px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 30px;
+        }
+        .skeleton-hero {
+            margin-top: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 80%;
+            max-width: 800px;
+        }
+        .skeleton-greeting {
+            width: 250px;
+            height: 60px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 60px;
+        }
+        .skeleton-cubes {
+            display: flex;
+            gap: 20px;
+        }
+        .skeleton-cube {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 20px;
+        }
+        .skeleton-shape {
+            width: 80%;
+            max-width: 800px;
+            height: 280px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 70px;
+            margin-top: 20px;
+        }
+        .skeleton-about {
+            width: 300px;
+            height: 30px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .skeleton-line {
+            width: 200px;
+            height: 20px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .skeleton-bio {
+            width: 80%;
+            max-width: 600px;
+            height: 80px;
+            background: linear-gradient(90deg, #ccc 25%, #ddd 50%, #ccc 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ========== محتوای اصلی ========== */
         body {
             background-color: #E7E7E7;
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -20,22 +157,41 @@
             padding: 0 24px;
         }
 
+        /* انیمیشن ورود اولیه برای کل محتوا */
+        .main-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.01s ease, transform 0.01s ease;
+        }
+        .main-content.show-initial {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        /* المان‌های انیمیشنی اسکرول */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .animate-on-scroll.show-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== هدر و ناوبری ========== */
         .logo-outside {
             position: fixed;
             top: 20px;
             left: 32px;
             font-weight: 800;
             font-size: 1.6rem;
-            letter-spacing: -0.5px;
             background: linear-gradient(135deg, #1e1e2a, #2d2d3a);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             z-index: 1001;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideFadeIn 0.6s ease forwards;
-            animation-delay: 0.1s;
         }
 
         .date-outside {
@@ -51,10 +207,6 @@
             color: #2c2c2e;
             backdrop-filter: blur(4px);
             z-index: 1001;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideFadeIn 0.6s ease forwards;
-            animation-delay: 0.2s;
         }
 
         .navbar {
@@ -73,10 +225,6 @@
             padding: 10px 28px;
             z-index: 1000;
             border: none;
-            opacity: 0;
-            transform: translateX(-50%) translateY(-20px);
-            animation: slideFadeInNav 0.6s ease forwards;
-            animation-delay: 0.15s;
         }
 
         .nav-links {
@@ -87,18 +235,6 @@
             padding: 0;
         }
 
-        .nav-links li {
-            opacity: 0;
-            transform: translateY(-15px);
-            animation: slideFadeIn 0.4s ease forwards;
-        }
-
-        .nav-links li:nth-child(1) { animation-delay: 0.2s; }
-        .nav-links li:nth-child(2) { animation-delay: 0.28s; }
-        .nav-links li:nth-child(3) { animation-delay: 0.36s; }
-        .nav-links li:nth-child(4) { animation-delay: 0.44s; }
-        .nav-links li:nth-child(5) { animation-delay: 0.52s; }
-
         .nav-links li a {
             text-decoration: none;
             font-weight: 500;
@@ -106,6 +242,7 @@
             color: #1f1f2b;
             transition: 0.2s;
             display: inline-block;
+            cursor: pointer;
         }
 
         .nav-links li a:hover {
@@ -117,41 +254,28 @@
             height: 140px;
         }
 
-        /* ========== بخش بالای شیپ ========== */
+        /* بقیه محتوا */
         .above-shape {
             margin: 20px 24px 80px 24px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideFadeIn 0.6s ease forwards;
-            animation-delay: 0.4s;
+            gap: 100px;
         }
-
         .greeting-text {
             font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
-            color: #1a1a1a;
-            background: rgba(255, 255, 240, 0.3);
+            background: rgba(255,255,240,0.3);
             backdrop-filter: blur(4px);
             padding: 12px 28px;
             border-radius: 60px;
             white-space: nowrap;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-
-        .social-cubes {
-            display: flex;
-            gap: 45px;
-        }
-
+        .social-cubes { display: flex; gap: 45px; }
         .social-cube {
-            width: 70px;
-            height: 70px;
+            width: 70px; height: 70px;
             background: #1e1e2a;
             border-radius: 20px;
             display: flex;
@@ -161,170 +285,354 @@
             font-weight: 700;
             color: white;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: 0.25s;
             box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
         }
-
-        .social-cube:hover {
-            transform: translateY(-8px);
-            background: rgb(142, 22, 0);
-        }
-
+        .social-cube:hover { transform: translateY(-8px); background: rgb(142,22,0); }
         .social-cube:nth-child(1) { transform: translateY(-15px) rotate(-3deg); }
         .social-cube:nth-child(2) { transform: translateY(10px) rotate(2deg); }
         .social-cube:nth-child(3) { transform: translateY(-5px) rotate(5deg); }
         .social-cube:nth-child(4) { transform: translateY(20px) rotate(-4deg); }
 
-        /* ========== شیپ قرمز ========== */
         .giant-shape {
             margin: 0 24px 20px 24px;
-            height: 280px;
-            background: rgb(142, 22, 0);
+            min-height: 280px;
+            background: rgb(142,22,0);
             border-radius: 70px;
-            opacity: 0;
-            transform: translateY(-50px);
-            animation: slideFromTop 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-            animation-delay: 0.6s;
             box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 60px 0 70px;
-        }
-
-        .left-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .portfolio-text {
-            font-size: 6.5rem;
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            color: white;
-            text-transform: uppercase;
-            line-height: 1;
-            text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-        }
-
-        .small-handle {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            background: rgba(0,0,0,0.35);
-            padding: 8px 20px;
-            border-radius: 60px;
-            backdrop-filter: blur(4px);
-            font-family: monospace;
-        }
-
-        .character-container {
-            width: 240px;
-            height: 100%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            overflow: visible;
+            gap: 20px;
+            padding: 30px 40px;
         }
-
-        .character-img {
+        .vertical-bar {
+            width: 70px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+        .fill-level {
             width: 100%;
-            height: auto;
-            max-height: 115%;
-            object-fit: contain;
-            object-position: bottom center;
+            background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.85) 8px, rgba(255,255,255,0.3) 8px, rgba(255,255,255,0.3) 16px);
+            border-radius: 30px;
+        }
+        .bar1 { height: 180px; }
+        .bar1 .fill-level { height: 75%; }
+        .bar2 { height: 220px; }
+        .bar2 .fill-level { height: 55%; }
+        .bar3 { height: 150px; }
+        .bar3 .fill-level { height: 90%; }
+        .bar4 { height: 200px; }
+        .bar4 .fill-level { height: 45%; }
+
+        .about-section {
+            text-align: center;
+            margin: 60px 0 40px 0;
+        }
+        .about-line {
+            width: 300px;
+            height: 1px;
+            background: #888;
+            margin: 0 auto 20px auto;
+        }
+        .about-text {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 16px;
+        }
+        .bio-short {
+            max-width: 650px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c2c2e;
         }
 
-        /* انیمیشن‌ها */
-        @keyframes slideFromTop {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .intro-modern {
+            position: relative;
+            max-width: 1100px;
+            width: 90%;
+            margin: 100px auto 80px auto;
+            padding: 50px 70px;
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.6);
+            overflow: hidden;
         }
-        @keyframes slideFadeIn {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .intro-modern-title {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: rgb(142,22,0);
+            margin-bottom: 20px;
         }
-        @keyframes slideFadeInNav {
-            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .intro-modern-text {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #1a1a1a;
+        }
+        .intro-modern-text strong {
+            color: rgb(142,22,0);
         }
 
-        /* ریسپانسیو */
-        @media (max-width: 1100px) {
-            .giant-shape { padding: 0 40px 0 50px; }
-            .portfolio-text { font-size: 5rem; }
-            .character-container { width: 200px; }
-            .small-handle { font-size: 1.8rem; }
+        .skills-section {
+            max-width: 700px;
+            margin: 0 auto 100px auto;
+        }
+        .skills-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .skill-name { color: #1a1a1a; }
+        .skill-percent { color: #666; }
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            width: 0%;
+            height: 100%;
+            background: rgb(142,22,0);
+            border-radius: 10px;
+            transition: width 1.2s ease-out;
         }
 
-        @media (max-width: 780px) {
-            .above-shape { flex-direction: column; margin-bottom: 60px; }
-            .greeting-text { font-size: 1.6rem; white-space: normal; text-align: center; }
-            .social-cubes { gap: 25px; }
-            .social-cube { width: 55px; height: 55px; font-size: 1.8rem; border-radius: 16px; }
-            .giant-shape { height: 220px; padding: 0 30px 0 40px; border-radius: 50px; margin: 0 20px 20px 20px; }
-            .portfolio-text { font-size: 3.5rem; }
-            .character-container { width: 150px; }
-            .small-handle { font-size: 1.3rem; }
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            z-index: 2000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* ========== ریسپانسیو موبایل - لوگو و تاریخ خیلی کوچیک ========== */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 16px;
+            }
+            .logo-outside {
+                font-size: 0.9rem;
+                top: 18px;
+                left: 16px;
+            }
+            .date-outside {
+                font-size: 0.55rem;
+                top: 18px;
+                right: 16px;
+                padding: 2px 6px;
+            }
+            .navbar {
+                top: 18px;
+                padding: 4px 12px;
+            }
+            .nav-links {
+                gap: 0.8rem;
+            }
+            .nav-links li a {
+                font-size: 0.7rem;
+            }
+            .spacer {
+                height: 100px;
+            }
+            .above-shape {
+                gap: 50px;
+                margin: 20px 16px 60px 16px;
+            }
+            .greeting-text {
+                font-size: 1.4rem;
+                white-space: normal;
+                text-align: center;
+                padding: 8px 20px;
+            }
+            .social-cubes {
+                gap: 20px;
+            }
+            .social-cube {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                border-radius: 16px;
+            }
+            .giant-shape {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 20px;
+                border-radius: 50px;
+                min-height: auto;
+            }
+            .vertical-bar {
+                width: 55px;
+            }
+            .bar1 { height: 130px; }
+            .bar2 { height: 160px; }
+            .bar3 { height: 110px; }
+            .bar4 { height: 145px; }
+            .about-line {
+                width: 200px;
+            }
+            .about-text {
+                font-size: 1.1rem;
+            }
+            .bio-short {
+                font-size: 0.9rem;
+                margin-bottom: 50px;
+            }
+            .intro-modern {
+                width: 95%;
+                padding: 30px 20px;
+                margin: 60px auto;
+            }
+            .intro-modern-text {
+                font-size: 1rem;
+            }
+            .skills-title {
+                font-size: 1.6rem;
+            }
         }
 
         @media (max-width: 550px) {
-            .giant-shape { height: 160px; padding: 0 20px 0 25px; border-radius: 40px; margin: 0 16px 15px 16px; }
-            .portfolio-text { font-size: 2.2rem; }
-            .character-container { width: 100px; }
-            .small-handle { font-size: 0.9rem; }
-            .greeting-text { font-size: 1.2rem; }
-            .social-cube { width: 45px; height: 45px; font-size: 1.4rem; border-radius: 14px; }
+            .nav-links {
+                gap: 0.6rem;
+            }
+            .nav-links li a {
+                font-size: 0.65rem;
+            }
+            .vertical-bar {
+                width: 45px;
+            }
+            .bar1 { height: 100px; }
+            .bar2 { height: 130px; }
+            .bar3 { height: 85px; }
+            .bar4 { height: 115px; }
+            .giant-shape {
+                gap: 12px;
+                padding: 15px;
+            }
+            .about-line {
+                width: 150px;
+            }
+            .about-text {
+                font-size: 0.9rem;
+            }
+            .bio-short {
+                font-size: 0.85rem;
+            }
+            .skills-title {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="logo-outside">✧ HESAM</div>
-<div class="date-outside" id="liveDate"></div>
-
-<div class="navbar">
-    <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Skills</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</div>
-
-<div class="spacer"></div>
-
-<div class="above-shape">
-    <div class="greeting-text">👋 Hey There I'm Hesam</div>
-    <div class="social-cubes">
-        <div class="social-cube">?</div>
-        <div class="social-cube">?</div>
-        <div class="social-cube">?</div>
-        <div class="social-cube">?</div>
+<div class="skeleton-loader" id="skeletonLoader">
+    <div class="skeleton-header">
+        <div class="skeleton-logo"></div>
+        <div class="skeleton-date"></div>
+    </div>
+    <div class="skeleton-nav"></div>
+    <div class="skeleton-hero">
+        <div class="skeleton-greeting"></div>
+        <div class="skeleton-cubes">
+            <div class="skeleton-cube"></div><div class="skeleton-cube"></div><div class="skeleton-cube"></div><div class="skeleton-cube"></div>
+        </div>
+        <div class="skeleton-shape"></div>
+        <div class="skeleton-about"></div>
+        <div class="skeleton-line"></div>
+        <div class="skeleton-bio"></div>
     </div>
 </div>
 
-<div class="giant-shape">
-    <div class="left-content">
-        <div class="portfolio-text">Portfolio</div>
-        <div class="small-handle">@KnownAsHesam</div>
-    </div>
-    <div class="character-container">
-        <img src="assets/photo/character.png" alt="character" class="character-img">
-    </div>
-</div>
+<div class="main-content" id="mainContent">
+    <div class="logo-outside">✧ HESAM</div>
+    <div class="date-outside" id="liveDate"></div>
 
-<script>
-    function updateDate() {
-        const now = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const formatted = now.toLocaleDateString('en-US', options);
-        document.getElementById('liveDate').innerText = formatted;
-    }
-    updateDate();
-</script>
-</body>
-</html>
+    <div class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#" id="portfolioBtn">Portfolio</a></li>
+            <li><a href="#">Skills</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="above-shape animate-on-scroll">
+        <div class="greeting-text">👋 Hey There I'm Hesam</div>
+        <div class="social-cubes">
+            <div class="social-cube">?</div><div class="social-cube">?</div><div class="social-cube">?</div><div class="social-cube">?</div>
+        </div>
+    </div>
+
+    <div class="giant-shape animate-on-scroll">
+        <div class="vertical-bar bar1"><div class="fill-level"></div></div>
+        <div class="vertical-bar bar2"><div class="fill-level"></div></div>
+        <div class="vertical-bar bar3"><div class="fill-level"></div></div>
+        <div class="vertical-bar bar4"><div class="fill-level"></div></div>
+    </div>
+
+    <div class="about-section animate-on-scroll">
+        <div class="about-line"></div>
+        <div class="about-text">درباره من</div>
+    </div>
+
+    <div class="bio-short animate-on-scroll">
+        من حسام هستم، طراح و توسعه‌دهنده فرانت‌اند با ۳ سال تجربه. تخصص من در React، Next.js و خلق تجربه‌های کاربری مدرن و روان است. عاشق اینم که ایده‌ها رو به کد تمیز و محصولات کاربردی تبدیل کنم. آماده همکاری در پروژه‌های خلاقانه.
+    </div>
+
+    <div class="intro-modern animate-on-scroll">
+        <div class="intro-modern-title">✦ معرفی ✦</div>
+        <div class="intro-modern-text">
+            در این سال‌ها با تکنولوژی‌های مختلفی کار کردم و همیشه به دنبال یادگیری و به‌روزرسانی دانشم هستم.<br>
+            <strong>در ادامه، مهارت‌های تخصصی من رو می‌بینید</strong>
+        </div>
+    </div>
+
+    <div class="skills-section animate-on-scroll">
+        <div class="skills-title">مهارت‌های من</div>
+        <div class="skill-item"><div class="skill-header"><span class="skill-name">Computer | کامپیوتر</span><span class="skill-percent">حرفه‌ای</span></div><div class="skill-bar"><div class="skill-progress"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span class="s
