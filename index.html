@@ -1,0 +1,3403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Hesam | Portfolio | Skills & Expertise</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Lenis - Smooth Scroll (CSS) -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis - Smooth Scroll (JS) -->
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <style>
+        /* ============================================
+           style.css - استایل‌های کامل پورتفولیو + Lenis
+           ============================================ */
+
+        /* ============================================
+           جلوگیری از کپی
+           ============================================ */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        img, svg {
+            -webkit-user-drag: none;
+            user-drag: none;
+            -webkit-touch-callout: none;
+        }
+
+        ::selection {
+            background: transparent;
+        }
+
+        ::-moz-selection {
+            background: transparent;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #E7E7E7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           تنظیمات Lenis - Smooth Scroll
+           ============================================ */
+
+        html.lenis {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgb(142, 22, 0);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b12a0a;
+        }
+
+        /* ========== اسپینر لودر ========== */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #E7E7E7;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .loader-wrapper.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(142, 22, 0, 0.2);
+            border-top: 3px solid rgb(142, 22, 0);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            position: absolute;
+            bottom: 30%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #1c1c1c;
+            opacity: 0.6;
+            letter-spacing: 2px;
+        }
+
+        /* ========== محتوای اصلی ========== */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .main-content.show {
+            opacity: 1;
+        }
+
+        /* ========== هدر شیشه‌ای ========== */
+        .glass-header {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 8px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .glass-header a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1c1c1c;
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .glass-header a:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .menu-star {
+            width: 50px;
+            height: 50px;
+            background: rgb(142, 22, 0);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: -10px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .menu-star:hover {
+            transform: scale(1.05);
+            border-radius: 20px;
+        }
+
+        .menu-star i {
+            font-size: 1.5rem;
+            color: #E7E7E7;
+        }
+
+        .nav-popup {
+            position: fixed;
+            bottom: 95px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.95);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border-radius: 60px;
+            padding: 18px 28px;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.2);
+        }
+
+        .nav-popup.open {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-popup-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-popup-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1c1c1c;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .nav-popup-links a:hover {
+            background: rgb(142, 22, 0);
+            color: #E7E7E7;
+            transform: translateY(-3px);
+            border-color: transparent;
+            box-shadow: 0 8px 20px rgba(142,22,0,0.3);
+        }
+
+        /* ========== دکمه تغییر زبان ========== */
+        .bottom-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.05);
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: #2c2c2e;
+            backdrop-filter: blur(4px);
+            white-space: nowrap;
+        }
+
+        .lang-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: #2c2c2e;
+            padding: 2px 6px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(0,0,0,0.06);
+        }
+
+        .lang-toggle:hover {
+            background: rgb(142, 22, 0);
+            color: #E7E7E7;
+            transform: scale(1.1);
+        }
+
+        .lang-toggle i {
+            font-size: 1rem;
+        }
+
+        /* ========== صفحات ========== */
+        .page {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* صفحه اول */
+        .page-first {
+            background-color: #E7E7E7;
+        }
+
+        .page-first .top-thin-line {
+            position: absolute;
+            top: 1%;
+            left: 1%;
+            width: 98%;
+            height: 0.1px;
+            background-color: #1c1c1c;
+            opacity: 0.3;
+            z-index: 20;
+        }
+
+        .page-first .squares-horizontal {
+            position: absolute;
+            top: 32px;
+            left: 28px;
+            display: flex;
+            gap: 0;
+            z-index: 20;
+        }
+
+        .page-first .half-square {
+            width: 28px;
+            height: 28px;
+            border-radius: 10px;
+        }
+
+        .page-first .square-dark {
+            background: #1c1c1c;
+        }
+
+        .page-first .square-red {
+            background: rgb(142, 22, 0);
+            margin-left: -14px;
+        }
+
+        .page-first .date-outside {
+            position: absolute;
+            top: 32px;
+            right: 28px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.05);
+            padding: 6px 14px;
+            border-radius: 40px;
+            color: #2c2c2e;
+            backdrop-filter: blur(4px);
+            z-index: 20;
+        }
+
+        .portfolio-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .top-shape {
+            width: 400px;
+            height: 60px;
+            background: rgb(142, 22, 0);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .portfolio-row {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            white-space: nowrap;
+        }
+
+        .portfolio-shape {
+            width: 80px;
+            height: 12px;
+            background: rgb(142, 22, 0);
+            border-radius: 8px;
+        }
+
+        .portfolio-text {
+            font-size: 10vw;
+            font-weight: 900;
+            color: #1c1c1c;
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+
+        /* صفحه دوم (About Me) */
+        .page-second {
+            background-color: #E7E7E7;
+            position: relative;
+        }
+
+        .page-second::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(142,22,0,0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(142,22,0,0.06) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .fall-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .second-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 40px;
+            flex-wrap: wrap;
+        }
+
+        .photo-shape {
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, rgb(142, 22, 0), #b12a0a);
+            border-radius: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .photo-shape::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            top: -50%;
+            left: -50%;
+        }
+
+        .photo-placeholder {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .photo-placeholder i {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .about-card {
+            padding: 30px 35px;
+            text-align: left;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .about-card h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1c1c1c;
+            margin-bottom: 18px;
+        }
+
+        .about-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c2c2e;
+            margin-bottom: 25px;
+        }
+
+        .about-card .highlight {
+            display: inline-block;
+            background: rgb(142, 22, 0);
+            color: #E7E7E7;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+
+        /* صفحه سوم (Who Am I + نقشه) */
+        .page-third {
+            background-color: #E7E7E7;
+            position: relative;
+        }
+
+        .suck-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0px;
+            height: 0px;
+            background: rgb(142, 22, 0);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .about-detail-wrapper {
+            max-width: 1200px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        .about-detail-container {
+            flex: 2;
+            min-width: 280px;
+            padding: 50px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            text-align: center;
+        }
+
+        .map-card {
+            flex: 1.2;
+            min-width: 260px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 30px 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .map-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1c1c1c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .map-card h3 i {
+            color: rgb(142, 22, 0);
+        }
+
+        .iran-svg-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        svg {
+            max-width: 200px;
+            width: 100%;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+            transition: transform 0.3s;
+        }
+
+        svg:hover {
+            transform: scale(1.02);
+        }
+
+        .iran-map-text {
+            margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.05);
+            padding: 8px 14px;
+            border-radius: 40px;
+            display: inline-block;
+            color: #1c1c1c;
+        }
+
+        .city-badge {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .city-badge span {
+            background: rgba(142, 22, 0, 0.15);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #1c1c1c;
+        }
+
+        /* ========== استایل برای باکس‌های اطلاعات ========== */
+        .info-rows-container {
+            margin-top: 30px;
+        }
+
+        .info-list-modern {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-row-modern {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .info-row-modern:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon-modern {
+            width: 52px;
+            height: 52px;
+            background: rgba(142,22,0,0.12);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: rgb(142,22,0);
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c6c70;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-weight: 700;
+            color: #1c1c1c;
+            font-size: 1.1rem;
+        }
+
+        .about-detail-container h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1c1c1c;
+            margin-bottom: 20px;
+        }
+
+        .about-detail-container p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c2c2e;
+            margin-bottom: 20px;
+        }
+
+        /* ========== صفحه مهارت‌ها (Skills) ========== */
+        .page-skills {
+            background-color: #E7E7E7;
+            position: relative;
+            min-height: 100vh;
+            padding: 80px 24px;
+        }
+
+        .skills-container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .skills-badge {
+            display: inline-block;
+            background: rgba(142,22,0,0.15);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: rgb(142,22,0);
+            margin-bottom: 30px;
+        }
+
+        .badge-center {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .skills-description {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .skills-description p {
+            font-size: 1rem;
+            color: #4a4a4e;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+        }
+
+        .interests-section {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .interests-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1c1c1c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .interests-title i {
+            color: rgb(142,22,0);
+        }
+
+        .interests-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .interest-item {
+            background: rgba(0,0,0,0.05);
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1c1c1c;
+            transition: 0.2s;
+            cursor: default;
+        }
+
+        .interest-item:hover {
+            background: rgb(142,22,0);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .interest-item i {
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .skills-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .skill-category-card {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 28px 24px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .skill-category-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(142,22,0,0.3);
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(142,22,0,0.3);
+        }
+
+        .category-title i {
+            font-size: 2rem;
+            color: rgb(142,22,0);
+        }
+
+        .category-title h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1c1c1c;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            color: #2c2c2e;
+        }
+
+        .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-name i {
+            font-size: 1rem;
+            color: rgb(142,22,0);
+            width: 20px;
+        }
+
+        .skill-percent {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.05);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, rgb(142,22,0), #c0392b);
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.22, 0.97, 0.36, 1);
+        }
+
+        .vertical-bars-section {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .vertical-bars-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1c1c1c;
+        }
+
+        .vertical-bars-title i {
+            color: rgb(142,22,0);
+            margin-right: 10px;
+        }
+
+        .bars-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .bar-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .vertical-bar {
+            width: 80px;
+            height: 200px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 40px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .bar-fill {
+            width: 100%;
+            background: linear-gradient(to top, rgb(142,22,0), #e05a3a);
+            border-radius: 40px;
+            height: 0%;
+            transition: height 1.2s cubic-bezier(0.22, 0.97, 0.36, 1);
+        }
+
+        .bar-label {
+            font-weight: 600;
+            color: #1c1c1c;
+            font-size: 0.9rem;
+        }
+
+        .bar-value {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: rgb(142,22,0);
+            font-weight: bold;
+        }
+
+        /* صفحه پروژه‌ها */
+        .page-projects {
+            background-color: #E7E7E7;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+        }
+
+        .projects-container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 50px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            text-align: center;
+        }
+
+        .projects-container h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1c1c1c;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-badge {
+            background: rgb(142, 22, 0);
+            color: #E7E7E7;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-family: monospace;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 40px 20px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.7);
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* صفحه FAQ */
+        .page-faq {
+            background-color: #E7E7E7;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            width: 100%;
+            padding: 50px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+        }
+
+        .faq-container h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1c1c1c;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            color: rgb(142, 22, 0);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 20px 18px 20px;
+        }
+
+        /* صفحه تماس */
+        .page-contact {
+            background-color: #E7E7E7;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+        }
+
+        .contact-master-section {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .contact-header-outside {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-badge-outside {
+            display: inline-block;
+            background: rgba(142, 22, 0, 0.15);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: rgb(142, 22, 0);
+            margin-bottom: 20px;
+        }
+
+        .contact-header-outside h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1c1c1c;
+            margin-bottom: 16px;
+        }
+
+        .contact-header-outside p {
+            font-size: 1rem;
+            color: #4a4a4e;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-glass-card {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .lets-talk-wrapper {
+            margin-bottom: 30px;
+        }
+
+        .lets-talk-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1c1c1c;
+            letter-spacing: -0.5px;
+            margin-bottom: 15px;
+        }
+
+        .red-line {
+            width: 120px;
+            height: 1px;
+            background: rgb(142, 22, 0);
+            margin: 0 auto;
+            border-radius: 1px;
+        }
+
+        .social-icons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .social-icons-wrapper a {
+            color: #1c1c1c;
+            font-size: 2rem;
+            transition: 0.2s ease;
+            display: inline-block;
+        }
+
+        .social-icons-wrapper a:hover {
+            transform: translateY(-5px);
+            color: rgb(142, 22, 0);
+        }
+
+        .contact-details {
+            color: #2c2c2e;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .contact-details i {
+            color: rgb(142, 22, 0);
+            margin-right: 8px;
+        }
+
+        .contact-location {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .contact-location i {
+            color: rgb(142, 22, 0);
+            margin-right: 6px;
+        }
+
+        hr {
+            margin: 30px auto 20px;
+            width: 80px;
+            border: 1px solid rgba(142, 22, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        /* ========== فوتر ========== */
+        .footer {
+            background: #1c1c1c;
+            border-radius: 40px 40px 0 0;
+            padding: 50px 30px 30px;
+            color: #e0e0e0;
+            margin-top: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 45px;
+            height: 3px;
+            background: rgb(142, 22, 0);
+            border-radius: 2px;
+        }
+
+        .footer-col p {
+            line-height: 1.7;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 12px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: rgb(142, 22, 0);
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-social-title {
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .footer-social-icons a {
+            color: #e0e0e0;
+            font-size: 1.6rem;
+            transition: all 0.2s ease;
+        }
+
+        .footer-social-icons a:hover {
+            transform: translateY(-3px);
+            color: rgb(142, 22, 0);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        .footer-bottom span {
+            color: rgb(142, 22, 0);
+            font-weight: 500;
+        }
+
+        /* ================================================================
+           ========== ریسپانسیو - فقط برای موبایل ========== 
+           ================================================================ */
+
+        /* ====== تبلت و موبایل بزرگ ====== */
+        @media (max-width: 800px) {
+            .about-detail-wrapper {
+                flex-direction: column;
+            }
+            
+            .map-card {
+                width: 100%;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .footer-col h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-col h4 {
+                display: block;
+                text-align: center;
+            }
+            
+            .footer-links li {
+                text-align: center;
+            }
+            
+            .skills-grid-modern {
+                grid-template-columns: 1fr;
+            }
+            
+            .vertical-bar {
+                width: 55px;
+                height: 150px;
+            }
+            
+            .bars-container {
+                gap: 20px;
+            }
+            
+            .interests-grid {
+                gap: 10px;
+            }
+            
+            .interest-item {
+                font-size: 0.85rem;
+                padding: 6px 16px;
+            }
+            
+            .contact-glass-card {
+                padding: 35px 20px;
+            }
+            
+            .contact-header-outside h2 {
+                font-size: 2rem;
+            }
+            
+            .lets-talk-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* ====== موبایل کوچک (زیر 500px) ====== */
+        @media (max-width: 500px) {
+            .glass-header {
+                padding: 8px 16px;
+                gap: 10px;
+                bottom: 18px;
+                border-radius: 50px;
+                background: rgba(255, 255, 255, 0.35);
+                backdrop-filter: blur(16px);
+                box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+                border: 1px solid rgba(255,255,255,0.4);
+            }
+
+            .glass-header a {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+                font-weight: 600;
+            }
+
+            .menu-star {
+                width: 42px;
+                height: 42px;
+                border-radius: 14px;
+                margin: -6px 0;
+                box-shadow: 0 4px 16px rgba(142,22,0,0.3);
+            }
+
+            .menu-star i {
+                font-size: 1.2rem;
+            }
+
+            .nav-popup {
+                bottom: 85px;
+                padding: 14px 18px;
+                border-radius: 40px;
+                background: rgba(255, 255, 255, 0.35);
+                backdrop-filter: blur(24px);
+                box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            }
+
+            .nav-popup-links {
+                gap: 8px;
+            }
+
+            .nav-popup-links a {
+                font-size: 0.7rem;
+                padding: 8px 14px;
+                background: rgba(255,255,255,0.3);
+                border-radius: 40px;
+                border: 1px solid rgba(255,255,255,0.3);
+                letter-spacing: 0.3px;
+            }
+
+            .nav-popup-links a:hover {
+                background: rgb(142, 22, 0);
+                transform: translateY(-2px);
+            }
+
+            .bottom-container {
+                font-size: 0.6rem;
+                padding: 5px 12px;
+                gap: 6px;
+                flex-wrap: wrap;
+                white-space: normal;
+                background: rgba(0,0,0,0.04);
+                border-radius: 30px;
+            }
+            
+            .lang-toggle {
+                width: 26px;
+                height: 26px;
+                font-size: 0.75rem;
+                background: rgba(0,0,0,0.06);
+            }
+            
+            .lang-toggle i {
+                font-size: 0.7rem;
+            }
+
+            .portfolio-text {
+                font-size: 14vw;
+            }
+            
+            .top-shape {
+                width: 200px;
+                height: 35px;
+                border-radius: 20px 20px 0 0;
+            }
+            
+            .portfolio-shape {
+                width: 40px;
+                height: 8px;
+                border-radius: 6px;
+            }
+            
+            .portfolio-row {
+                gap: 15px;
+            }
+            
+            .portfolio-wrapper {
+                gap: 15px;
+            }
+
+            .page-first .squares-horizontal {
+                top: 16px;
+                left: 14px;
+            }
+            
+            .page-first .half-square {
+                width: 18px;
+                height: 18px;
+                border-radius: 6px;
+            }
+            
+            .page-first .half-square.square-red {
+                margin-left: -8px;
+            }
+            
+            .page-first .date-outside {
+                top: 16px;
+                right: 14px;
+                font-size: 0.6rem;
+                padding: 4px 10px;
+                border-radius: 30px;
+            }
+            
+            .page-first .top-thin-line {
+                top: 0.5%;
+                width: 96%;
+            }
+
+            .second-container {
+                gap: 20px;
+                padding: 15px 10px;
+                width: 95%;
+            }
+            
+            .photo-shape {
+                width: 160px;
+                height: 160px;
+                border-radius: 32px;
+                margin-bottom: 10px;
+                box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            }
+            
+            .photo-placeholder i {
+                font-size: 2.8rem;
+                margin-bottom: 8px;
+            }
+            
+            .photo-placeholder {
+                font-size: 0.8rem;
+            }
+            
+            .about-card {
+                padding: 20px 18px;
+                border-radius: 32px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+                max-width: 100%;
+            }
+            
+            .about-card h2 {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
+            }
+            
+            .about-card p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                margin-bottom: 18px;
+            }
+            
+            .about-card .highlight {
+                font-size: 0.7rem;
+                padding: 6px 16px;
+            }
+
+            .about-detail-wrapper {
+                gap: 20px;
+                width: 95%;
+            }
+            
+            .about-detail-container {
+                padding: 20px 16px;
+                border-radius: 32px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+            }
+            
+            .about-detail-container h2 {
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+            
+            .about-detail-container p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+                margin-bottom: 14px;
+            }
+            
+            .map-card {
+                border-radius: 32px;
+                padding: 20px 16px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+            }
+            
+            .map-card h3 {
+                font-size: 1.2rem;
+                gap: 6px;
+            }
+            
+            .iran-svg-container {
+                margin: 12px 0;
+            }
+            
+            svg {
+                max-width: 140px;
+            }
+            
+            .iran-map-text {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+                margin-top: 12px;
+            }
+            
+            .city-badge {
+                gap: 8px;
+                margin-top: 12px;
+            }
+            
+            .city-badge span {
+                font-size: 0.6rem;
+                padding: 4px 10px;
+                border-radius: 20px;
+            }
+            
+            .info-row-modern {
+                gap: 12px;
+                padding: 12px 0;
+            }
+            
+            .info-icon-modern {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+                border-radius: 20px;
+            }
+            
+            .info-label {
+                font-size: 0.55rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .info-value {
+                font-size: 0.85rem;
+            }
+            
+            .info-rows-container {
+                margin-top: 18px;
+            }
+
+            .page-skills {
+                padding: 40px 12px;
+            }
+            
+            .skills-container {
+                padding: 0;
+            }
+            
+            .skills-badge {
+                font-size: 0.6rem;
+                padding: 4px 12px;
+                margin-bottom: 16px;
+            }
+            
+            .skills-description p {
+                font-size: 0.8rem;
+                padding: 10px 16px;
+                border-radius: 30px;
+            }
+            
+            .skills-description {
+                margin-bottom: 30px;
+            }
+            
+            .interests-section {
+                padding: 20px 14px;
+                border-radius: 32px;
+                margin-bottom: 30px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+            }
+            
+            .interests-title {
+                font-size: 1.1rem;
+                margin-bottom: 18px;
+                gap: 6px;
+            }
+            
+            .interest-item {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+                border-radius: 30px;
+            }
+            
+            .interest-item i {
+                font-size: 0.8rem;
+                margin-right: 6px;
+            }
+            
+            .interests-grid {
+                gap: 8px;
+            }
+            
+            .skills-grid-modern {
+                gap: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .skill-category-card {
+                padding: 16px 14px;
+                border-radius: 28px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(255,255,255,0.3);
+            }
+            
+            .category-title {
+                gap: 8px;
+                margin-bottom: 18px;
+                padding-bottom: 10px;
+                border-bottom: 1.5px solid rgba(142,22,0,0.25);
+            }
+            
+            .category-title i {
+                font-size: 1.4rem;
+            }
+            
+            .category-title h3 {
+                font-size: 1.1rem;
+            }
+            
+            .skill-list {
+                gap: 14px;
+            }
+            
+            .skill-info {
+                font-size: 0.8rem;
+            }
+            
+            .skill-name i {
+                font-size: 0.8rem;
+                width: 16px;
+            }
+            
+            .skill-percent {
+                font-size: 0.65rem;
+                padding: 1px 6px;
+            }
+            
+            .progress-bar-container {
+                height: 5px;
+                border-radius: 6px;
+            }
+            
+            .vertical-bars-section {
+                padding: 20px 14px;
+                border-radius: 32px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+            }
+            
+            .vertical-bars-title {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+            
+            .bars-container {
+                gap: 12px;
+            }
+            
+            .vertical-bar {
+                width: 40px;
+                height: 100px;
+                border-radius: 24px;
+                background: rgba(0,0,0,0.1);
+            }
+            
+            .bar-fill {
+                border-radius: 24px;
+            }
+            
+            .bar-label {
+                font-size: 0.6rem;
+            }
+            
+            .bar-value {
+                font-size: 0.6rem;
+            }
+            
+            .bar-item {
+                gap: 6px;
+            }
+
+            .page-projects {
+                padding: 40px 12px;
+            }
+            
+            .projects-container {
+                padding: 20px 14px;
+                border-radius: 32px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+            }
+            
+            .projects-container h2 {
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+            
+            .coming-soon-badge {
+                font-size: 0.7rem;
+                padding: 5px 16px;
+                margin-bottom: 24px;
+                border-radius: 30px;
+            }
+            
+            .projects-grid {
+                gap: 16px;
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                padding: 24px 16px;
+                border-radius: 24px;
+                background: rgba(255,255,255,0.5);
+                backdrop-filter: blur(8px);
+            }
+            
+            .project-icon {
+                font-size: 2.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .project-card h3 {
+                font-size: 1rem;
+            }
+            
+            .project-card p {
+                font-size: 0.8rem;
+            }
+
+            .page-faq {
+                padding: 40px 12px;
+            }
+            
+            .faq-container {
+                padding: 20px 14px;
+                border-radius: 32px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+            }
+            
+            .faq-container h2 {
+                font-size: 2rem;
+                margin-bottom: 24px;
+            }
+            
+            .faq-question {
+                padding: 14px 14px;
+                font-size: 0.85rem;
+                gap: 10px;
+            }
+            
+            .faq-question i {
+                font-size: 0.8rem;
+            }
+            
+            .faq-answer {
+                font-size: 0.8rem;
+                padding: 0 14px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 0 14px 14px 14px;
+                max-height: 250px;
+            }
+            
+            .faq-item {
+                margin-bottom: 10px;
+            }
+
+            .page-contact {
+                padding: 40px 12px;
+            }
+            
+            .contact-header-outside {
+                margin-bottom: 24px;
+            }
+            
+            .contact-badge-outside {
+                font-size: 0.6rem;
+                padding: 4px 12px;
+                margin-bottom: 12px;
+                border-radius: 30px;
+            }
+            
+            .contact-header-outside h2 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            
+            .contact-header-outside p {
+                font-size: 0.85rem;
+                padding: 0 10px;
+            }
+            
+            .contact-glass-card {
+                padding: 24px 16px;
+                border-radius: 32px;
+                background: rgba(255,255,255,0.35);
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(255,255,255,0.3);
+            }
+            
+            .lets-talk-wrapper {
+                margin-bottom: 20px;
+            }
+            
+            .lets-talk-title {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            
+            .red-line {
+                width: 80px;
+            }
+            
+            .social-icons-wrapper {
+                gap: 18px;
+                margin-bottom: 20px;
+            }
+            
+            .social-icons-wrapper a {
+                font-size: 1.5rem;
+            }
+            
+            .contact-details {
+                font-size: 0.85rem;
+                margin-top: 12px;
+                line-height: 1.8;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+            }
+            
+            .contact-details .phone-row,
+            .contact-details .email-row {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 2px 0;
+            }
+            
+            .contact-details .phone-row i,
+            .contact-details .email-row i {
+                margin-right: 8px;
+                color: rgb(142, 22, 0);
+            }
+            
+            .contact-location {
+                font-size: 0.8rem;
+                margin-top: 10px;
+            }
+            
+            hr {
+                margin: 20px auto 14px;
+                width: 60px;
+            }
+
+            .footer {
+                padding: 30px 16px 20px;
+                border-radius: 30px 30px 0 0;
+            }
+            
+            .footer-container {
+                gap: 24px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-col h4 {
+                font-size: 1.1rem;
+                margin-bottom: 14px;
+                display: block;
+                text-align: center;
+            }
+            
+            .footer-col h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 35px;
+                height: 2.5px;
+            }
+            
+            .footer-col p {
+                font-size: 0.8rem;
+                line-height: 1.6;
+                margin-top: 8px;
+            }
+            
+            .footer-links li {
+                margin-bottom: 8px;
+                text-align: center;
+            }
+            
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+            
+            .footer-social {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+            
+            .footer-social-title {
+                font-size: 0.8rem;
+                margin-bottom: 14px;
+            }
+            
+            .footer-social-icons {
+                gap: 18px;
+            }
+            
+            .footer-social-icons a {
+                font-size: 1.3rem;
+            }
+            
+            .footer-bottom {
+                font-size: 0.65rem;
+                padding-top: 20px;
+                margin-top: 10px;
+            }
+
+            .about-card,
+            .about-detail-container,
+            .map-card,
+            .skills-container,
+            .projects-container,
+            .faq-container,
+            .contact-glass-card,
+            .contact-header-outside {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+
+            .about-card.visible,
+            .about-detail-container.visible,
+            .map-card.visible,
+            .skills-container.visible,
+            .projects-container.visible,
+            .faq-container.visible,
+            .contact-glass-card.visible,
+            .contact-header-outside.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== اسپینر لودر ====== -->
+    <div class="loader-wrapper" id="loaderWrapper">
+        <div class="spinner"></div>
+        <div class="loader-text" id="loaderText">Loading...</div>
+    </div>
+
+    <!-- ====== محتوای اصلی ====== -->
+    <div class="main-content" id="mainContent">
+
+        <!-- ====== صفحه اول - Home ====== -->
+        <section class="page page-first" id="page1">
+            <div class="top-thin-line"></div>
+            <div class="squares-horizontal">
+                <div class="half-square square-dark"></div>
+                <div class="half-square square-red"></div>
+            </div>
+            <div class="date-outside" id="homeDate">2007 . 07 . 19</div>
+
+            <div class="portfolio-wrapper" id="firstPageContent">
+                <div class="top-shape"></div>
+                <div class="portfolio-row">
+                    <div class="portfolio-shape"></div>
+                    <div class="portfolio-text" id="homeTitle">PortFolio</div>
+                    <div class="portfolio-shape"></div>
+                </div>
+                <div class="bottom-container" id="homeSubtitle">
+                    <span id="subtitleText">Hey there, I'm Hesam</span>
+                    <button class="lang-toggle" id="langToggle" title="Change Language">
+                        <i class="fas fa-globe"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== صفحه دوم - About Me ====== -->
+        <section class="page page-second" id="page2">
+            <div class="fall-container" id="fallContainer">
+                <div class="second-container">
+                    <div class="photo-shape">
+                        <div class="photo-placeholder">
+                            <i>📸</i>
+                            <span id="aboutPhotoName">Hesam</span>
+                        </div>
+                    </div>
+                    <div class="about-card" id="aboutCard">
+                        <h2 id="aboutTitle">About Me</h2>
+                        <p id="aboutDescription">I'm Hesam. I don't code — I command AI to do it for me. Been glued to computers since I was a kid, and I've mastered the digital playground: gaming, crypto, and markets are my turf. Photoshop? Got it. Video editing? I do it all on mobile, and I make it look clean. I don't just use tech — I bend it to my will.</p>
+                        <div class="highlight" id="aboutBadge">✦ Available for work ✦</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== صفحه سوم - Who Am I + نقشه ====== -->
+        <section class="page page-third" id="page3">
+            <div class="suck-layer" id="suckLayer"></div>
+
+            <div class="about-detail-wrapper">
+                <div class="about-detail-container" id="aboutDetailContainer">
+                    <h2 id="whoTitle">Who Am I?</h2>
+                    <p id="whoPara1">Hey! Glad you made it to my portfolio. I'm Hesam, born and raised in Gorgan, Golestan, Iran.</p>
+                    <p id="whoPara2">I've been into digital and online spaces since I was 8 years old — and I'm still going strong. Always learning, always practicing, always leveling up.</p>
+
+                    <div class="info-rows-container">
+                        <div class="info-list-modern">
+                            <div class="info-row-modern">
+                                <div class="info-icon-modern"><i class="fas fa-birthday-cake"></i></div>
+                                <div class="info-content">
+                                    <div class="info-label" id="labelBirthday">BIRTHDAY</div>
+                                    <div class="info-value" id="whoBirthday">July 19, 2007</div>
+                                </div>
+                            </div>
+                            <div class="info-row-modern">
+                                <div class="info-icon-modern"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="info-content">
+                                    <div class="info-label" id="labelLocation">LOCATION</div>
+                                    <div class="info-value" id="whoLocation">Gorgan, Iran</div>
+                                </div>
+                            </div>
+                            <div class="info-row-modern">
+                                <div class="info-icon-modern"><i class="fas fa-code"></i></div>
+                                <div class="info-content">
+                                    <div class="info-label" id="labelExperience">EXPERIENCE</div>
+                                    <div class="info-value" id="whoExperience">11+ Years</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-card" id="iranMapCard">
+                    <h3 id="mapTitle"><i class="fas fa-map-marked-alt"></i> My Homeland</h3>
+                    <div class="iran-svg-container">
+                        <svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M95,20 L105,22 L115,30 L118,42 L125,48 L128,58 L125,68 L130,78 L128,88 L120,95 L112,100 L105,108 L98,110 L88,108 L80,102 L75,92 L70,82 L68,72 L72,62 L78,54 L82,44 L88,34 L92,26 L95,20Z" fill="#8E1600" stroke="#5a0e00" stroke-width="1.5" stroke-linejoin="round" opacity="0.9"/>
+                            <path d="M105,45 L112,52 L115,62 L112,72 L108,75 L102,72 L98,65 L96,56 L100,48 L105,45Z" fill="#b32a10" stroke="#7a1a00" stroke-width="1"/>
+                            <circle cx="102" cy="68" r="3" fill="#FFD966" stroke="#b37b2e" stroke-width="0.8"/>
+                            <text x="85" y="30" font-size="6" fill="#f5e6d3" font-weight="bold">IRAN</text>
+                        </svg>
+                    </div>
+                    <div class="iran-map-text" id="mapLocation">🇮🇷 Gorgan, Golestan — North of Iran</div>
+                    <div class="city-badge" id="mapBadges">
+                        <span>🏔️ Alborz Mountains</span>
+                        <span>🌊 Caspian Sea</span>
+                        <span>🌿 Green Nature</span>
+                    </div>
+                    <p id="mapDescription" style="margin-top: 18px; font-size:0.85rem; opacity:0.8;">Living in the historic and green city of Gorgan, inspired by rich Persian culture and modern innovation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== صفحه چهارم - Skills ====== -->
+        <section class="page-skills" id="page4">
+            <div class="skills-container">
+                <div class="badge-center">
+                    <div class="skills-badge" id="skillsBadge">✦ MY EXPERTISE ✦</div>
+                </div>
+
+                <div class="skills-description">
+                    <p id="skillsDesc">My specialty is in numbers and charts — each skill indicates my level of ability in that area.</p>
+                </div>
+
+                <div class="interests-section">
+                    <div class="interests-title" id="interestsTitle">
+                        <i class="fas fa-heart"></i> Interests &amp; Hobbies
+                    </div>
+                    <div class="interests-grid" id="interestsGrid"></div>
+                </div>
+
+                <div class="skills-grid-modern" id="skillsGrid"></div>
+
+                <div class="vertical-bars-section">
+                    <div class="vertical-bars-title" id="highlightsTitle">
+                        <i class="fas fa-chart-simple"></i> Skill Highlights
+                    </div>
+                    <div class="bars-container" id="barsContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== صفحه پنجم - Projects ====== -->
+        <section class="page-projects" id="page5">
+            <div class="projects-container" id="projectsContainer">
+                <h2 id="projectsTitle">My Projects</h2>
+                <div class="coming-soon-badge" id="projectsBadge">✨ Coming Soon ✨</div>
+                <div class="projects-grid" id="projectsGrid"></div>
+            </div>
+        </section>
+
+        <!-- ====== صفحه ششم - FAQ ====== -->
+        <section class="page-faq" id="page6">
+            <div class="faq-container" id="faqContainer">
+                <h2 id="faqTitle">Frequently Asked Questions</h2>
+                <div id="faqItems"></div>
+            </div>
+        </section>
+
+        <!-- ====== صفحه هفتم - Contact ====== -->
+        <section class="page-contact" id="page7">
+            <div class="contact-master-section">
+                <div class="contact-header-outside">
+                    <div class="contact-badge-outside" id="contactBadge">✦ GET IN TOUCH ✦</div>
+                    <h2 id="contactTitle">Let's Connect</h2>
+                    <p id="contactDesc">If you have any questions or would like to collaborate with me, I'd be happy to hear from you.</p>
+                </div>
+
+                <div class="contact-glass-card">
+                    <div class="lets-talk-wrapper">
+                        <div class="lets-talk-title" id="talkTitle">Let's Talk</div>
+                        <div class="red-line"></div>
+                    </div>
+
+                    <div class="social-icons-wrapper" id="contactSocials"></div>
+
+                    <div class="contact-details" id="contactDetails">
+                        <p id="contactPhone"><i class="fas fa-phone-alt"></i> +98 911 410 4923 &nbsp;&nbsp;|&nbsp;&nbsp; <i class="fas fa-envelope"></i> madpro01034@gmail.com</p>
+                    </div>
+
+                    <div class="contact-location" id="contactLocation">
+                        <i class="fas fa-map-marker-alt"></i> IRAN, Gorgan
+                    </div>
+
+                    <hr />
+                    <p id="contactAvailability" style="font-size: 0.75rem; color: #5a5a5e; margin-top: 15px;">Available for freelance &amp; collaboration</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== فوتر ====== -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4 id="footerBrand">Hesam</h4>
+                    <p id="footerTagline">Front-end developer &amp; designer<br>Creating modern digital experiences</p>
+                </div>
+                <div class="footer-col">
+                    <h4 id="footerQuickTitle">Quick Links</h4>
+                    <ul class="footer-links" id="footerLinks"></ul>
+                </div>
+                <div class="footer-col">
+                    <h4 id="footerContactTitle">Contact Info</h4>
+                    <p id="footerContact">📞 +98 911 410 4923<br>✉️ madpro01034@gmail.com<br>📍 Gorgan, Iran</p>
+                </div>
+            </div>
+            <div class="footer-social">
+                <div class="footer-social-title" id="footerSocialTitle">Follow me on social media</div>
+                <div class="footer-social-icons" id="footerSocials"></div>
+            </div>
+            <div class="footer-bottom" id="footerBottom">
+                &copy; 2025 <span>Hesam</span>. All rights reserved. | Designed with ❤️
+            </div>
+        </footer>
+
+        <!-- ====== هدر شیشه‌ای ====== -->
+        <div class="glass-header">
+            <a href="#page1" id="navHome">Home</a>
+            <div class="menu-star" id="menuStar"><i class="fas fa-star"></i></div>
+            <a href="#page7" id="navContact">Contact</a>
+        </div>
+
+        <!-- ====== منوی بازشونده ====== -->
+        <div class="nav-popup" id="navPopup">
+            <div class="nav-popup-links">
+                <a href="#page2" id="navAbout">✦ About</a>
+                <a href="#page3" id="navWho">✦ Who Am I</a>
+                <a href="#page4" id="navSkills">✦ Skills</a>
+                <a href="#page5" id="navProjects">✦ Projects</a>
+                <a href="#page6" id="navFaq">✦ FAQ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+    ==================== اسکریپت ========================================
+    ================================================================ -->
+    <script>
+        // ============================================
+        // محتوای انگلیسی و فارسی (دقیقاً مثل قبل)
+        // ============================================
+        const SITE_CONTENT_EN = {
+            nav: {
+                home: 'Home',
+                contact: 'Contact',
+                about: '✦ About',
+                whoAmI: '✦ Who Am I',
+                skills: '✦ Skills',
+                projects: '✦ Projects',
+                faq: '✦ FAQ',
+            },
+            home: {
+                title: 'PortFolio',
+                subtitle: "Hey there, I'm Hesam",
+                date: '2007 . 07 . 19',
+            },
+            about: {
+                title: 'About Me',
+                description: "I'm Hesam. I don't code — I command AI to do it for me. Been glued to computers since I was a kid, and I've mastered the digital playground: gaming, crypto, and markets are my turf. Photoshop? Got it. Video editing? I do it all on mobile, and I make it look clean. I don't just use tech — I bend it to my will.",
+                badge: '✦ Available for work ✦',
+                photoName: 'Hesam',
+            },
+            whoAmI: {
+                title: 'Who Am I?',
+                paragraphs: [
+                    "Hey! Glad you made it to my portfolio. I'm Hesam, born and raised in Gorgan, Golestan, Iran.",
+                    "I've been into digital and online spaces since I was 8 years old — and I'm still going strong. Always learning, always practicing, always leveling up.",
+                    "If you wanna know what I'm good at, I've laid it all out for you down below. Thanks for stopping by — enjoy!"
+                ],
+                info: {
+                    birthday: 'July 19, 2007',
+                    location: 'Gorgan, Iran',
+                    experience: '11+ Years',
+                },
+                map: {
+                    title: 'My Homeland',
+                    location: '🇮🇷 Gorgan, Golestan — North of Iran',
+                    badges: ['🏔️ Alborz Mountains', '🌊 Caspian Sea', '🌿 Green Nature'],
+                    description: 'Living in the historic and green city of Gorgan, inspired by rich Persian culture and modern innovation.',
+                }
+            },
+            skills: {
+                badge: '✦ MY EXPERTISE ✦',
+                description: 'My specialty is in numbers and charts — each skill indicates my level of ability in that area.',
+                interests: {
+                    title: 'Interests & Hobbies',
+                    items: [
+                        { icon: 'fas fa-desktop', label: 'Computer' },
+                        { icon: 'fas fa-gamepad', label: 'Gaming' },
+                        { icon: 'fas fa-code', label: 'Coding' },
+                        { icon: 'fas fa-brain', label: 'AI' },
+                        { icon: 'fas fa-coins', label: 'Crypto' },
+                        { icon: 'fas fa-credit-card', label: 'English' },
+                        { icon: 'fas fa-coffee', label: 'Designer' },
+                        { icon: 'fas fa-pen-fancy', label: 'Editor' },
+                    ]
+                },
+                categories: [
+                    {
+                        title: 'Skill - 1',
+                        icon: 'fas fa-rocket',
+                        skills: [
+                            { name: 'Computer', icon: 'fas fa-desktop', percent: 90 },
+                            { name: 'Gaming', icon: 'fas fa-gamepad', percent: 85 },
+                            { name: 'Coding', icon: 'fas fa-code', percent: 50 },
+                            { name: 'English', icon: 'fas fa-language', percent: 35 },
+                        ]
+                    },
+                    {
+                        title: 'Skill - 2',
+                        icon: 'fas fa-tools',
+                        skills: [
+                            { name: 'Fixing App ...', icon: 'fas fa-gear', percent: 90 },
+                            { name: 'Git & GitHub', icon: 'fab fa-git-alt', percent: 50 },
+                            { name: 'PhotoShop', icon: 'fas fa-paint-brush', percent: 48 },
+                            { name: 'AlightMotion ...', icon: 'fas fa-pen-fancy', percent: 42 },
+                        ]
+                    },
+                    {
+                        title: 'Skill - 3',
+                        icon: 'fas fa-chart-line',
+                        skills: [
+                            { name: 'AI & ChatGPT', icon: 'fas fa-brain', percent: 60 },
+                            { name: 'Social Media', icon: 'fas fa-globe', percent: 90 },
+                            { name: 'Crypto', icon: 'fas fa-coins', percent: 50 },
+                            { name: 'Arzdigital', icon: 'fas fa-book', percent: 50 },
+                        ]
+                    }
+                ],
+                highlights: [
+                    { label: 'Computer', percent: 90 },
+                    { label: 'Gaming', percent: 90 },
+                    { label: 'Crypto', percent: 50 },
+                    { label: 'Arzdigital', percent: 50 },
+                    { label: 'Social Media', percent: 90 },
+                    { label: 'English', percent: 35 },
+                    { label: 'PhotoShop', percent: 40 },
+                    { label: 'Editor', percent: 40 },
+                    { label: 'Ai & ChatGpt', percent: 60 },
+                ]
+            },
+            projects: {
+                title: 'My Projects',
+                badge: '✨ Coming Soon ✨',
+                items: [
+                    { icon: '⚙️', title: 'Coming Soon - 1', description: '.....................' },
+                    { icon: '⛩️', title: 'Coming Soon - 2', description: '.....................' },
+                    { icon: '🐲', title: 'Coming Soon - 3', description: '.....................' },
+                ]
+            },
+            faq: {
+                title: 'Frequently Asked Questions',
+                items: [
+                    {
+                        question: 'How do you code with AI?',
+                        answer: 'I use tools like ChatGPT and Claude. I give ideas, write prompts, test, and finalize. I don\'t code — I command'
+                    },
+                    {
+                        question: 'How did you get into digital space as a kid?',
+                        answer: 'Started with computers at 8, got into gaming, then the internet, then crypto and digital marketing. All from pure curiosity.'
+                    },
+                    {
+                        question: 'Do you accept collaborations?',
+                        answer: 'Yes! If you have a project in my areas, I\'d love to work with you. Just know — I\'m not a coder, I work with AI'
+                    },
+                    {
+                        question: 'Where do you see yourself in the future?',
+                        answer: 'Staying in the digital lane, never stopping learning, leveling up every day. I wanna make a name in crypto and digital content.'
+                    },
+                    {
+                        question: 'How can I reach you?',
+                        answer: 'Hit me up on social media — check the contact section. Telegram or Discord is where I reply fastest.'
+                    }
+                ]
+            },
+            contact: {
+                badge: '✦ GET IN TOUCH ✦',
+                title: "Let's Connect",
+                description: "If you have any questions or would like to collaborate with me, I'd be happy to hear from you.",
+                talkTitle: "Let's Talk",
+                phone: '+98 911 410 4923',
+                email: 'madpro01034@gmail.com',
+                location: 'IRAN, Gorgan',
+                availability: 'Available for freelance & collaboration',
+                socials: [
+                    { platform: 'Instagram', icon: 'fab fa-instagram', url: 'https://www.instagram.com/knownashesam' },
+                    { platform: 'Twitter', icon: 'fab fa-twitter', url: 'https://X.com/KnownAsHesam' },
+                    { platform: 'GitHub', icon: 'fab fa-github', url: 'https://Github.com/DiamondAsHesam' },
+                    { platform: 'LinkedIn', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/known-ashesam-399039413?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+                    { platform: 'Telegram', icon: 'fab fa-telegram', url: 'https://t.me/DiamondAsHesam' },
+                    { platform: 'Discord', icon: 'fab fa-discord', url: 'https://discord.gg/MWr2QCCMTv' },
+                ]
+            },
+            footer: {
+                brand: 'Hesam',
+                tagline: 'Front-end developer & designer<br>Creating modern digital experiences',
+                quickLinks: ['Home', 'About', 'Who Am I', 'Skills', 'Projects', 'FAQ', 'Contact'],
+                contactInfo: {
+                    phone: '+98 911 410 4923',
+                    email: 'madpro01034@gmail.com',
+                    location: 'Gorgan, Iran'
+                },
+                socials: [
+                    { platform: 'Instagram', icon: 'fab fa-instagram', url: 'https://www.instagram.com/knownashesam' },
+                    { platform: 'Twitter', icon: 'fab fa-twitter', url: 'https://X.com/KnownAsHesam' },
+                    { platform: 'GitHub', icon: 'fab fa-github', url: 'https://Github.com/DiamondAsHesam' },
+                    { platform: 'LinkedIn', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/known-ashesam-399039413?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+                    { platform: 'Telegram', icon: 'fab fa-telegram', url: 'https://t.me/DiamondAsHesam' },
+                    { platform: 'Discord', icon: 'fab fa-discord', url: 'https://discord.gg/MWr2QCCMTv' },
+                ],
+                copyright: '2026',
+                rights: 'All rights reserved.',
+                credit: 'Designed with ❤️'
+            }
+        };
+
+        const SITE_CONTENT_FA = {
+            nav: {
+                home: 'خانه',
+                contact: 'تماس',
+                about: '✦ درباره من',
+                whoAmI: '✦ من کیستم',
+                skills: '✦ مهارت‌ها',
+                projects: '✦ پروژه‌ها',
+                faq: '✦ سوالات متداول',
+            },
+            home: {
+                title: 'پورتفولیو',
+                subtitle: "سلام، من حسام هستم",
+                date: '1386 . 04 . 28',
+            },
+            about: {
+                title: 'درباره من',
+                description: "من حسام هستم. من کد نمی‌نویسم — به هوش مصنوعی دستور می‌دم برام کد بنویسه. از بچگی به کامپیوتر چسبیدم و توی فضای دیجیتال استاد شدم: بازی، ارز دیجیتال و بازارها حوزه من هستند. فتوشاپ؟ بلدم. تدوین ویدیو؟ همه رو روی موبایل انجام می‌دم و تمیز درش می‌ارم. من فقط از تکنولوژی استفاده نمی‌کنم — بهش فرمان می‌دم.",
+                badge: '✦ آماده همکاری ✦',
+                photoName: 'حسام',
+            },
+            whoAmI: {
+                title: 'من کیستم؟',
+                paragraphs: [
+                    "سلام! خوشحاالم که به پورتفولیوی من اومدی. من حسام هستم، متولد 86 و 28 تیر در شهر گرگان، گلستان، ایران به دنیا اومدم.",
+                    "از ۸ سالگی وارد فضای دیجیتال و آنلاین شدم — و هنوز هم با قدرت ادامه می‌دم. همیشه در حال یادگیری، تمرین و پیشرفت.",
+                    "اگه می‌خوای بدونی توی چی خوبم، همه رو برات پایین لیست کردم. ممنون که اومدی — لذت ببر!"
+                ],
+                info: {
+                    birthday: '1386/04/28',
+                    location: 'ایران، گرگان',
+                    experience: '+11 سال',
+                },
+                map: {
+                    title: 'سرزمین من',
+                    location: '🇮🇷 گلستان , گرگان — شمال ایران',
+                    badges: ['🏔️ رشته کوه البرز', '🌊 دریای خزر', '🌿 طبیعت سبز'],
+                    description: 'زندگی در شهر تاریخی و سبز گرگان، الهام‌گرفته از فرهنگ غنی پارسی و نوآوری مدرن.',
+                }
+            },
+            skills: {
+                badge: '✦ تخصص‌های من ✦',
+                description: 'تخصص من در قالب اعداد و نمودارها — هر مهارت نشان‌دهنده سطح توانایی من در آن زمینه است',
+                interests: {
+                    title: 'علاقه‌مندی‌ها',
+                    items: [
+                        { icon: 'fas fa-desktop', label: 'کامپیوتر' },
+                        { icon: 'fas fa-gamepad', label: 'بازی' },
+                        { icon: 'fas fa-code', label: 'برنامه‌نویسی' },
+                        { icon: 'fas fa-brain', label: 'هوش مصنوعی' },
+                        { icon: 'fas fa-coins', label: 'ارز دیجیتال' },
+                        { icon: 'fas fa-credit-card', label: 'انگلیسی' },
+                        { icon: 'fas fa-coffee', label: 'طراحی' },
+                        { icon: 'fas fa-pen-fancy', label: 'تدوین' },
+                    ]
+                },
+                categories: [
+                    {
+                        title: 'مهارت - 1',
+                        icon: 'fas fa-rocket',
+                        skills: [
+                            { name: 'کامپیوتر', icon: 'fas fa-desktop', percent: 90 },
+                            { name: 'بازی', icon: 'fas fa-gamepad', percent: 85 },
+                            { name: 'برنامه‌نویسی', icon: 'fas fa-code', percent: 50 },
+                            { name: 'انگلیسی', icon: 'fas fa-language', percent: 35 },
+                        ]
+                    },
+                    {
+                        title: 'مهارت - 2',
+                        icon: 'fas fa-tools',
+                        skills: [
+                            { name: 'تعمیر اپ ...', icon: 'fas fa-gear', percent: 90 },
+                            { name: 'گیت و گیت‌هاب', icon: 'fab fa-git-alt', percent: 50 },
+                            { name: 'فتوشاپ', icon: 'fas fa-paint-brush', percent: 48 },
+                            { name: 'آلایت موشن ...', icon: 'fas fa-pen-fancy', percent: 42 },
+                        ]
+                    },
+                    {
+                        title: 'مهارت - 3',
+                        icon: 'fas fa-chart-line',
+                        skills: [
+                            { name: 'هوش مصنوعی و چت‌جی‌پی‌تی', icon: 'fas fa-brain', percent: 60 },
+                            { name: 'شبکه‌های اجتماعی', icon: 'fas fa-globe', percent: 90 },
+                            { name: 'کریپتو', icon: 'fas fa-coins', percent: 50 },
+                            { name: 'ارزدیجیتال', icon: 'fas fa-book', percent: 50 },
+                        ]
+                    }
+                ],
+                highlights: [
+                    { label: 'کامپیوتر', percent: 90 },
+                    { label: 'بازی', percent: 90 },
+                    { label: 'کریپتو', percent: 50 },
+                    { label: 'ارزدیجیتال', percent: 50 },
+                    { label: 'شبکه‌های اجتماعی', percent: 90 },
+                    { label: 'انگلیسی', percent: 35 },
+                    { label: 'فتوشاپ', percent: 40 },
+                    { label: 'تدوین', percent: 40 },
+                    { label: 'هوش مصنوعی', percent: 60 },
+                ]
+            },
+            projects: {
+                title: 'پروژه‌های من',
+                badge: '✨ به زودی ✨',
+                items: [
+                    { icon: '⚙️', title: 'به زودی - 1', description: '.....................' },
+                    { icon: '⛩️', title: 'به زودی - 2', description: '.....................' },
+                    { icon: '🐲', title: 'به زودی - 3', description: '.....................' },
+                ]
+            },
+            faq: {
+                title: 'سوالات متداول',
+                items: [
+                    {
+                        question: 'چطور با هوش مصنوعی کد می‌نویسی؟',
+                        answer: 'از ابزارهایی مثل چت‌جی‌پی‌تی و کلود استفاده می‌کنم. ایده می‌دم، پرامپت می‌نویسم، تست می‌کنم و نهایی‌سازی می‌کنم. من کد نمی‌نویسم — فرمان می‌دم'
+                    },
+                    {
+                        question: 'چطور از بچگی وارد فضای دیجیتال شدی؟',
+                        answer: 'از ۸ سالگی با کامپیوتر شروع کردم، بعد بازی، بعد اینترنت، بعد ارز دیجیتال و بازاریابی دیجیتال. همه از روی کنجکاوی محض.'
+                    },
+                    {
+                        question: 'همکاری قبول می‌کنی؟',
+                        answer: 'بله! اگه پروژه‌ای توی حوزه‌های من داری، خوشحال می‌شم باهات کار کنم. فقط بدون — من کدنویس نیستم، با هوش مصنوعی کار می‌کنم'
+                    },
+                    {
+                        question: 'خودت رو در آینده کجا می‌بینی؟',
+                        answer: 'همین‌طور توی مسیر دیجیتال می‌مونم، هیچ‌وقت یادگیری رو متوقف نمی‌کنم، هر روز بهتر می‌شم. می‌خوام توی ارز دیجیتال و محتوای دیجیتال اسمی برام دست‌وپا کنم.'
+                    },
+                    {
+                        question: 'چطور می‌تونم باهات تماس بگیرم؟',
+                        answer: 'توی شبکه‌های اجتماعی پیام بده — بخش تماس رو ببین. تلگرام یا دیسکورد سریع‌ترین جواب رو می‌دم.'
+                    }
+                ]
+            },
+            contact: {
+                badge: '✦ ارتباط با من ✦',
+                title: 'بیا ارتباط بگیریم',
+                description: 'اگه سوالی داری یا می‌خوای باهات همکاری کنم، خوشحال می‌شم پیام بدی.',
+                talkTitle: 'بیا حرف بزنیم',
+                phone: '0911 410 4923',
+                email: 'madpro01034@gmail.com',
+                location: 'ایران، گرگان',
+                availability: 'آماده همکاری',
+                socials: [
+                    { platform: 'اینستاگرام', icon: 'fab fa-instagram', url: 'https://www.instagram.com/knownashesam' },
+                    { platform: 'توییتر', icon: 'fab fa-twitter', url: 'https://X.com/KnownAsHesam' },
+                    { platform: 'گیت‌هاب', icon: 'fab fa-github', url: 'https://Github.com/DiamondAsHesam' },
+                    { platform: 'لینکدین', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/known-ashesam-399039413?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+                    { platform: 'تلگرام', icon: 'fab fa-telegram', url: 'https://t.me/DiamondAsHesam' },
+                    { platform: 'دیسکورد', icon: 'fab fa-discord', url: 'https://discord.gg/MWr2QCCMTv' },
+                ]
+            },
+            footer: {
+                brand: 'حسام',
+                tagline: 'توسعه‌دهنده فرانت‌اند و طراح<br>ساخت تجربه‌های دیجیتال مدرن',
+                quickLinks: ['خانه', 'درباره من', 'من کیستم', 'مهارت‌ها', 'پروژه‌ها', 'سوالات متداول', 'تماس'],
+                contactInfo: {
+                    phone: '0911 410 4923',
+                    email: 'madpro01034@gmail.com',
+                    location: 'گرگان، ایران'
+                },
+                socials: [
+                    { platform: 'اینستاگرام', icon: 'fab fa-instagram', url: 'https://www.instagram.com/knownashesam' },
+                    { platform: 'توییتر', icon: 'fab fa-twitter', url: 'https://X.com/KnownAsHesam' },
+                    { platform: 'گیت‌هاب', icon: 'fab fa-github', url: 'https://Github.com/DiamondAsHesam' },
+                    { platform: 'لینکدین', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/known-ashesam-399039413?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+                    { platform: 'تلگرام', icon: 'fab fa-telegram', url: 'https://t.me/DiamondAsHesam' },
+                    { platform: 'دیسکورد', icon: 'fab fa-discord', url: 'https://discord.gg/MWr2QCCMTv' },
+                ],
+                copyright: '2026',
+                rights: 'تمامی حقوق محفوظ است.',
+                credit: 'طراحی شده با ❤️'
+            }
+        };
+
+        // ============================================
+        // اجرای اصلی
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // ============================================
+            // Lenis - Smooth Scrolling
+            // ============================================
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: 'vertical',
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                touchMultiplier: 1.5,
+                infinite: false,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            lenis.on('scroll', ScrollTrigger.update);
+
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+
+            window.addEventListener('resize', () => {
+                lenis.resize();
+                ScrollTrigger.refresh();
+            });
+
+            // ============================================
+            // متغیرها
+            // ============================================
+            let currentLang = 'en';
+            let isChangingLang = false;
+            let isMobileDevice = window.innerWidth <= 768;
+            let isPhoneDevice = window.innerWidth <= 500;
+
+            // ============================================
+            // رندر محتوا
+            // ============================================
+            function renderContent(lang) {
+                const C = lang === 'en' ? SITE_CONTENT_EN : SITE_CONTENT_FA;
+                
+                if (!C) return;
+
+                document.getElementById('navHome').textContent = C.nav.home;
+                document.getElementById('navContact').textContent = C.nav.contact;
+                document.getElementById('navAbout').textContent = C.nav.about;
+                document.getElementById('navWho').textContent = C.nav.whoAmI;
+                document.getElementById('navSkills').textContent = C.nav.skills;
+                document.getElementById('navProjects').textContent = C.nav.projects;
+                document.getElementById('navFaq').textContent = C.nav.faq;
+
+                document.getElementById('homeDate').textContent = C.home.date;
+                document.getElementById('homeTitle').textContent = C.home.title;
+                document.getElementById('subtitleText').textContent = C.home.subtitle;
+
+                document.getElementById('aboutTitle').textContent = C.about.title;
+                document.getElementById('aboutDescription').textContent = C.about.description;
+                document.getElementById('aboutBadge').textContent = C.about.badge;
+                document.getElementById('aboutPhotoName').textContent = C.about.photoName;
+
+                document.getElementById('whoTitle').textContent = C.whoAmI.title;
+                document.getElementById('whoPara1').textContent = C.whoAmI.paragraphs[0];
+                document.getElementById('whoPara2').textContent = C.whoAmI.paragraphs[1];
+                
+                const labels = lang === 'en' 
+                    ? { birthday: 'BIRTHDAY', location: 'LOCATION', experience: 'EXPERIENCE' }
+                    : { birthday: 'تاریخ تولد', location: 'مکان', experience: 'تجربه' };
+                    
+                document.getElementById('labelBirthday').textContent = labels.birthday;
+                document.getElementById('labelLocation').textContent = labels.location;
+                document.getElementById('labelExperience').textContent = labels.experience;
+                
+                document.getElementById('whoBirthday').textContent = C.whoAmI.info.birthday;
+                document.getElementById('whoLocation').textContent = C.whoAmI.info.location;
+                document.getElementById('whoExperience').textContent = C.whoAmI.info.experience;
+
+                document.getElementById('mapTitle').innerHTML = `<i class="fas fa-map-marked-alt"></i> ${C.whoAmI.map.title}`;
+                document.getElementById('mapLocation').textContent = C.whoAmI.map.location;
+                document.getElementById('mapDescription').textContent = C.whoAmI.map.description;
+
+                const badgesContainer = document.getElementById('mapBadges');
+                badgesContainer.innerHTML = '';
+                C.whoAmI.map.badges.forEach(b => {
+                    const span = document.createElement('span');
+                    span.textContent = b;
+                    badgesContainer.appendChild(span);
+                });
+
+                document.getElementById('skillsBadge').textContent = C.skills.badge;
+                document.getElementById('skillsDesc').textContent = C.skills.description;
+                document.getElementById('interestsTitle').innerHTML = `<i class="fas fa-heart"></i> ${C.skills.interests.title}`;
+
+                const interestsGrid = document.getElementById('interestsGrid');
+                interestsGrid.innerHTML = '';
+                C.skills.interests.items.forEach(item => {
+                    const span = document.createElement('span');
+                    span.className = 'interest-item';
+                    span.innerHTML = `<i class="${item.icon}"></i> ${item.label}`;
+                    interestsGrid.appendChild(span);
+                });
+
+                const skillsGrid = document.getElementById('skillsGrid');
+                skillsGrid.innerHTML = '';
+                C.skills.categories.forEach(cat => {
+                    const card = document.createElement('div');
+                    card.className = 'skill-category-card';
+                    card.innerHTML = `
+                        <div class="category-title">
+                            <i class="${cat.icon}"></i>
+                            <h3>${cat.title}</h3>
+                        </div>
+                        <div class="skill-list">
+                            ${cat.skills.map(s => `
+                                <div class="skill-row">
+                                    <div class="skill-info">
+                                        <span class="skill-name"><i class="${s.icon}"></i> ${s.name}</span>
+                                        <span class="skill-percent">${s.percent}%</span>
+                                    </div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-fill" data-percent="${s.percent}"></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    skillsGrid.appendChild(card);
+                });
+
+                const barsContainer = document.getElementById('barsContainer');
+                barsContainer.innerHTML = '';
+                const highlightsTitle = lang === 'en' ? 'Skill Highlights' : 'نکات برجسته مهارت‌ها';
+                document.getElementById('highlightsTitle').innerHTML = `<i class="fas fa-chart-simple"></i> ${highlightsTitle}`;
+                C.skills.highlights.forEach(h => {
+                    const item = document.createElement('div');
+                    item.className = 'bar-item';
+                    item.innerHTML = `
+                        <div class="vertical-bar"><div class="bar-fill" data-height="${h.percent}"></div></div>
+                        <div class="bar-label">${h.label}</div>
+                        <div class="bar-value">${h.percent}%</div>
+                    `;
+                    barsContainer.appendChild(item);
+                });
+
+                document.getElementById('projectsTitle').textContent = C.projects.title;
+                document.getElementById('projectsBadge').textContent = C.projects.badge;
+                const projectsGrid = document.getElementById('projectsGrid');
+                projectsGrid.innerHTML = '';
+                C.projects.items.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.innerHTML = `
+                        <div class="project-icon">${p.icon}</div>
+                        <h3>${p.title}</h3>
+                        <p>${p.description}</p>
+                    `;
+                    projectsGrid.appendChild(card);
+                });
+
+                document.getElementById('faqTitle').textContent = C.faq.title;
+                const faqContainer = document.getElementById('faqItems');
+                faqContainer.innerHTML = '';
+                C.faq.items.forEach((item) => {
+                    const div = document.createElement('div');
+                    div.className = 'faq-item';
+                    div.innerHTML = `
+                        <div class="faq-question">
+                            <span>${item.question}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">${item.answer}</div>
+                    `;
+                    faqContainer.appendChild(div);
+                });
+
+                document.getElementById('contactBadge').textContent = C.contact.badge;
+                document.getElementById('contactTitle').textContent = C.contact.title;
+                document.getElementById('contactDesc').textContent = C.contact.description;
+                document.getElementById('talkTitle').textContent = C.contact.talkTitle;
+                
+                const phoneElement = document.getElementById('contactPhone');
+                if (isPhoneDevice) {
+                    phoneElement.innerHTML = `
+                        <span class="phone-row"><i class="fas fa-phone-alt"></i> ${C.contact.phone}</span>
+                        <span class="email-row"><i class="fas fa-envelope"></i> ${C.contact.email}</span>
+                    `;
+                } else {
+                    phoneElement.innerHTML = `
+                        <i class="fas fa-phone-alt"></i> ${C.contact.phone} &nbsp;&nbsp;|&nbsp;&nbsp; <i class="fas fa-envelope"></i> ${C.contact.email}
+                    `;
+                }
+                
+                document.getElementById('contactLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${C.contact.location}`;
+                document.getElementById('contactAvailability').textContent = C.contact.availability;
+
+                const contactSocials = document.getElementById('contactSocials');
+                contactSocials.innerHTML = '';
+                C.contact.socials.forEach(s => {
+                    const a = document.createElement('a');
+                    a.href = s.url;
+                    a.setAttribute('aria-label', s.platform);
+                    a.innerHTML = `<i class="${s.icon}"></i>`;
+                    contactSocials.appendChild(a);
+                });
+
+                document.getElementById('footerBrand').textContent = C.footer.brand;
+                document.getElementById('footerTagline').innerHTML = C.footer.tagline;
+                
+                const quickTitle = lang === 'en' ? 'Quick Links' : 'لینک‌های سریع';
+                document.getElementById('footerQuickTitle').textContent = quickTitle;
+                const contactTitle = lang === 'en' ? 'Contact Info' : 'اطلاعات تماس';
+                document.getElementById('footerContactTitle').textContent = contactTitle;
+                const socialTitle = lang === 'en' ? 'Follow me on social media' : 'من رو در شبکه‌های اجتماعی دنبال کن';
+                document.getElementById('footerSocialTitle').textContent = socialTitle;
+
+                const footerLinks = document.getElementById('footerLinks');
+                footerLinks.innerHTML = '';
+                C.footer.quickLinks.forEach((link, index) => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `#page${index + 1}`;
+                    a.textContent = link;
+                    li.appendChild(a);
+                    footerLinks.appendChild(li);
+                });
+
+                document.getElementById('footerContact').innerHTML = `
+                    📞 ${C.footer.contactInfo.phone}<br>
+                    ✉️ ${C.footer.contactInfo.email}<br>
+                    📍 ${C.footer.contactInfo.location}
+                `;
+
+                const footerSocials = document.getElementById('footerSocials');
+                footerSocials.innerHTML = '';
+                C.footer.socials.forEach(s => {
+                    const a = document.createElement('a');
+                    a.href = s.url;
+                    a.innerHTML = `<i class="${s.icon}"></i>`;
+                    footerSocials.appendChild(a);
+                });
+
+                document.getElementById('footerBottom').innerHTML = `
+                    &copy; ${C.footer.copyright} <span>${C.footer.brand}</span>. ${C.footer.rights} | ${C.footer.credit}
+                `;
+
+                setTimeout(initFaq, 200);
+            }
+
+            // ============================================
+            // تغییر زبان
+            // ============================================
+            function changeLanguage(lang) {
+                if (isChangingLang || lang === currentLang) return;
+                isChangingLang = true;
+
+                const loader = document.getElementById('loaderWrapper');
+                const main = document.getElementById('mainContent');
+                loader.classList.remove('hide');
+                loader.style.display = 'flex';
+                main.classList.remove('show');
+
+                const loaderText = document.getElementById('loaderText');
+                loaderText.textContent = lang === 'en' ? 'Loading...' : 'در حال بارگذاری...';
+
+                setTimeout(() => {
+                    currentLang = lang;
+                    renderContent(lang);
+                    
+                    loader.classList.add('hide');
+                    main.classList.add('show');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        isChangingLang = false;
+                    }, 600);
+                }, 5000);
+            }
+
+            // ============================================
+            // منو
+            // ============================================
+            const menuStar = document.getElementById('menuStar');
+            const navPopup = document.getElementById('navPopup');
+
+            menuStar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navPopup.classList.toggle('open');
+            });
+
+            document.querySelectorAll('.nav-popup-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navPopup.classList.remove('open');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!menuStar.contains(e.target) && !navPopup.contains(e.target)) {
+                    navPopup.classList.remove('open');
+                }
+            });
+
+            // ============================================
+            // دکمه زبان
+            // ============================================
+            document.getElementById('langToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const newLang = currentLang === 'en' ? 'fa' : 'en';
+                changeLanguage(newLang);
+            });
+
+            // ============================================
+            // انیمیشن‌ها با GSAP + ScrollTrigger (همراه Lenis)
+            // ============================================
+            if (!isMobileDevice) {
+                gsap.to("#firstPageContent", {
+                    scrollTrigger: {
+                        trigger: "#page1",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 1.2
+                    },
+                    opacity: 0,
+                    scale: 0.85,
+                    filter: "blur(8px)"
+                });
+
+                gsap.to(".page-first .top-thin-line, .page-first .squares-horizontal, .page-first .date-outside", {
+                    scrollTrigger: {
+                        trigger: "#page1",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 1
+                    },
+                    opacity: 0,
+                    y: -30
+                });
+
+                gsap.to("#fallContainer", {
+                    scrollTrigger: {
+                        trigger: "#page2",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 1.2
+                    },
+                    y: 300,
+                    opacity: 0,
+                    scale: 0.7,
+                    rotation: 15
+                });
+
+                gsap.to("#suckLayer", {
+                    scrollTrigger: {
+                        trigger: "#page3",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 1.2
+                    },
+                    scale: 300,
+                    duration: 1
+                });
+
+                gsap.set("#aboutCard", { opacity: 0, y: 100 });
+
+                ScrollTrigger.create({
+                    trigger: "#page2",
+                    start: "top 70%",
+                    onEnter: () => {
+                        gsap.to("#aboutCard", {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "back.out(0.6)"
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.set("#aboutCard", { opacity: 0, y: 100 });
+                    }
+                });
+
+                gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
+                gsap.set("#iranMapCard", { opacity: 0, x: 50 });
+
+                ScrollTrigger.create({
+                    trigger: "#page3",
+                    start: "top 70%",
+                    onEnter: () => {
+                        gsap.to("#aboutDetailContainer", {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "back.out(0.6)"
+                        });
+                        gsap.to("#iranMapCard", {
+                            opacity: 1,
+                            x: 0,
+                            duration: 0.8,
+                            ease: "back.out(0.6)"
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
+                        gsap.set("#iranMapCard", { opacity: 0, x: 50 });
+                        gsap.set("#suckLayer", { scale: 0 });
+                    }
+                });
+
+                gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
+
+                ScrollTrigger.create({
+                    trigger: "#page4",
+                    start: "top 70%",
+                    onEnter: () => {
+                        gsap.to("#page4 .skills-container", {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
+                    }
+                });
+
+                gsap.set("#projectsContainer", { opacity: 0, y: 100 });
+
+                ScrollTrigger.create({
+                    trigger: "#page5",
+                    start: "top 70%",
+                    onEnter: () => {
+                        gsap.to("#projectsContainer", {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.set("#projectsContainer", { opacity: 0, y: 100 });
+                    }
+                });
+
+                gsap.set("#faqContainer", { opacity: 0, y: 100 });
+
+                ScrollTrigger.create({
+                    trigger: "#page6",
+                    start: "top 70%",
+                    onEnter: () => {
+                        gsap.to("#faqContainer", {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.set("#faqContainer", { opacity: 0, y: 100 });
+                    }
+                });
+
+                gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
+                gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
+
+                ScrollTrigger.create({
+                    trigger: "#page7",
+                    start: "top 70%",
+                    onEnter: () => {
+                        gsap.to("#page7 .contact-header-outside", { 
+                            opacity: 1, 
+                            y: 0, 
+                            duration: 0.8 
+                        });
+                        gsap.to("#page7 .contact-glass-card", { 
+                            opacity: 1, 
+                            y: 0, 
+                            duration: 0.8, 
+                            delay: 0.15 
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
+                        gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
+                    }
+                });
+
+            } else {
+                // موبایل
+                const observerOptions = {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
+
+                const mobileElements = [
+                    '.about-card',
+                    '.about-detail-container',
+                    '.map-card',
+                    '.skills-container',
+                    '.projects-container',
+                    '.faq-container',
+                    '.contact-glass-card',
+                    '.contact-header-outside'
+                ];
+
+                mobileElements.forEach(selector => {
+                    document.querySelectorAll(selector).forEach(el => {
+                        observer.observe(el);
+                    });
+                });
+
+                gsap.to("#firstPageContent", {
+                    scrollTrigger: {
+                        trigger: "#page1",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 0.3
+                    },
+                    opacity: 0.8,
+                    scale: 0.97
+                });
+
+                gsap.to("#fallContainer", {
+                    scrollTrigger: {
+                        trigger: "#page2",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 0.3
+                    },
+                    opacity: 0.85,
+                    y: 20
+                });
+            }
+
+            // ============================================
+            // انیمیشن نوارهای مهارت
+            // ============================================
+            function animateSkillBars() {
+                document.querySelectorAll('.progress-fill').forEach(bar => {
+                    const percent = bar.getAttribute('data-percent');
+                    if (percent) bar.style.width = percent + '%';
+                });
+                document.querySelectorAll('.bar-fill').forEach(bar => {
+                    const height = bar.getAttribute('data-height');
+                    if (height) bar.style.height = height + '%';
+                });
+            }
+
+            ScrollTrigger.create({
+                trigger: "#page4",
+                start: "top 60%",
+                onEnter: animateSkillBars,
+                onEnterBack: animateSkillBars
+            });
+
+            if (isMobileDevice) {
+                const skillsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateSkillBars();
+                            skillsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                document.querySelectorAll('#page4 .skills-container').forEach(el => {
+                    skillsObserver.observe(el);
+                });
+            }
+
+            // ============================================
+            // FAQ
+            // ============================================
+            function initFaq() {
+                const faqItems = document.querySelectorAll('.faq-item');
+                faqItems.forEach(item => {
+                    const q = item.querySelector('.faq-question');
+                    if (q) {
+                        const newQ = q.cloneNode(true);
+                        q.parentNode.replaceChild(newQ, q);
+                        
+                        newQ.addEventListener('click', function() {
+                            const parent = this.parentElement;
+                            const isActive = parent.classList.contains('active');
+                            
+                            document.querySelectorAll('.faq-item').forEach(i => {
+                                if (i !== parent && i.classList.contains('active')) {
+                                    i.classList.remove('active');
+                                }
+                            });
+                            
+                            if (isActive) {
+                                parent.classList.remove('active');
+                            } else {
+                                parent.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // ============================================
+            // ریسایز
+            // ============================================
+            window.addEventListener('resize', function() {
+                const wasMobile = isMobileDevice;
+                const wasPhone = isPhoneDevice;
+                isMobileDevice = window.innerWidth <= 768;
+                isPhoneDevice = window.innerWidth <= 500;
+                
+                if (wasMobile !== isMobileDevice || wasPhone !== isPhoneDevice) {
+                    location.reload();
+                }
+                
+                ScrollTrigger.refresh();
+            });
+
+            // ============================================
+            // جلوگیری از کپی
+            // ============================================
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'x' || 
+                                  e.key === 'u' || e.key === 's' || e.key === 'p' || 
+                                  e.key === 'a')) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('cut', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('paste', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            console.log('🔒 تمام قابلیت‌های کپی غیرفعال شد!');
+
+            // ============================================
+            // اجرای اولیه
+            // ============================================
+            renderContent('en');
+
+            setTimeout(() => {
+                const loader = document.getElementById('loaderWrapper');
+                const main = document.getElementById('mainContent');
+                if (loader && main) {
+                    loader.classList.add('hide');
+                    main.classList.add('show');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 600);
+                }
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>
