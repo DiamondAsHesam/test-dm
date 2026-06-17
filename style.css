@@ -1,5 +1,5 @@
 /* ============================================
-   style.css - نسخه موبایل بهینه (بدون !important اضافی)
+   style.css - استایل‌های کامل پورتفولیو
    ============================================ */
 
 * {
@@ -1271,115 +1271,228 @@ hr {
     font-weight: 500;
 }
 
-/* ============================================
-   فقط برای موبایل (max-width: 600px)
-   ============================================ */
-@media (max-width: 600px) {
-    /* ===== کوچک‌سازی همه المان‌ها ===== */
-    .page {
-        padding: 16px 12px;
-        min-height: 100dvh;
+/* ================================================================
+   ========== ریسپانسیو - فقط برای موبایل ========== 
+   ================================================================ */
+
+/* ====== تبلت و موبایل بزرگ ====== */
+@media (max-width: 800px) {
+    .about-detail-wrapper {
+        flex-direction: column;
     }
     
-    .page-first {
-        padding: 16px 12px;
-        min-height: 100dvh;
+    .map-card {
+        width: 100%;
     }
     
-    .page-first .squares-horizontal {
-        top: 14px;
-        left: 12px;
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
     }
     
-    .page-first .half-square {
-        width: 18px;
-        height: 18px;
-        border-radius: 5px;
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
     
-    .page-first .square-red {
-        margin-left: -9px;
+    .footer-col h4 {
+        display: block;
+        text-align: center;
     }
     
-    .page-first .date-outside {
-        top: 14px;
-        right: 12px;
-        font-size: 0.6rem;
-        padding: 4px 10px;
+    .footer-links li {
+        text-align: center;
     }
     
-    .top-shape {
-        width: 200px;
-        height: 30px;
-        border-radius: 20px 20px 0 0;
+    .skills-grid-modern {
+        grid-template-columns: 1fr;
     }
     
-    .portfolio-text {
-        font-size: 14vw;
+    .vertical-bar {
+        width: 55px;
+        height: 150px;
     }
     
-    .portfolio-shape {
-        width: 40px;
-        height: 6px;
-        border-radius: 4px;
+    .bars-container {
+        gap: 20px;
     }
     
-    .portfolio-row {
-        gap: 14px;
+    .interests-grid {
+        gap: 10px;
     }
     
-    .portfolio-wrapper {
-        gap: 16px;
+    .interest-item {
+        font-size: 0.85rem;
+        padding: 6px 16px;
     }
     
-    .bottom-container {
+    .contact-glass-card {
+        padding: 35px 20px;
+    }
+    
+    .contact-header-outside h2 {
+        font-size: 2rem;
+    }
+    
+    .lets-talk-title {
+        font-size: 2rem;
+    }
+}
+
+/* ====== موبایل کوچک (زیر 500px) - تغییرات اصلی اینجاست ====== */
+@media (max-width: 500px) {
+    /* ----- هدر پایین ----- */
+    .glass-header {
+        padding: 8px 16px;
+        gap: 10px;
+        bottom: 18px;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+        border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .glass-header a {
         font-size: 0.7rem;
-        padding: 6px 14px;
+        padding: 5px 12px;
+        font-weight: 600;
+    }
+
+    .menu-star {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        margin: -6px 0;
+        box-shadow: 0 4px 16px rgba(142,22,0,0.3);
+    }
+
+    .menu-star i {
+        font-size: 1.2rem;
+    }
+
+    /* ----- منوی پاپ‌آپ ----- */
+    .nav-popup {
+        bottom: 85px;
+        padding: 14px 18px;
+        border-radius: 40px;
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(24px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .nav-popup-links {
         gap: 8px;
+    }
+
+    .nav-popup-links a {
+        font-size: 0.7rem;
+        padding: 8px 14px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 40px;
+        border: 1px solid rgba(255,255,255,0.3);
+        letter-spacing: 0.3px;
+    }
+
+    .nav-popup-links a:hover {
+        background: rgb(142, 22, 0);
+        transform: translateY(-2px);
+    }
+
+    /* ----- دکمه زبان ----- */
+    .bottom-container {
+        font-size: 0.6rem;
+        padding: 5px 12px;
+        gap: 6px;
         flex-wrap: wrap;
         white-space: normal;
+        background: rgba(0,0,0,0.04);
+        border-radius: 30px;
     }
     
     .lang-toggle {
         width: 26px;
         height: 26px;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
+        background: rgba(0,0,0,0.06);
     }
     
     .lang-toggle i {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    /* ----- صفحه اول (Home) ----- */
+    .portfolio-text {
+        font-size: 14vw;
     }
     
-    /* ===== صفحه دوم - About Me (انیمیشن غیرفعال) ===== */
-    .page-second {
-        padding: 30px 12px;
-        min-height: 100dvh;
+    .top-shape {
+        width: 200px;
+        height: 35px;
+        border-radius: 20px 20px 0 0;
     }
     
-    /* غیرفعال کردن انیمیشن fall-container */
-    .fall-container {
-        transform: none !important;
-        opacity: 1 !important;
-        scale: 1 !important;
-        rotation: 0 !important;
+    .portfolio-shape {
+        width: 40px;
+        height: 8px;
+        border-radius: 6px;
     }
     
+    .portfolio-row {
+        gap: 15px;
+    }
+    
+    .portfolio-wrapper {
+        gap: 15px;
+    }
+
+    .page-first .squares-horizontal {
+        top: 16px;
+        left: 14px;
+    }
+    
+    .page-first .half-square {
+        width: 18px;
+        height: 18px;
+        border-radius: 6px;
+    }
+    
+    .page-first .half-square.square-red {
+        margin-left: -8px;
+    }
+    
+    .page-first .date-outside {
+        top: 16px;
+        right: 14px;
+        font-size: 0.6rem;
+        padding: 4px 10px;
+        border-radius: 30px;
+    }
+    
+    .page-first .top-thin-line {
+        top: 0.5%;
+        width: 96%;
+    }
+
+    /* ----- صفحه دوم (About Me) ----- */
     .second-container {
-        flex-direction: column;
         gap: 20px;
-        padding: 0;
-        width: 100%;
+        padding: 15px 10px;
+        width: 95%;
     }
     
     .photo-shape {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
         border-radius: 32px;
-        margin-bottom: 0;
+        margin-bottom: 10px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     }
     
     .photo-placeholder i {
-        font-size: 3rem;
+        font-size: 2.8rem;
+        margin-bottom: 8px;
     }
     
     .photo-placeholder {
@@ -1389,6 +1502,8 @@ hr {
     .about-card {
         padding: 20px 18px;
         border-radius: 32px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
         max-width: 100%;
     }
     
@@ -1400,34 +1515,30 @@ hr {
     .about-card p {
         font-size: 0.85rem;
         line-height: 1.6;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
     }
     
     .about-card .highlight {
         font-size: 0.7rem;
         padding: 6px 16px;
     }
-    
-    /* ===== صفحه سوم ===== */
-    .page-third {
-        padding: 30px 12px;
-    }
-    
+
+    /* ----- صفحه سوم (Who Am I) ----- */
     .about-detail-wrapper {
-        flex-direction: column;
         gap: 20px;
-        width: 100%;
+        width: 95%;
     }
     
     .about-detail-container {
-        padding: 28px 18px;
+        padding: 20px 16px;
         border-radius: 32px;
-        min-width: 0;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
     }
     
     .about-detail-container h2 {
         font-size: 2rem;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
     }
     
     .about-detail-container p {
@@ -1437,188 +1548,270 @@ hr {
     }
     
     .map-card {
-        padding: 24px 18px;
         border-radius: 32px;
-        min-width: 0;
+        padding: 20px 16px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
     }
     
     .map-card h3 {
         font-size: 1.2rem;
-        gap: 8px;
+        gap: 6px;
     }
     
-    .iran-svg-container svg {
+    .iran-svg-container {
+        margin: 12px 0;
+    }
+    
+    svg {
         max-width: 140px;
     }
     
     .iran-map-text {
         font-size: 0.7rem;
-        padding: 6px 12px;
+        padding: 5px 12px;
+        margin-top: 12px;
     }
     
     .city-badge {
         gap: 8px;
+        margin-top: 12px;
     }
     
     .city-badge span {
-        font-size: 0.65rem;
-        padding: 4px 12px;
-    }
-    
-    .info-rows-container {
-        margin-top: 20px;
+        font-size: 0.6rem;
+        padding: 4px 10px;
+        border-radius: 20px;
     }
     
     .info-row-modern {
-        gap: 14px;
+        gap: 12px;
         padding: 12px 0;
     }
     
     .info-icon-modern {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-        border-radius: 24px;
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+        border-radius: 20px;
     }
     
     .info-label {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
+        letter-spacing: 0.5px;
     }
     
     .info-value {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
-    /* ===== صفحه مهارت‌ها ===== */
+    .info-rows-container {
+        margin-top: 18px;
+    }
+
+    /* ----- صفحه چهارم (Skills) ----- */
     .page-skills {
         padding: 40px 12px;
     }
     
+    .skills-container {
+        padding: 0;
+    }
+    
     .skills-badge {
-        font-size: 0.65rem;
-        padding: 4px 14px;
+        font-size: 0.6rem;
+        padding: 4px 12px;
+        margin-bottom: 16px;
     }
     
     .skills-description p {
         font-size: 0.8rem;
         padding: 10px 16px;
+        border-radius: 30px;
+    }
+    
+    .skills-description {
+        margin-bottom: 30px;
     }
     
     .interests-section {
-        padding: 24px 16px;
+        padding: 20px 14px;
         border-radius: 32px;
         margin-bottom: 30px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
     }
     
     .interests-title {
         font-size: 1.1rem;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
+        gap: 6px;
     }
     
     .interest-item {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+        border-radius: 30px;
+    }
+    
+    .interest-item i {
         font-size: 0.8rem;
-        padding: 6px 14px;
+        margin-right: 6px;
+    }
+    
+    .interests-grid {
+        gap: 8px;
     }
     
     .skills-grid-modern {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
         margin-bottom: 30px;
     }
     
     .skill-category-card {
-        padding: 20px 16px;
-        border-radius: 32px;
+        padding: 16px 14px;
+        border-radius: 28px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255,255,255,0.3);
     }
     
-    .category-title h3 {
-        font-size: 1.2rem;
+    .category-title {
+        gap: 8px;
+        margin-bottom: 18px;
+        padding-bottom: 10px;
+        border-bottom: 1.5px solid rgba(142,22,0,0.25);
     }
     
     .category-title i {
         font-size: 1.4rem;
     }
     
+    .category-title h3 {
+        font-size: 1.1rem;
+    }
+    
+    .skill-list {
+        gap: 14px;
+    }
+    
     .skill-info {
         font-size: 0.8rem;
     }
     
+    .skill-name i {
+        font-size: 0.8rem;
+        width: 16px;
+    }
+    
     .skill-percent {
         font-size: 0.65rem;
+        padding: 1px 6px;
+    }
+    
+    .progress-bar-container {
+        height: 5px;
+        border-radius: 6px;
     }
     
     .vertical-bars-section {
-        padding: 24px 16px;
+        padding: 20px 14px;
         border-radius: 32px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
     }
     
     .vertical-bars-title {
         font-size: 1.1rem;
-    }
-    
-    .vertical-bar {
-        width: 50px;
-        height: 120px;
-        border-radius: 24px;
+        margin-bottom: 20px;
     }
     
     .bars-container {
-        gap: 20px;
+        gap: 12px;
+    }
+    
+    .vertical-bar {
+        width: 40px;
+        height: 100px;
+        border-radius: 24px;
+        background: rgba(0,0,0,0.1);
+    }
+    
+    .bar-fill {
+        border-radius: 24px;
     }
     
     .bar-label {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
     
     .bar-value {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
     
-    /* ===== صفحه پروژه‌ها ===== */
+    .bar-item {
+        gap: 6px;
+    }
+
+    /* ----- صفحه پنجم (Projects) ----- */
     .page-projects {
         padding: 40px 12px;
     }
     
     .projects-container {
-        padding: 28px 16px;
+        padding: 20px 14px;
         border-radius: 32px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
     }
     
     .projects-container h2 {
         font-size: 2rem;
+        margin-bottom: 12px;
     }
     
     .coming-soon-badge {
         font-size: 0.7rem;
-        padding: 6px 16px;
+        padding: 5px 16px;
+        margin-bottom: 24px;
+        border-radius: 30px;
     }
     
     .projects-grid {
-        grid-template-columns: 1fr;
         gap: 16px;
+        grid-template-columns: 1fr;
     }
     
     .project-card {
         padding: 24px 16px;
         border-radius: 24px;
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(8px);
     }
     
     .project-icon {
         font-size: 2.2rem;
+        margin-bottom: 12px;
     }
     
     .project-card h3 {
         font-size: 1rem;
     }
     
-    /* ===== صفحه FAQ ===== */
+    .project-card p {
+        font-size: 0.8rem;
+    }
+
+    /* ----- صفحه ششم (FAQ) ----- */
     .page-faq {
         padding: 40px 12px;
     }
     
     .faq-container {
-        padding: 28px 16px;
+        padding: 20px 14px;
         border-radius: 32px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
     }
     
     .faq-container h2 {
@@ -1627,15 +1820,30 @@ hr {
     }
     
     .faq-question {
+        padding: 14px 14px;
         font-size: 0.85rem;
-        padding: 14px 12px;
+        gap: 10px;
+    }
+    
+    .faq-question i {
+        font-size: 0.8rem;
     }
     
     .faq-answer {
         font-size: 0.8rem;
+        padding: 0 14px;
     }
     
-    /* ===== صفحه تماس ===== */
+    .faq-item.active .faq-answer {
+        padding: 0 14px 14px 14px;
+        max-height: 250px;
+    }
+    
+    .faq-item {
+        margin-bottom: 10px;
+    }
+
+    /* ----- صفحه هفتم (Contact) ----- */
     .page-contact {
         padding: 40px 12px;
     }
@@ -1645,29 +1853,46 @@ hr {
     }
     
     .contact-badge-outside {
-        font-size: 0.65rem;
-        padding: 4px 14px;
+        font-size: 0.6rem;
+        padding: 4px 12px;
+        margin-bottom: 12px;
+        border-radius: 30px;
     }
     
     .contact-header-outside h2 {
         font-size: 2rem;
+        margin-bottom: 10px;
     }
     
     .contact-header-outside p {
         font-size: 0.85rem;
+        padding: 0 10px;
     }
     
     .contact-glass-card {
-        padding: 30px 20px;
+        padding: 24px 16px;
         border-radius: 32px;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .lets-talk-wrapper {
+        margin-bottom: 20px;
     }
     
     .lets-talk-title {
         font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .red-line {
+        width: 80px;
     }
     
     .social-icons-wrapper {
-        gap: 20px;
+        gap: 18px;
+        margin-bottom: 20px;
     }
     
     .social-icons-wrapper a {
@@ -1675,80 +1900,70 @@ hr {
     }
     
     .contact-details {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        margin-top: 12px;
+        line-height: 1.5;
     }
     
-    /* ===== هدر پایین (همان‌طور که هست) ===== */
-    .glass-header {
-        padding: 6px 14px;
-        gap: 10px;
-        bottom: 20px;
-        border-radius: 50px;
+    .contact-location {
+        font-size: 0.8rem;
+        margin-top: 10px;
     }
     
-    .glass-header a {
-        font-size: 0.7rem;
-        padding: 4px 10px;
+    hr {
+        margin: 20px auto 14px;
+        width: 60px;
     }
-    
-    .menu-star {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
-        margin: -6px 0;
-    }
-    
-    .menu-star i {
-        font-size: 1.2rem;
-    }
-    
-    .nav-popup {
-        padding: 12px 16px;
-        bottom: 80px;
-        border-radius: 30px;
-    }
-    
-    .nav-popup-links {
-        gap: 10px;
-    }
-    
-    .nav-popup-links a {
-        font-size: 0.7rem;
-        padding: 6px 14px;
-    }
-    
-    /* ===== فوتر ===== */
+
+    /* ----- فوتر ----- */
     .footer {
         padding: 30px 16px 20px;
         border-radius: 30px 30px 0 0;
     }
     
     .footer-container {
-        flex-direction: column;
         gap: 24px;
-        text-align: center;
-    }
-    
-    .footer-col {
-        min-width: 0;
+        flex-direction: column;
         text-align: center;
     }
     
     .footer-col h4 {
-        display: inline-block;
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+        display: block;
+        text-align: center;
     }
     
     .footer-col h4::after {
         left: 50%;
         transform: translateX(-50%);
+        width: 35px;
+        height: 2.5px;
+    }
+    
+    .footer-col p {
+        font-size: 0.8rem;
+        line-height: 1.6;
+        margin-top: 8px;
     }
     
     .footer-links li {
+        margin-bottom: 8px;
         text-align: center;
     }
     
+    .footer-links a {
+        font-size: 0.8rem;
+    }
+    
+    .footer-social {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    
     .footer-social-title {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
+        margin-bottom: 14px;
     }
     
     .footer-social-icons {
@@ -1761,265 +1976,7 @@ hr {
     
     .footer-bottom {
         font-size: 0.65rem;
-    }
-}
-
-/* ============================================
-   برای موبایل‌های خیلی کوچک
-   ============================================ */
-@media (max-width: 380px) {
-    .page {
-        padding: 12px 8px;
-    }
-    
-    .page-first {
-        padding: 12px 8px;
-    }
-    
-    .page-first .squares-horizontal {
-        top: 10px;
-        left: 8px;
-    }
-    
-    .page-first .half-square {
-        width: 14px;
-        height: 14px;
-        border-radius: 4px;
-    }
-    
-    .page-first .date-outside {
-        top: 10px;
-        right: 8px;
-        font-size: 0.5rem;
-        padding: 3px 8px;
-    }
-    
-    .top-shape {
-        width: 160px;
-        height: 24px;
-        border-radius: 16px 16px 0 0;
-    }
-    
-    .portfolio-text {
-        font-size: 12vw;
-    }
-    
-    .portfolio-shape {
-        width: 30px;
-        height: 5px;
-    }
-    
-    .portfolio-row {
-        gap: 10px;
-    }
-    
-    .portfolio-wrapper {
-        gap: 12px;
-    }
-    
-    .bottom-container {
-        font-size: 0.6rem;
-        padding: 4px 10px;
-        gap: 6px;
-    }
-    
-    .lang-toggle {
-        width: 22px;
-        height: 22px;
-        font-size: 0.7rem;
-    }
-    
-    .lang-toggle i {
-        font-size: 0.65rem;
-    }
-    
-    .photo-shape {
-        width: 110px;
-        height: 110px;
-        border-radius: 24px;
-    }
-    
-    .photo-placeholder i {
-        font-size: 2.2rem;
-    }
-    
-    .photo-placeholder {
-        font-size: 0.6rem;
-    }
-    
-    .about-card {
-        padding: 16px 14px;
-        border-radius: 24px;
-    }
-    
-    .about-card h2 {
-        font-size: 1.4rem;
-    }
-    
-    .about-card p {
-        font-size: 0.7rem;
-    }
-    
-    .about-detail-container {
-        padding: 20px 14px;
-        border-radius: 24px;
-    }
-    
-    .about-detail-container h2 {
-        font-size: 1.5rem;
-    }
-    
-    .about-detail-container p {
-        font-size: 0.75rem;
-    }
-    
-    .map-card {
-        padding: 18px 14px;
-        border-radius: 24px;
-    }
-    
-    .map-card h3 {
-        font-size: 1rem;
-    }
-    
-    .iran-svg-container svg {
-        max-width: 100px;
-    }
-    
-    .iran-map-text {
-        font-size: 0.6rem;
-    }
-    
-    .info-row-modern {
-        gap: 10px;
-        padding: 10px 0;
-    }
-    
-    .info-icon-modern {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
-        border-radius: 18px;
-    }
-    
-    .info-label {
-        font-size: 0.5rem;
-    }
-    
-    .info-value {
-        font-size: 0.75rem;
-    }
-    
-    .page-skills {
-        padding: 30px 8px;
-    }
-    
-    .interest-item {
-        font-size: 0.65rem;
-        padding: 4px 10px;
-    }
-    
-    .skill-category-card {
-        padding: 16px 12px;
-        border-radius: 24px;
-    }
-    
-    .category-title h3 {
-        font-size: 1rem;
-    }
-    
-    .category-title i {
-        font-size: 1.1rem;
-    }
-    
-    .skill-info {
-        font-size: 0.7rem;
-    }
-    
-    .vertical-bar {
-        width: 38px;
-        height: 90px;
-        border-radius: 18px;
-    }
-    
-    .bars-container {
-        gap: 14px;
-    }
-    
-    .bar-label {
-        font-size: 0.55rem;
-    }
-    
-    .projects-container {
-        padding: 20px 12px;
-        border-radius: 24px;
-    }
-    
-    .projects-container h2 {
-        font-size: 1.5rem;
-    }
-    
-    .faq-container {
-        padding: 20px 12px;
-        border-radius: 24px;
-    }
-    
-    .faq-container h2 {
-        font-size: 1.5rem;
-    }
-    
-    .faq-question {
-        font-size: 0.7rem;
-        padding: 10px 8px;
-    }
-    
-    .contact-header-outside h2 {
-        font-size: 1.5rem;
-    }
-    
-    .contact-glass-card {
-        padding: 20px 14px;
-        border-radius: 24px;
-    }
-    
-    .lets-talk-title {
-        font-size: 1.5rem;
-    }
-    
-    .social-icons-wrapper a {
-        font-size: 1.2rem;
-    }
-    
-    .glass-header {
-        padding: 4px 10px;
-        gap: 6px;
-        bottom: 14px;
-    }
-    
-    .glass-header a {
-        font-size: 0.55rem;
-        padding: 3px 8px;
-    }
-    
-    .menu-star {
-        width: 30px;
-        height: 30px;
-        border-radius: 10px;
-        margin: -4px 0;
-    }
-    
-    .menu-star i {
-        font-size: 0.9rem;
-    }
-    
-    .nav-popup {
-        padding: 10px 12px;
-        bottom: 65px;
-        border-radius: 24px;
-    }
-    
-    .nav-popup-links a {
-        font-size: 0.55rem;
-        padding: 4px 10px;
+        padding-top: 20px;
+        margin-top: 10px;
     }
 }
