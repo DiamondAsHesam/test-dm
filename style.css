@@ -1340,7 +1340,7 @@ hr {
     }
 }
 
-/* ====== موبایل کوچک (زیر 500px) - تغییرات اصلی اینجاست ====== */
+/* ====== موبایل کوچک (زیر 500px) ====== */
 @media (max-width: 500px) {
     /* ----- هدر پایین ----- */
     .glass-header {
@@ -1978,5 +1978,31 @@ hr {
         font-size: 0.65rem;
         padding-top: 20px;
         margin-top: 10px;
+    }
+
+    /* ====== انیمیشن‌های ورود با CSS برای موبایل ====== */
+    .about-card,
+    .about-detail-container,
+    .map-card,
+    .skills-container,
+    .projects-container,
+    .faq-container,
+    .contact-glass-card,
+    .contact-header-outside {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .about-card.visible,
+    .about-detail-container.visible,
+    .map-card.visible,
+    .skills-container.visible,
+    .projects-container.visible,
+    .faq-container.visible,
+    .contact-glass-card.visible,
+    .contact-header-outside.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
