@@ -1,5 +1,5 @@
 // ============================================
-// script.js - بهینه شده برای موبایل
+// script.js - بهینه شده برای موبایل (نسخه نهایی)
 // ============================================
 
 // ====== محتوای انگلیسی ======
@@ -650,12 +650,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ============================================
-    // انیمیشن‌های GSAP - کاملاً جدا برای موبایل و دسکتاپ
+    // انیمیشن‌های GSAP - نسخه نهایی بدون محو شدن کامل
     // ============================================
     
     // ====== فقط دسکتاپ ======
     if (!isMobileDevice) {
-        // صفحه اول - اسکراب دار
         gsap.to("#firstPageContent", {
             scrollTrigger: {
                 trigger: "#page1",
@@ -703,26 +702,37 @@ document.addEventListener('DOMContentLoaded', function() {
             duration: 1
         });
     } else {
-        // ====== موبایل - بدون اسکراب و با انیمیشن ساده ======
-        // فقط یک افکت fade ساده برای صفحه اول
+        // ====== موبایل - بدون اسکراب سنگین ======
+        // فقط یه افکت خیلی خفیف
         gsap.to("#firstPageContent", {
             scrollTrigger: {
                 trigger: "#page1",
                 start: "top top",
                 end: "bottom top",
-                scrub: 0.3
+                scrub: 0.5
             },
-            opacity: 0.7,
+            opacity: 0.8,
             scale: 0.95
+        });
+
+        gsap.to("#fallContainer", {
+            scrollTrigger: {
+                trigger: "#page2",
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.5
+            },
+            opacity: 0.8,
+            y: 30
         });
     }
 
-    // ====== کارت About - برای همه ======
+    // ====== کارت About - بدون onLeave برای جلوگیری از محو شدن کامل ======
     gsap.set("#aboutCard", { opacity: 0, y: 100 });
 
     ScrollTrigger.create({
         trigger: "#page2",
-        start: "top 70%",
+        start: "top 60%",
         onEnter: () => {
             gsap.to("#aboutCard", {
                 opacity: 1,
@@ -738,13 +748,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 duration: 0.6,
                 ease: "back.out(0.6)"
             });
-        },
-        onLeave: () => {
-            gsap.set("#aboutCard", { opacity: 0, y: 100 });
-        },
-        onLeaveBack: () => {
-            gsap.set("#aboutCard", { opacity: 0, y: 100 });
         }
+        // onLeave و onLeaveBack رو حذف کردم تا محو نشه
     });
 
     // ====== صفحه سوم - Who Am I ======
@@ -753,7 +758,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ScrollTrigger.create({
         trigger: "#page3",
-        start: "top 70%",
+        start: "top 65%",
         onEnter: () => {
             gsap.to("#aboutDetailContainer", {
                 opacity: 1,
@@ -781,15 +786,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 duration: 0.6,
                 ease: "back.out(0.6)"
             });
-        },
-        onLeave: () => {
-            gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
-            gsap.set("#iranMapCard", { opacity: 0, x: 50 });
-        },
-        onLeaveBack: () => {
-            gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
-            gsap.set("#iranMapCard", { opacity: 0, x: 50 });
         }
+        // onLeave و onLeaveBack حذف شد
     });
 
     // ====== صفحه چهارم - Skills ======
@@ -797,14 +795,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ScrollTrigger.create({
         trigger: "#page4",
-        start: "top 70%",
+        start: "top 65%",
         onEnter: () => {
             gsap.to("#page4 .skills-container", {
                 opacity: 1,
                 y: 0,
                 duration: 0.8
             });
-            // انیمیشن نوارها
             animateSkillBars();
         },
         onEnterBack: () => {
@@ -814,12 +811,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 duration: 0.6
             });
             animateSkillBars();
-        },
-        onLeave: () => {
-            gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
-        },
-        onLeaveBack: () => {
-            gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
         }
     });
 
@@ -828,7 +819,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ScrollTrigger.create({
         trigger: "#page5",
-        start: "top 70%",
+        start: "top 65%",
         onEnter: () => {
             gsap.to("#projectsContainer", {
                 opacity: 1,
@@ -842,12 +833,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 y: 0,
                 duration: 0.6
             });
-        },
-        onLeave: () => {
-            gsap.set("#projectsContainer", { opacity: 0, y: 100 });
-        },
-        onLeaveBack: () => {
-            gsap.set("#projectsContainer", { opacity: 0, y: 100 });
         }
     });
 
@@ -856,7 +841,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ScrollTrigger.create({
         trigger: "#page6",
-        start: "top 70%",
+        start: "top 65%",
         onEnter: () => {
             gsap.to("#faqContainer", {
                 opacity: 1,
@@ -870,12 +855,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 y: 0,
                 duration: 0.6
             });
-        },
-        onLeave: () => {
-            gsap.set("#faqContainer", { opacity: 0, y: 100 });
-        },
-        onLeaveBack: () => {
-            gsap.set("#faqContainer", { opacity: 0, y: 100 });
         }
     });
 
@@ -885,7 +864,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ScrollTrigger.create({
         trigger: "#page7",
-        start: "top 70%",
+        start: "top 65%",
         onEnter: () => {
             gsap.to("#page7 .contact-header-outside", { 
                 opacity: 1, 
@@ -911,14 +890,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 duration: 0.6, 
                 delay: 0.1 
             });
-        },
-        onLeave: () => {
-            gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
-            gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
-        },
-        onLeaveBack: () => {
-            gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
-            gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
         }
     });
 
@@ -928,7 +899,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateSkillBars() {
         if (skillsAnimated) return;
         
-        // با تاخیر کوچک برای اطمینان از رندر شدن
         setTimeout(() => {
             document.querySelectorAll('.progress-fill').forEach(bar => {
                 const percent = bar.getAttribute('data-percent');
@@ -950,7 +920,6 @@ document.addEventListener('DOMContentLoaded', function() {
         faqItems.forEach(item => {
             const q = item.querySelector('.faq-question');
             if (q) {
-                // حذف لیسنرهای قبلی
                 const newQ = q.cloneNode(true);
                 q.parentNode.replaceChild(newQ, q);
                 
@@ -981,7 +950,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const wasMobile = isMobileDevice;
         isMobileDevice = isMobile();
         
-        // اگه وضعیت موبایل تغییر کرده، صفحه رو رفرش کن
         if (wasMobile !== isMobileDevice) {
             location.reload();
         }
@@ -994,7 +962,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     renderContent('en');
 
-    // نمایش محتوا بعد از لودر
     setTimeout(() => {
         const loader = document.getElementById('loaderWrapper');
         const main = document.getElementById('mainContent');
