@@ -355,6 +355,13 @@ const SITE_CONTENT_FA = {
 };
 
 // ============================================
+// تشخیص موبایل
+// ============================================
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+// ============================================
 // اجرای اصلی
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
@@ -644,44 +651,92 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ============================================
-    // انیمیشن‌های GSAP
+    // انیمیشن‌های GSAP - بهینه شده برای موبایل
     // ============================================
-    gsap.to("#firstPageContent", {
-        scrollTrigger: {
-            trigger: "#page1",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.2
-        },
-        opacity: 0,
-        scale: 0.85,
-        filter: "blur(8px)"
-    });
+    const mobile = isMobile();
 
-    gsap.to(".page-first .top-thin-line, .page-first .squares-horizontal, .page-first .date-outside", {
-        scrollTrigger: {
-            trigger: "#page1",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1
-        },
-        opacity: 0,
-        y: -30
-    });
+    // --- صفحه اول ---
+    if (!mobile) {
+        // فقط روی دسکتاپ اسکراب داشته باش
+        gsap.to("#firstPageContent", {
+            scrollTrigger: {
+                trigger: "#page1",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.2
+            },
+            opacity: 0,
+            scale: 0.85,
+            filter: "blur(8px)"
+        });
 
-    gsap.to("#fallContainer", {
-        scrollTrigger: {
-            trigger: "#page2",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.2
-        },
-        y: 300,
-        opacity: 0,
-        scale: 0.7,
-        rotation: 15
-    });
+        gsap.to(".page-first .top-thin-line, .page-first .squares-horizontal, .page-first .date-outside", {
+            scrollTrigger: {
+                trigger: "#page1",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1
+            },
+            opacity: 0,
+            y: -30
+        });
 
+        gsap.to("#fallContainer", {
+            scrollTrigger: {
+                trigger: "#page2",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.2
+            },
+            y: 300,
+            opacity: 0,
+            scale: 0.7,
+            rotation: 15
+        });
+
+        gsap.to("#suckLayer", {
+            scrollTrigger: {
+                trigger: "#page3",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.2
+            },
+            scale: 300,
+            duration: 1
+        });
+    } else {
+        // موبایل: بدون اسکراب، فقط fade ساده
+        gsap.to("#firstPageContent", {
+            scrollTrigger: {
+                trigger: "#page1",
+                start: "top top",
+                end: "bottom top"
+            },
+            opacity: 0,
+            scale: 0.9
+        });
+
+        gsap.to("#fallContainer", {
+            scrollTrigger: {
+                trigger: "#page2",
+                start: "top top",
+                end: "bottom top"
+            },
+            opacity: 0,
+            y: 50
+        });
+
+        gsap.to("#suckLayer", {
+            scrollTrigger: {
+                trigger: "#page3",
+                start: "top top",
+                end: "bottom top"
+            },
+            scale: 200
+        });
+    }
+
+    // --- About Card (همیشه بدون اسکراب) ---
     gsap.set("#aboutCard", { opacity: 0, y: 100 });
 
     ScrollTrigger.create({
@@ -695,21 +750,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }),
         onLeaveBack: () => {
             gsap.set("#aboutCard", { opacity: 0, y: 100 });
-            gsap.set("#fallContainer", { y: 0, opacity: 1, scale: 1, rotation: 0 });
+            if (!mobile) {
+                gsap.set("#fallContainer", { y: 0, opacity: 1, scale: 1, rotation: 0 });
+            }
         }
     });
 
-    gsap.to("#suckLayer", {
-        scrollTrigger: {
-            trigger: "#page3",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.2
-        },
-        scale: 300,
-        duration: 1
-    });
-
+    // --- صفحه سوم ---
     gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
     gsap.set("#iranMapCard", { opacity: 0, x: 50 });
 
@@ -733,10 +780,13 @@ document.addEventListener('DOMContentLoaded', function() {
         onLeaveBack: () => {
             gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
             gsap.set("#iranMapCard", { opacity: 0, x: 50 });
-            gsap.set("#suckLayer", { scale: 0 });
+            if (!mobile) {
+                gsap.set("#suckLayer", { scale: 0 });
+            }
         }
     });
 
+    // --- صفحه چهارم Skills ---
     gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
 
     ScrollTrigger.create({
@@ -750,6 +800,7 @@ document.addEventListener('DOMContentLoaded', function() {
         onLeaveBack: () => gsap.set("#page4 .skills-container", { opacity: 0, y: 50 })
     });
 
+    // --- صفحه پنجم Projects ---
     gsap.set("#projectsContainer", { opacity: 0, y: 100 });
 
     ScrollTrigger.create({
@@ -763,6 +814,7 @@ document.addEventListener('DOMContentLoaded', function() {
         onLeaveBack: () => gsap.set("#projectsContainer", { opacity: 0, y: 100 })
     });
 
+    // --- صفحه ششم FAQ ---
     gsap.set("#faqContainer", { opacity: 0, y: 100 });
 
     ScrollTrigger.create({
@@ -776,6 +828,7 @@ document.addEventListener('DOMContentLoaded', function() {
         onLeaveBack: () => gsap.set("#faqContainer", { opacity: 0, y: 100 })
     });
 
+    // --- صفحه هفتم Contact ---
     gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
     gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
 
@@ -842,6 +895,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // ============================================
+    // ریسایز برای آپدیت وضعیت موبایل
+    // ============================================
+    window.addEventListener('resize', function() {
+        // فقط برای رفرش کردن اسکرول‌تریگر در صورت نیاز
+        ScrollTrigger.refresh();
+    });
 
     // ============================================
     // اجرای اولیه
