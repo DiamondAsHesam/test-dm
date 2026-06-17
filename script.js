@@ -1,5 +1,5 @@
 // ============================================
-// script.js - نسخه ساده برای موبایل
+// script.js - نسخه کامل با پشتیبانی موبایل
 // ============================================
 
 // ====== محتوای انگلیسی ======
@@ -361,16 +361,20 @@ function isMobile() {
     return window.innerWidth <= 768;
 }
 
+function isPhone() {
+    return window.innerWidth <= 500;
+}
+
 // ============================================
 // اجرای اصلی
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    // ثبت GSAP
     gsap.registerPlugin(ScrollTrigger);
 
     let currentLang = 'en';
     let isChangingLang = false;
     let isMobileDevice = isMobile();
+    let isPhoneDevice = isPhone();
 
     // ============================================
     // رندر محتوا
@@ -518,14 +522,27 @@ document.addEventListener('DOMContentLoaded', function() {
             faqContainer.appendChild(div);
         });
 
-        // صفحه هفتم
+        // ====== صفحه هفتم - Contact با نمایش جداگانه برای موبایل ======
         document.getElementById('contactBadge').textContent = C.contact.badge;
         document.getElementById('contactTitle').textContent = C.contact.title;
         document.getElementById('contactDesc').textContent = C.contact.description;
         document.getElementById('talkTitle').textContent = C.contact.talkTitle;
-        document.getElementById('contactPhone').innerHTML = `
-            <i class="fas fa-phone-alt"></i> ${C.contact.phone} &nbsp;&nbsp;|&nbsp;&nbsp; <i class="fas fa-envelope"></i> ${C.contact.email}
-        `;
+        
+        // نمایش تلفن و ایمیل - جداگانه برای موبایل
+        const phoneElement = document.getElementById('contactPhone');
+        if (isPhoneDevice) {
+            // موبایل: دو خط جداگانه
+            phoneElement.innerHTML = `
+                <span class="phone-row"><i class="fas fa-phone-alt"></i> ${C.contact.phone}</span>
+                <span class="email-row"><i class="fas fa-envelope"></i> ${C.contact.email}</span>
+            `;
+        } else {
+            // دسکتاپ و تبلت: یک خط با جداکننده
+            phoneElement.innerHTML = `
+                <i class="fas fa-phone-alt"></i> ${C.contact.phone} &nbsp;&nbsp;|&nbsp;&nbsp; <i class="fas fa-envelope"></i> ${C.contact.email}
+            `;
+        }
+        
         document.getElementById('contactLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${C.contact.location}`;
         document.getElementById('contactAvailability').textContent = C.contact.availability;
 
@@ -955,9 +972,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     window.addEventListener('resize', function() {
         const wasMobile = isMobileDevice;
+        const wasPhone = isPhoneDevice;
         isMobileDevice = isMobile();
+        isPhoneDevice = isPhone();
         
-        if (wasMobile !== isMobileDevice) {
+        // اگه وضعیت تغییر کرده، صفحه رفرش بشه
+        if (wasMobile !== isMobileDevice || wasPhone !== isPhoneDevice) {
             location.reload();
         }
         
