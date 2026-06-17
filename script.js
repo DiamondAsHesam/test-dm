@@ -276,7 +276,7 @@ const SITE_CONTENT_FA = {
             { label: 'انگلیسی', percent: 35 },
             { label: 'فتوشاپ', percent: 40 },
             { label: 'تدوین', percent: 40 },
-            { label: 'هوش مصنوعی و چت‌جی‌پی‌تی', percent: 60 },
+            { label: 'هوش مصنوعی', percent: 60 },
         ]
     },
     projects: {
