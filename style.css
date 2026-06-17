@@ -1843,7 +1843,7 @@ hr {
         margin-bottom: 10px;
     }
 
-    /* ----- صفحه هفتم (Contact) ----- */
+    /* ====== صفحه هفتم (Contact) - موبایل ====== */
     .page-contact {
         padding: 40px 12px;
     }
@@ -1899,10 +1899,29 @@ hr {
         font-size: 1.5rem;
     }
     
+    /* ====== نمایش جداگانه تلفن و ایمیل در موبایل ====== */
     .contact-details {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         margin-top: 12px;
-        line-height: 1.5;
+        line-height: 1.8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+    
+    .contact-details .phone-row,
+    .contact-details .email-row {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 2px 0;
+    }
+    
+    .contact-details .phone-row i,
+    .contact-details .email-row i {
+        margin-right: 8px;
+        color: rgb(142, 22, 0);
     }
     
     .contact-location {
