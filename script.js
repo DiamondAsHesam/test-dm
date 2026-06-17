@@ -1,5 +1,5 @@
 // ============================================
-// script.js - همه چیز در یک فایل
+// script.js - بهینه شده برای موبایل
 // ============================================
 
 // ====== محتوای انگلیسی ======
@@ -370,6 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentLang = 'en';
     let isChangingLang = false;
     let skillsAnimated = false;
+    let isMobileDevice = isMobile();
 
     // ============================================
     // رندر محتوا
@@ -381,8 +382,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('محتوا پیدا نشد!');
             return;
         }
-
-        console.log('رندر محتوا:', lang);
 
         // هدر
         document.getElementById('navHome').textContent = C.nav.home;
@@ -651,13 +650,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ============================================
-    // انیمیشن‌های GSAP - بهینه شده برای موبایل
+    // انیمیشن‌های GSAP - کاملاً جدا برای موبایل و دسکتاپ
     // ============================================
-    const mobile = isMobile();
-
-    // --- صفحه اول ---
-    if (!mobile) {
-        // فقط روی دسکتاپ اسکراب داشته باش
+    
+    // ====== فقط دسکتاپ ======
+    if (!isMobileDevice) {
+        // صفحه اول - اسکراب دار
         gsap.to("#firstPageContent", {
             scrollTrigger: {
                 trigger: "#page1",
@@ -705,58 +703,51 @@ document.addEventListener('DOMContentLoaded', function() {
             duration: 1
         });
     } else {
-        // موبایل: بدون اسکراب، فقط fade ساده
+        // ====== موبایل - بدون اسکراب و با انیمیشن ساده ======
+        // فقط یک افکت fade ساده برای صفحه اول
         gsap.to("#firstPageContent", {
             scrollTrigger: {
                 trigger: "#page1",
                 start: "top top",
-                end: "bottom top"
+                end: "bottom top",
+                scrub: 0.3
             },
-            opacity: 0,
-            scale: 0.9
-        });
-
-        gsap.to("#fallContainer", {
-            scrollTrigger: {
-                trigger: "#page2",
-                start: "top top",
-                end: "bottom top"
-            },
-            opacity: 0,
-            y: 50
-        });
-
-        gsap.to("#suckLayer", {
-            scrollTrigger: {
-                trigger: "#page3",
-                start: "top top",
-                end: "bottom top"
-            },
-            scale: 200
+            opacity: 0.7,
+            scale: 0.95
         });
     }
 
-    // --- About Card (همیشه بدون اسکراب) ---
+    // ====== کارت About - برای همه ======
     gsap.set("#aboutCard", { opacity: 0, y: 100 });
 
     ScrollTrigger.create({
         trigger: "#page2",
         start: "top 70%",
-        onEnter: () => gsap.to("#aboutCard", {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "back.out(0.6)"
-        }),
+        onEnter: () => {
+            gsap.to("#aboutCard", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "back.out(0.6)"
+            });
+        },
+        onEnterBack: () => {
+            gsap.to("#aboutCard", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "back.out(0.6)"
+            });
+        },
+        onLeave: () => {
+            gsap.set("#aboutCard", { opacity: 0, y: 100 });
+        },
         onLeaveBack: () => {
             gsap.set("#aboutCard", { opacity: 0, y: 100 });
-            if (!mobile) {
-                gsap.set("#fallContainer", { y: 0, opacity: 1, scale: 1, rotation: 0 });
-            }
         }
     });
 
-    // --- صفحه سوم ---
+    // ====== صفحه سوم - Who Am I ======
     gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
     gsap.set("#iranMapCard", { opacity: 0, x: 50 });
 
@@ -777,58 +768,118 @@ document.addEventListener('DOMContentLoaded', function() {
                 ease: "back.out(0.6)"
             });
         },
+        onEnterBack: () => {
+            gsap.to("#aboutDetailContainer", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "back.out(0.6)"
+            });
+            gsap.to("#iranMapCard", {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                ease: "back.out(0.6)"
+            });
+        },
+        onLeave: () => {
+            gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
+            gsap.set("#iranMapCard", { opacity: 0, x: 50 });
+        },
         onLeaveBack: () => {
             gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
             gsap.set("#iranMapCard", { opacity: 0, x: 50 });
-            if (!mobile) {
-                gsap.set("#suckLayer", { scale: 0 });
-            }
         }
     });
 
-    // --- صفحه چهارم Skills ---
+    // ====== صفحه چهارم - Skills ======
     gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
 
     ScrollTrigger.create({
         trigger: "#page4",
         start: "top 70%",
-        onEnter: () => gsap.to("#page4 .skills-container", {
-            opacity: 1,
-            y: 0,
-            duration: 0.8
-        }),
-        onLeaveBack: () => gsap.set("#page4 .skills-container", { opacity: 0, y: 50 })
+        onEnter: () => {
+            gsap.to("#page4 .skills-container", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+            // انیمیشن نوارها
+            animateSkillBars();
+        },
+        onEnterBack: () => {
+            gsap.to("#page4 .skills-container", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            });
+            animateSkillBars();
+        },
+        onLeave: () => {
+            gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
+        },
+        onLeaveBack: () => {
+            gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
+        }
     });
 
-    // --- صفحه پنجم Projects ---
+    // ====== صفحه پنجم - Projects ======
     gsap.set("#projectsContainer", { opacity: 0, y: 100 });
 
     ScrollTrigger.create({
         trigger: "#page5",
         start: "top 70%",
-        onEnter: () => gsap.to("#projectsContainer", {
-            opacity: 1,
-            y: 0,
-            duration: 0.8
-        }),
-        onLeaveBack: () => gsap.set("#projectsContainer", { opacity: 0, y: 100 })
+        onEnter: () => {
+            gsap.to("#projectsContainer", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+        },
+        onEnterBack: () => {
+            gsap.to("#projectsContainer", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            });
+        },
+        onLeave: () => {
+            gsap.set("#projectsContainer", { opacity: 0, y: 100 });
+        },
+        onLeaveBack: () => {
+            gsap.set("#projectsContainer", { opacity: 0, y: 100 });
+        }
     });
 
-    // --- صفحه ششم FAQ ---
+    // ====== صفحه ششم - FAQ ======
     gsap.set("#faqContainer", { opacity: 0, y: 100 });
 
     ScrollTrigger.create({
         trigger: "#page6",
         start: "top 70%",
-        onEnter: () => gsap.to("#faqContainer", {
-            opacity: 1,
-            y: 0,
-            duration: 0.8
-        }),
-        onLeaveBack: () => gsap.set("#faqContainer", { opacity: 0, y: 100 })
+        onEnter: () => {
+            gsap.to("#faqContainer", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+        },
+        onEnterBack: () => {
+            gsap.to("#faqContainer", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            });
+        },
+        onLeave: () => {
+            gsap.set("#faqContainer", { opacity: 0, y: 100 });
+        },
+        onLeaveBack: () => {
+            gsap.set("#faqContainer", { opacity: 0, y: 100 });
+        }
     });
 
-    // --- صفحه هفتم Contact ---
+    // ====== صفحه هفتم - Contact ======
     gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
     gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
 
@@ -836,8 +887,34 @@ document.addEventListener('DOMContentLoaded', function() {
         trigger: "#page7",
         start: "top 70%",
         onEnter: () => {
-            gsap.to("#page7 .contact-header-outside", { opacity: 1, y: 0, duration: 0.8 });
-            gsap.to("#page7 .contact-glass-card", { opacity: 1, y: 0, duration: 0.8, delay: 0.15 });
+            gsap.to("#page7 .contact-header-outside", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8 
+            });
+            gsap.to("#page7 .contact-glass-card", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                delay: 0.15 
+            });
+        },
+        onEnterBack: () => {
+            gsap.to("#page7 .contact-header-outside", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.6 
+            });
+            gsap.to("#page7 .contact-glass-card", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.6, 
+                delay: 0.1 
+            });
+        },
+        onLeave: () => {
+            gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
+            gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
         },
         onLeaveBack: () => {
             gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
@@ -850,23 +927,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     function animateSkillBars() {
         if (skillsAnimated) return;
-        document.querySelectorAll('.progress-fill').forEach(bar => {
-            const percent = bar.getAttribute('data-percent');
-            if (percent) bar.style.width = percent + '%';
-        });
-        document.querySelectorAll('.bar-fill').forEach(bar => {
-            const height = bar.getAttribute('data-height');
-            if (height) bar.style.height = height + '%';
-        });
-        skillsAnimated = true;
+        
+        // با تاخیر کوچک برای اطمینان از رندر شدن
+        setTimeout(() => {
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                const percent = bar.getAttribute('data-percent');
+                if (percent) bar.style.width = percent + '%';
+            });
+            document.querySelectorAll('.bar-fill').forEach(bar => {
+                const height = bar.getAttribute('data-height');
+                if (height) bar.style.height = height + '%';
+            });
+            skillsAnimated = true;
+        }, 200);
     }
-
-    ScrollTrigger.create({
-        trigger: "#page4",
-        start: "top 60%",
-        onEnter: animateSkillBars,
-        onEnterBack: animateSkillBars
-    });
 
     // ============================================
     // FAQ
@@ -876,7 +950,11 @@ document.addEventListener('DOMContentLoaded', function() {
         faqItems.forEach(item => {
             const q = item.querySelector('.faq-question');
             if (q) {
-                q.addEventListener('click', function() {
+                // حذف لیسنرهای قبلی
+                const newQ = q.cloneNode(true);
+                q.parentNode.replaceChild(newQ, q);
+                
+                newQ.addEventListener('click', function() {
                     const parent = this.parentElement;
                     const isActive = parent.classList.contains('active');
                     
@@ -897,10 +975,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // ریسایز برای آپدیت وضعیت موبایل
+    // ریسایز
     // ============================================
     window.addEventListener('resize', function() {
-        // فقط برای رفرش کردن اسکرول‌تریگر در صورت نیاز
+        const wasMobile = isMobileDevice;
+        isMobileDevice = isMobile();
+        
+        // اگه وضعیت موبایل تغییر کرده، صفحه رو رفرش کن
+        if (wasMobile !== isMobileDevice) {
+            location.reload();
+        }
+        
         ScrollTrigger.refresh();
     });
 
@@ -909,6 +994,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     renderContent('en');
 
+    // نمایش محتوا بعد از لودر
     setTimeout(() => {
         const loader = document.getElementById('loaderWrapper');
         const main = document.getElementById('mainContent');
