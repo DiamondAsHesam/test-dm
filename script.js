@@ -1,5 +1,5 @@
 // ============================================
-// script.js - نسخه کامل با پشتیبانی موبایل
+// script.js - نسخه کامل با قفل کپی
 // ============================================
 
 // ====== محتوای انگلیسی ======
@@ -842,7 +842,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     } else {
         // ====== موبایل: فقط CSS انیمیشن ======
-        // با Intersection Observer المان‌ها رو نمایش بده
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
@@ -856,7 +855,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, observerOptions);
 
-        // المان‌هایی که باید در موبایل نمایش داده بشن
         const mobileElements = [
             '.about-card',
             '.about-detail-container',
@@ -874,7 +872,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // صفحه اول و دوم برای موبایل - فقط یک افکت خیلی خفیف
         gsap.to("#firstPageContent", {
             scrollTrigger: {
                 trigger: "#page1",
@@ -899,7 +896,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // انیمیشن نوارهای مهارت (برای همه)
+    // انیمیشن نوارهای مهارت
     // ============================================
     function animateSkillBars() {
         document.querySelectorAll('.progress-fill').forEach(bar => {
@@ -912,7 +909,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // اجرای انیمیشن نوارها با اسکرول
     ScrollTrigger.create({
         trigger: "#page4",
         start: "top 60%",
@@ -920,7 +916,6 @@ document.addEventListener('DOMContentLoaded', function() {
         onEnterBack: animateSkillBars
     });
 
-    // برای موبایل هم با Intersection Observer
     if (isMobileDevice) {
         const skillsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -976,13 +971,77 @@ document.addEventListener('DOMContentLoaded', function() {
         isMobileDevice = isMobile();
         isPhoneDevice = isPhone();
         
-        // اگه وضعیت تغییر کرده، صفحه رفرش بشه
         if (wasMobile !== isMobileDevice || wasPhone !== isPhoneDevice) {
             location.reload();
         }
         
         ScrollTrigger.refresh();
     });
+
+    // ============================================
+    // جلوگیری از کپی - قفل کامل
+    // ============================================
+    
+    // 1. جلوگیری از کلیک راست
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 2. جلوگیری از Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+U, Ctrl+S, Ctrl+A
+    document.addEventListener('keydown', function(e) {
+        // Ctrl + C, V, X, U, S, P, A
+        if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'x' || 
+                          e.key === 'u' || e.key === 's' || e.key === 'p' || 
+                          e.key === 'a')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl + Shift + I, J, C
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 3. جلوگیری از درگ کردن
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 4. جلوگیری از selectstart
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 5. جلوگیری از copy
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 6. جلوگیری از cut
+    document.addEventListener('cut', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 7. جلوگیری از paste
+    document.addEventListener('paste', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    console.log('🔒 تمام قابلیت‌های کپی غیرفعال شد!');
 
     // ============================================
     // اجرای اولیه
