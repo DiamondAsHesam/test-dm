@@ -203,7 +203,7 @@ const SITE_CONTENT_FA = {
     whoAmI: {
         title: 'من کیستم؟',
         paragraphs: [
-            "سلام! خوشحالم که به پورتفولیوی من رسیدی. من حسام هستم، متولد و بزرگ‌شده گرگان، گلستان، ایران.",
+            "سلام! خوشحاالم که به پورتفولیوی من اومدی. من حسام هستم، متولد 86 و 28 تیر در شهر گرگان، گلستان، ایران به دنیا اومدم.",
             "از ۸ سالگی وارد فضای دیجیتال و آنلاین شدم — و هنوز هم با قدرت ادامه می‌دم. همیشه در حال یادگیری، تمرین و پیشرفت.",
             "اگه می‌خوای بدونی توی چی خوبم، همه رو برات پایین لیست کردم. ممنون که اومدی — لذت ببر!"
         ],
@@ -262,16 +262,16 @@ const SITE_CONTENT_FA = {
                 skills: [
                     { name: 'هوش مصنوعی و چت‌جی‌پی‌تی', icon: 'fas fa-brain', percent: 60 },
                     { name: 'شبکه‌های اجتماعی', icon: 'fas fa-globe', percent: 90 },
-                    { name: 'ارز دیجیتال', icon: 'fas fa-coins', percent: 50 },
-                    { name: 'arzdigital', icon: 'fas fa-book', percent: 50 },
+                    { name: 'کریپتو', icon: 'fas fa-coins', percent: 50 },
+                    { name: 'ارزدیجیتال', icon: 'fas fa-book', percent: 50 },
                 ]
             }
         ],
         highlights: [
             { label: 'کامپیوتر', percent: 90 },
             { label: 'بازی', percent: 90 },
-            { label: 'ارز دیجیتال', percent: 50 },
-            { label: 'arzdigital', percent: 50 },
+            { label: 'کریپتو', percent: 50 },
+            { label: 'ارزدیجیتال', percent: 50 },
             { label: 'شبکه‌های اجتماعی', percent: 90 },
             { label: 'انگلیسی', percent: 35 },
             { label: 'فتوشاپ', percent: 40 },
