@@ -2,11 +2,45 @@
    style.css - استایل‌های کامل پورتفولیو
    ============================================ */
 
+/* ============================================
+   جلوگیری از کپی
+   ============================================ */
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* اجازه کپی برای ورودی‌ها و تکست‌اریاها (در صورت نیاز) */
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* جلوگیری از درگ کردن تصاویر */
+img, svg {
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+/* جلوگیری از هایلایت شدن */
+::selection {
+    background: transparent;
+}
+
+::-moz-selection {
+    background: transparent;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select: none;
 }
 
 body {
