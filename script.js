@@ -1,5 +1,5 @@
 // ============================================
-// script.js - بهینه شده برای موبایل (نسخه نهایی)
+// script.js - نسخه ساده برای موبایل
 // ============================================
 
 // ====== محتوای انگلیسی ======
@@ -365,11 +365,11 @@ function isMobile() {
 // اجرای اصلی
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
+    // ثبت GSAP
     gsap.registerPlugin(ScrollTrigger);
 
     let currentLang = 'en';
     let isChangingLang = false;
-    let skillsAnimated = false;
     let isMobileDevice = isMobile();
 
     // ============================================
@@ -378,10 +378,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderContent(lang) {
         const C = lang === 'en' ? SITE_CONTENT_EN : SITE_CONTENT_FA;
         
-        if (!C) {
-            console.error('محتوا پیدا نشد!');
-            return;
-        }
+        if (!C) return;
 
         // هدر
         document.getElementById('navHome').textContent = C.nav.home;
@@ -432,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
             badgesContainer.appendChild(span);
         });
 
-        // صفحه چهارم - Skills
+        // صفحه چهارم
         document.getElementById('skillsBadge').textContent = C.skills.badge;
         document.getElementById('skillsDesc').textContent = C.skills.description;
         document.getElementById('interestsTitle').innerHTML = `<i class="fas fa-heart"></i> ${C.skills.interests.title}`;
@@ -488,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             barsContainer.appendChild(item);
         });
 
-        // صفحه پنجم - Projects
+        // صفحه پنجم
         document.getElementById('projectsTitle').textContent = C.projects.title;
         document.getElementById('projectsBadge').textContent = C.projects.badge;
         const projectsGrid = document.getElementById('projectsGrid');
@@ -504,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
             projectsGrid.appendChild(card);
         });
 
-        // صفحه ششم - FAQ
+        // صفحه ششم
         document.getElementById('faqTitle').textContent = C.faq.title;
         const faqContainer = document.getElementById('faqItems');
         faqContainer.innerHTML = '';
@@ -521,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
             faqContainer.appendChild(div);
         });
 
-        // صفحه هفتم - Contact
+        // صفحه هفتم
         document.getElementById('contactBadge').textContent = C.contact.badge;
         document.getElementById('contactTitle').textContent = C.contact.title;
         document.getElementById('contactDesc').textContent = C.contact.description;
@@ -583,9 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
             &copy; ${C.footer.copyright} <span>${C.footer.brand}</span>. ${C.footer.rights} | ${C.footer.credit}
         `;
 
-        // راه‌اندازی مجدد FAQ
         setTimeout(initFaq, 200);
-        skillsAnimated = false;
     }
 
     // ============================================
@@ -650,11 +645,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ============================================
-    // انیمیشن‌های GSAP - نسخه نهایی بدون محو شدن کامل
+    // انیمیشن‌ها - فقط روی دسکتاپ
     // ============================================
-    
-    // ====== فقط دسکتاپ ======
     if (!isMobileDevice) {
+        // انیمیشن‌های دسکتاپ با GSAP
         gsap.to("#firstPageContent", {
             scrollTrigger: {
                 trigger: "#page1",
@@ -701,18 +695,178 @@ document.addEventListener('DOMContentLoaded', function() {
             scale: 300,
             duration: 1
         });
+
+        // کارت About برای دسکتاپ
+        gsap.set("#aboutCard", { opacity: 0, y: 100 });
+
+        ScrollTrigger.create({
+            trigger: "#page2",
+            start: "top 70%",
+            onEnter: () => {
+                gsap.to("#aboutCard", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "back.out(0.6)"
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set("#aboutCard", { opacity: 0, y: 100 });
+            }
+        });
+
+        // صفحه سوم برای دسکتاپ
+        gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
+        gsap.set("#iranMapCard", { opacity: 0, x: 50 });
+
+        ScrollTrigger.create({
+            trigger: "#page3",
+            start: "top 70%",
+            onEnter: () => {
+                gsap.to("#aboutDetailContainer", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "back.out(0.6)"
+                });
+                gsap.to("#iranMapCard", {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "back.out(0.6)"
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
+                gsap.set("#iranMapCard", { opacity: 0, x: 50 });
+                gsap.set("#suckLayer", { scale: 0 });
+            }
+        });
+
+        // صفحه چهارم برای دسکتاپ
+        gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
+
+        ScrollTrigger.create({
+            trigger: "#page4",
+            start: "top 70%",
+            onEnter: () => {
+                gsap.to("#page4 .skills-container", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
+            }
+        });
+
+        // صفحه پنجم برای دسکتاپ
+        gsap.set("#projectsContainer", { opacity: 0, y: 100 });
+
+        ScrollTrigger.create({
+            trigger: "#page5",
+            start: "top 70%",
+            onEnter: () => {
+                gsap.to("#projectsContainer", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set("#projectsContainer", { opacity: 0, y: 100 });
+            }
+        });
+
+        // صفحه ششم برای دسکتاپ
+        gsap.set("#faqContainer", { opacity: 0, y: 100 });
+
+        ScrollTrigger.create({
+            trigger: "#page6",
+            start: "top 70%",
+            onEnter: () => {
+                gsap.to("#faqContainer", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set("#faqContainer", { opacity: 0, y: 100 });
+            }
+        });
+
+        // صفحه هفتم برای دسکتاپ
+        gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
+        gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
+
+        ScrollTrigger.create({
+            trigger: "#page7",
+            start: "top 70%",
+            onEnter: () => {
+                gsap.to("#page7 .contact-header-outside", { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8 
+                });
+                gsap.to("#page7 .contact-glass-card", { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8, 
+                    delay: 0.15 
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
+                gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
+            }
+        });
+
     } else {
-        // ====== موبایل - بدون اسکراب سنگین ======
-        // فقط یه افکت خیلی خفیف
+        // ====== موبایل: فقط CSS انیمیشن ======
+        // با Intersection Observer المان‌ها رو نمایش بده
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // المان‌هایی که باید در موبایل نمایش داده بشن
+        const mobileElements = [
+            '.about-card',
+            '.about-detail-container',
+            '.map-card',
+            '.skills-container',
+            '.projects-container',
+            '.faq-container',
+            '.contact-glass-card',
+            '.contact-header-outside'
+        ];
+
+        mobileElements.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // صفحه اول و دوم برای موبایل - فقط یک افکت خیلی خفیف
         gsap.to("#firstPageContent", {
             scrollTrigger: {
                 trigger: "#page1",
                 start: "top top",
                 end: "bottom top",
-                scrub: 0.5
+                scrub: 0.3
             },
             opacity: 0.8,
-            scale: 0.95
+            scale: 0.97
         });
 
         gsap.to("#fallContainer", {
@@ -720,196 +874,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 trigger: "#page2",
                 start: "top top",
                 end: "bottom top",
-                scrub: 0.5
+                scrub: 0.3
             },
-            opacity: 0.8,
-            y: 30
+            opacity: 0.85,
+            y: 20
         });
     }
 
-    // ====== کارت About - بدون onLeave برای جلوگیری از محو شدن کامل ======
-    gsap.set("#aboutCard", { opacity: 0, y: 100 });
-
-    ScrollTrigger.create({
-        trigger: "#page2",
-        start: "top 60%",
-        onEnter: () => {
-            gsap.to("#aboutCard", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "back.out(0.6)"
-            });
-        },
-        onEnterBack: () => {
-            gsap.to("#aboutCard", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "back.out(0.6)"
-            });
-        }
-        // onLeave و onLeaveBack رو حذف کردم تا محو نشه
-    });
-
-    // ====== صفحه سوم - Who Am I ======
-    gsap.set("#aboutDetailContainer", { opacity: 0, y: 100 });
-    gsap.set("#iranMapCard", { opacity: 0, x: 50 });
-
-    ScrollTrigger.create({
-        trigger: "#page3",
-        start: "top 65%",
-        onEnter: () => {
-            gsap.to("#aboutDetailContainer", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "back.out(0.6)"
-            });
-            gsap.to("#iranMapCard", {
-                opacity: 1,
-                x: 0,
-                duration: 0.8,
-                ease: "back.out(0.6)"
-            });
-        },
-        onEnterBack: () => {
-            gsap.to("#aboutDetailContainer", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "back.out(0.6)"
-            });
-            gsap.to("#iranMapCard", {
-                opacity: 1,
-                x: 0,
-                duration: 0.6,
-                ease: "back.out(0.6)"
-            });
-        }
-        // onLeave و onLeaveBack حذف شد
-    });
-
-    // ====== صفحه چهارم - Skills ======
-    gsap.set("#page4 .skills-container", { opacity: 0, y: 50 });
-
-    ScrollTrigger.create({
-        trigger: "#page4",
-        start: "top 65%",
-        onEnter: () => {
-            gsap.to("#page4 .skills-container", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8
-            });
-            animateSkillBars();
-        },
-        onEnterBack: () => {
-            gsap.to("#page4 .skills-container", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6
-            });
-            animateSkillBars();
-        }
-    });
-
-    // ====== صفحه پنجم - Projects ======
-    gsap.set("#projectsContainer", { opacity: 0, y: 100 });
-
-    ScrollTrigger.create({
-        trigger: "#page5",
-        start: "top 65%",
-        onEnter: () => {
-            gsap.to("#projectsContainer", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8
-            });
-        },
-        onEnterBack: () => {
-            gsap.to("#projectsContainer", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6
-            });
-        }
-    });
-
-    // ====== صفحه ششم - FAQ ======
-    gsap.set("#faqContainer", { opacity: 0, y: 100 });
-
-    ScrollTrigger.create({
-        trigger: "#page6",
-        start: "top 65%",
-        onEnter: () => {
-            gsap.to("#faqContainer", {
-                opacity: 1,
-                y: 0,
-                duration: 0.8
-            });
-        },
-        onEnterBack: () => {
-            gsap.to("#faqContainer", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6
-            });
-        }
-    });
-
-    // ====== صفحه هفتم - Contact ======
-    gsap.set("#page7 .contact-header-outside", { opacity: 0, y: 30 });
-    gsap.set("#page7 .contact-glass-card", { opacity: 0, y: 30 });
-
-    ScrollTrigger.create({
-        trigger: "#page7",
-        start: "top 65%",
-        onEnter: () => {
-            gsap.to("#page7 .contact-header-outside", { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.8 
-            });
-            gsap.to("#page7 .contact-glass-card", { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.8, 
-                delay: 0.15 
-            });
-        },
-        onEnterBack: () => {
-            gsap.to("#page7 .contact-header-outside", { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.6 
-            });
-            gsap.to("#page7 .contact-glass-card", { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.6, 
-                delay: 0.1 
-            });
-        }
-    });
-
     // ============================================
-    // انیمیشن نوارهای مهارت
+    // انیمیشن نوارهای مهارت (برای همه)
     // ============================================
     function animateSkillBars() {
-        if (skillsAnimated) return;
-        
-        setTimeout(() => {
-            document.querySelectorAll('.progress-fill').forEach(bar => {
-                const percent = bar.getAttribute('data-percent');
-                if (percent) bar.style.width = percent + '%';
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            const percent = bar.getAttribute('data-percent');
+            if (percent) bar.style.width = percent + '%';
+        });
+        document.querySelectorAll('.bar-fill').forEach(bar => {
+            const height = bar.getAttribute('data-height');
+            if (height) bar.style.height = height + '%';
+        });
+    }
+
+    // اجرای انیمیشن نوارها با اسکرول
+    ScrollTrigger.create({
+        trigger: "#page4",
+        start: "top 60%",
+        onEnter: animateSkillBars,
+        onEnterBack: animateSkillBars
+    });
+
+    // برای موبایل هم با Intersection Observer
+    if (isMobileDevice) {
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBars();
+                    skillsObserver.unobserve(entry.target);
+                }
             });
-            document.querySelectorAll('.bar-fill').forEach(bar => {
-                const height = bar.getAttribute('data-height');
-                if (height) bar.style.height = height + '%';
-            });
-            skillsAnimated = true;
-        }, 200);
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('#page4 .skills-container').forEach(el => {
+            skillsObserver.observe(el);
+        });
     }
 
     // ============================================
