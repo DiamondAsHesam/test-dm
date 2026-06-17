@@ -172,7 +172,7 @@ const SITE_CONTENT_EN = {
             { platform: 'Telegram', icon: 'fab fa-telegram', url: 'https://t.me/DiamondAsHesam' },
             { platform: 'Discord', icon: 'fab fa-discord', url: 'https://discord.gg/MWr2QCCMTv' },
         ],
-        copyright: '2025',
+        copyright: '2026',
         rights: 'All rights reserved.',
         credit: 'Designed with ❤️'
     }
@@ -210,7 +210,7 @@ const SITE_CONTENT_FA = {
         info: {
             birthday: '1386/04/28',
             location: 'ایران، گرگان',
-            experience: '۱۱+ سال',
+            experience: '+11 سال',
         },
         map: {
             title: 'سرزمین من',
@@ -237,7 +237,7 @@ const SITE_CONTENT_FA = {
         },
         categories: [
             {
-                title: 'مهارت - ۱',
+                title: 'مهارت - 1',
                 icon: 'fas fa-rocket',
                 skills: [
                     { name: 'کامپیوتر', icon: 'fas fa-desktop', percent: 90 },
@@ -247,7 +247,7 @@ const SITE_CONTENT_FA = {
                 ]
             },
             {
-                title: 'مهارت - ۲',
+                title: 'مهارت - 2',
                 icon: 'fas fa-tools',
                 skills: [
                     { name: 'تعمیر اپ ...', icon: 'fas fa-gear', percent: 90 },
@@ -257,7 +257,7 @@ const SITE_CONTENT_FA = {
                 ]
             },
             {
-                title: 'مهارت - ۳',
+                title: 'مهارت - 3',
                 icon: 'fas fa-chart-line',
                 skills: [
                     { name: 'هوش مصنوعی و چت‌جی‌پی‌تی', icon: 'fas fa-brain', percent: 60 },
@@ -283,9 +283,9 @@ const SITE_CONTENT_FA = {
         title: 'پروژه‌های من',
         badge: '✨ به زودی ✨',
         items: [
-            { icon: '⚙️', title: 'به زودی - ۱', description: '.....................' },
-            { icon: '⛩️', title: 'به زودی - ۲', description: '.....................' },
-            { icon: '🐲', title: 'به زودی - ۳', description: '.....................' },
+            { icon: '⚙️', title: 'به زودی - 1', description: '.....................' },
+            { icon: '⛩️', title: 'به زودی - 2', description: '.....................' },
+            { icon: '🐲', title: 'به زودی - 3', description: '.....................' },
         ]
     },
     faq: {
@@ -348,7 +348,7 @@ const SITE_CONTENT_FA = {
             { platform: 'تلگرام', icon: 'fab fa-telegram', url: 'https://t.me/DiamondAsHesam' },
             { platform: 'دیسکورد', icon: 'fab fa-discord', url: 'https://discord.gg/MWr2QCCMTv' },
         ],
-        copyright: '۲۰۲۵',
+        copyright: '2026',
         rights: 'تمامی حقوق محفوظ است.',
         credit: 'طراحی شده با ❤️'
     }
